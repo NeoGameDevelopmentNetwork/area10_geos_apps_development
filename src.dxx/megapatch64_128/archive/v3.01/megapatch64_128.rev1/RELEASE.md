@@ -1,6 +1,0 @@
-# Area6510
-
-# GEOS MEGAPATCH 64/128 [GERMAN]
-
-Released: 2018/07/14 23:15
-Version : V3.01.rev1

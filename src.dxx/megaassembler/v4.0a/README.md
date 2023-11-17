@@ -1,5 +1,0 @@
-# Area6510
-
-# GEOS MEGAASSEMBLER V4
-Released: 2019/05/18 13:00
-Version : V4.0a

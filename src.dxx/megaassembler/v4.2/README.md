@@ -1,5 +1,0 @@
-# Area6510
-
-# GEOS MEGAASSEMBLER V4
-Released: 2021/01/29 08:00
-Version : V4.2
