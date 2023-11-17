@@ -1,0 +1,37 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+;*** Auswahl des IECBus-NM oder SD2IEC-NM-Treibers:
+;--- Ergänzung: 17.10.18/M.Kanet
+;IECBNM ->
+;Kompatibel mit CMD-FD für Test unter
+;VICE verwendbar.
+;
+;SD2IEC ->
+;Erfordert ein SD2IEC da Firmware-
+;spezifische Aufrufe genutzt werden.
+;
+;Es kann nur ein Treiber eingebunden
+;werden, da beide Treiber die gleiche
+;ID verwenden.
+;Standard ist der SD2IEC-Treiber.
+;
+;--- Ergänzung: 31.10.20/M.Kanet
+;Für die Laufwerkstreiber am seriellen
+;Bus gibt es eine Variante die ohne den
+;GEOS-Loader (TurboDOS) funktioniert.
+;
+;Um die neuen KernalMode-Treibern zu
+;assemblieren muss die Datei
+;`opt.Disk.DOSMode` mit einem Editor
+;(geoWrite) angepasst werden.
+;
+;Die KernalMode-Treiber sind sehr
+;langsam, auch mit JiffyDOS-Kernal.
+;Die Laufwerkstreiber sind daher nur
+;als Referenz zu verstehen.

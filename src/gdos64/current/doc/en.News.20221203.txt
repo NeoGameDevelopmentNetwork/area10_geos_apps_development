@@ -1,0 +1,58 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+`2What's new in GDOS64?`
+
+Date: 03-DEC-2022
+
+	`301Content:`
+	>> GDOS64/MegaPatch Version
+	>> File selection box
+	>> Bugfixes
+
+`361* GDOS64/MegaPatch Version`
+
+Until now the address $C011 was "Reserved for future use". From now on you will find a version byte here, which gives information about the current version of  GDOS64 or GEOS/MegaPatch:
+	$00	=	GEOS V2 or earlier version of
+			GDOS64 or GEOS/MegaPatch.
+	$3A	=	GEOS/MegaPatch V3.3r10
+	$3B	=	GEOS/MegaPatch V3.3r11
+	...
+	>=$80	=	GDOS64
+
+`361* File selection box`
+
+The file selection box is now using the correct color to display system icons.
+
+`361* Bugfixes`
+
+When using GD.CONF.SCREEN > COLORS to edit colors switching between different colors may update the current selection twice.
+
+A bug was fixed in the GEOS routine GetString. This bug did exist since the very first version of GEOS/ MegaPatch and does also exist in GDOS64.
+Depending on the value of dispBufferOn it could happen that no text will be displayed since all input will only be written into the back screen.
+
+Another very old old bug was fixed in Pacman screen saver. The last pixel column was not ereased when Pacman switched the direction.
+
+When using a TurboChameleon64 the PacMan screen saver does now use the 1MHz mode to slow down the sprite movment.
+
+The spooler menu may currently only be $1508 byte in size, since data for the printer spooler and printer driver are stored in MegaPatch within the extendended GEOS-DACC starting at $d180.
+For GDOS64 this has already been considered. For MP3 and MegaAssembler the two additional symbol definition files "SymbTab_MMap" and "ExtSym.MP3" were corrected.
+
+Related topics:
+^`1Main page`
+^`1What's new in GDOS64?`
+
+`2*** End of page ***`
+
+§§§
+"en.Index.001",01
+"en.Index.001",02
+
+§§§
+
+§§§

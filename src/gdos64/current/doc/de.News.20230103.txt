@@ -1,0 +1,56 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+`2Was ist neu in GDOS64?`
+
+Stand: 24-DEZ-2022
+
+	`301Inhalt:`
+	>> Farben für DeskTop V2
+	>> GeoDesk-Module ändern
+	>> Prozess-Routinen
+	>> Fehlerkorrekturen
+
+`361* Farben für DeskTop V2`
+
+GD.CONFIG setzt nun auch die Farben im DESKTOP V2 für Datei-Icons und Arbeitsplatz. Das funktioniert aber nur für die GEOS-Dateitypen 0-15. Das erfolgt sonst über das DeskAccessory "pad color mgr".
+
+`361* GeoDesk-Module ändern`
+
+Im Menü GEOS/Einstellungen findet sich jetzt der Menüeintrag "GeoDesk-Module ändern". Es wird dann auf dem Startlaufwerk nach "GEODESK.mod" gesucht und die Datei dann gestartet.
+
+`361* Prozess-Routinen`
+
+In den Prozess-Routinen wird ein Bit%4 getestet, das nach Recherchen das NOTIMER_BIT ist.
+Das Bit ist in der MegaSym des MegaAssembler und in GEOSConstants des geoProgrammer enthalten.
+Die Funktion wird allerdings nirgendwo beschrieben und wurde wohl nie komplettiert.
+GDOS64 wurde jetzt um die Funktion erweitert. Dazu muss in der Prozesstabelle als Verzögerung der Wert 0 übergeben werden. Der Kernal setzt dann das NOTIMER_BIT und der Prozesszähler wird nie heruntergezählt. Der Prozess kann aber über die Routine EnableProzess über die GEOS-Mainloop ausgeführt werden.
+
+`361* Fehlerkorrekturen`
+
+Fehler innerhalb des RAMLink- und des SuperCPU- RAM-Treiber behoben:  Ein Neustart von GEOS über SYS49152 (:BootGeos) kann fehlschlagen, wenn der Speicher von $9d80 bis $9fff durch ein Programm überschrieben wurde.
+
+Nach einem Update einer früheren GEOS-Version auf einen aktuellen GDOS64-Build wurde der GEOS-Kernal nicht in der REU gespeichert.
+Dadurch führt ein SYS49152 direkt nach einem Update und dem Wechsel zum BASIC zum Absturz.
+
+Die Routine :DoRAMOp gibt unter GEOS-V2 einen Fehler aus, wenn die angeforderte Speicherbank in :r3L nicht verfügbar ist.
+Die Fehlerprüfung wurde unter GDOS64 ergänzt.
+
+Verwandte Themen:
+^`1Hauptseite`
+^`1Was ist neu in GDOS64?`
+
+`2*** Seitenende ***`
+
+§§§
+"de.Index.001",01
+"de.Index.001",02
+
+§§§
+
+§§§

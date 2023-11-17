@@ -1,0 +1,19 @@
+# Area6510
+
+# MegaPatch 64/128
+Released: 2019/04/09 20:00
+Version : V3.3r5
+
+### New features:
+- None.
+
+### Changes:
+* MP64: Fix ToBASIC routine which
+  have prevented starting BASIC
+  applications and executing BASIC
+  commands.
+* Fix disk size displayed in Editor
+  for NativeMode CMD-HD drives using
+  a CMD-HD cable with RAMlink.
+* MP128: Prevent switching system
+  drive.

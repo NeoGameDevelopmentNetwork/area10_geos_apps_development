@@ -1,0 +1,43 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+`2What's new in GDOS64?`
+
+Date: 2023/03/01
+
+	`301Content:`
+	>> Bugfixes
+
+`361* Bugfixes`
+
+Fixed a bug when starting GDOS64 using GD.RESET and without a "GD.INI" configuration file.
+
+Fixed issues with setting GEOS system time using a TC64 or Ultimate RTC.
+
+Fixed a problem when setting the GEOS system time using a SmartMouse-RTC.
+
+Fixed a bug in the screen menu of GD.CONFIG:
+If the mode of the screen saver is set to "Start manually only" the setting was not saved in the configuration file.
+
+Fixed a bug in GD.FBOOT:
+When starting from a drive without a 'GD.INI' file the startup process will fail.
+For example, if GD.FBOOT is started from the TC64v2 SD drive, then GD.FBOOT terminates the startup process with the message that the ram expansion could not be detected.
+
+Related topics:
+^`1Main page`
+^`1What's new in GDOS64?`
+
+`2*** End of page ***`
+
+§§§
+"en.Index.001",01
+"en.Index.001",02
+
+§§§
+
+§§§

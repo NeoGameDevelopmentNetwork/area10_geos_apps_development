@@ -1,0 +1,83 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+`2What's new in GDOS64?`
+
+Date: 14-OCT-2022
+
+	`301Content:`
+	>> Extension for register menus
+	>> More consistent buttons
+	>> Bugfixes
+
+`361* Extension for register menus`
+
+In register menus it is possible to integrate a kind of "buttons" via icons. These buttons work similar in GEOS menus when using the DoIcons routine, i.e. after clicking with the mouse a defined function is triggered.
+In GDOS64 (and also in GEOS/MegaPatch) these buttons in register menus did not give any visiable feedback so far.
+
+With this update a function has been added to the register menu to allow a button to give a visible feedback after a mouse click.
+The extension is backwards compatible to GEOS/ MegaPatch, i.e. programs will still work under both GEOS systems. However, visible feedback is not supported under GEOS/MegaPatch.
+
+Since visible feedback is not desired in every case, there are two methods to generate the feedback:
+
+`341Manual mode`
+The manual mode is intended for GEOS programmers. This allows an additional bit to be set in the icon table for the button in a previously unused data byte:
+
+:RIcon_Button	w	IconGraphic
+	b	%10000000	;Bit%7=1
+	b	$00	;Dummy-Byte
+	b	1	;Width Cards
+	b	8	;Height Pixel
+	b	NO_OPT_UPDATE	;No Update
+
+The bytes 3+4 of the icon table were only dummy bytes up to now, just like in the icon table for a user icon in a dialog box.
+
+Bit%7 and bit%6 are now used for visible feedback for buttons in register menus. If both bits are set to %0 (default), no visible feedback is given when a button is clicked with the mouse.
+
+If bit%7 is set to %1, then the register menu checks the GEOS register ":iconSelFlag":
+
+If bit%7 in ":iconSelFlag" is set (":ST_FLASH"), then the button flashes onces after being clicked with the mouse. Bit%6 (":ST_INVERT") is ignored.
+
+If Bit%6 is set to %1, then a visible feedback is prevented. The only affects visible feedback using the following system mode.
+
+`341System mode`
+Since the menual mode can only be used by programmers and newly created programs, an option for users has been added to GD.CONFIG to allow visible feedback for all buttons in register menus.
+
+	>> GD.CONFIG > GEOS > Menu
+
+The option "Icons status in register menus" can be activated to enable visible feedback in all programs that use register menus.
+
+NOTE: For GDOS64 and GeoDesk this is not necessary, because all register menus have been adapted to the new extension.
+
+Thus all buttons in register menus will now give visible feedback, except for buttons where the programmer has manually set bit%6 to prevent visible feedback.
+
+An example of this are the "dog-ear" buttons (+/-) on the lower right corner of a register menu (e.g. file properties in GeoDesk):
+Here the visible feedback would have to be in a triangular form. Since this does not work automatically, the feedback is disabled here.
+If the complete button would flash, it would not be clear whether you had moved forwards or backwards. In this case visible feedback does not offer any advantages here.
+
+`361* More consistent buttons`
+
+Similar buttons are now used in GD.CONFIG and GeoDesk, e.g. for buttons or selection lists.
+
+`361* Bugfixes`
+
+Error fixed when copying files from a drive type 1581 (or compatible) to 1541. An empty file window was displayed after the copy operation.
+
+Related topics:
+^`1Main page`
+^`1What's new in GDOS64?`
+
+`2*** End of page ***`
+
+§§§
+"en.Index.001",01
+"en.Index.001",02
+
+§§§
+
+§§§

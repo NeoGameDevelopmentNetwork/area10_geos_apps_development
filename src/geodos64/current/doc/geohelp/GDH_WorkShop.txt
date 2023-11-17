@@ -1,0 +1,995 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+`2GeoDOS-WorkShop`
+
+In diesem Kapitel bekommen Sie ein paar Tips
+zum Umgang mit GeoDOS.
+
+_____________________________________
+
+`2*** Ende ***
+
+§§§
+
+§§§
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2Inhaltsverzeichnis`
+
+	Inhalt	Seite
+_____________________________________
+
+	`1Hauptübersicht`
+
+	#	PCX-Datei von MSDOS nach CBM kopieren
+		^`1Einstellungen`	3
+		^`1Kopiervorgang`	4
+
+	#	GeoPaint-Datei nach PCX kopieren
+		^`1Einstellungen`	5
+		^`1Kopiervorgang`	6
+
+	#	PC-Texte nach GeoWrite konvertieren
+		^`1Einstellungen 1`	(Schriftart und Tabelle)	7
+		^`1Einstellungen 2`	(Format & verbinden)	8
+		^`1Einstellungen 3`	(Layout & Ziel-Datei)	9
+		^`1Kopiervorgang`		10
+
+	#	GeoWrite-Text nach MSDOS konvertieren
+		^`1Einstellungen 1`	(Übersetzungstabelle)	11
+		^`1Einstellungen 2`	(Format & Ziel-Datei)	12
+		^`1Kopiervorgang`		13
+
+	#	BTX-Texte nach GeoWrite konvertieren
+		^`1Einstellungen 1`	(Schriftart und Tabelle)	14
+		^`1Einstellungen 2`	(Format & verbinden)	15
+		^`1Einstellungen 3`	(Layout & Ziel-Datei)	16
+		^`1Kopiervorgang`		17
+
+_____________________________________
+
+`2*** Ende ***`
+
+§§§
+"GDH_Index",02
+"GDH_WorkShop",03
+"GDH_WorkShop",04
+"GDH_WorkShop",05
+"GDH_WorkShop",06
+"GDH_WorkShop",07
+"GDH_WorkShop",08
+"GDH_WorkShop",09
+"GDH_WorkShop",10
+"GDH_WorkShop",11
+"GDH_WorkShop",12
+"GDH_WorkShop",13
+"GDH_WorkShop",14
+"GDH_WorkShop",15
+"GDH_WorkShop",16
+"GDH_WorkShop",17
+
+§§§
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2PCX-Grafik von MSDOS nach CBM kopieren`
+
+Sie haben  auf einer DOS - Diskette einige Grafiken
+im PCX-Format vorliegen ( PCX ist ein PC - Bitmap-
+Grafikformat). Um nun diese Grafiken auf dem C64
+betrachten zu können , benötigen  Sie einen  PCX-
+Grafikviewer (z. B. GoDot für den C64).
+
+Gehen Sie nun bitte wie folgt vor:
+
+#	Starten Sie im Menü 'Dateien kopieren' die Funk-
+tion 'Optionen ändern' und richten Sie GeoDOS auf
+die folgenden Optionen ein:
+
+	`30D`40100	Löschen Sie alle Übersetzungstabellen.
+	`30D`40101	Grafikdateien müssen immer 1:1 kopiert
+	`30D`40102	werden.
+
+	Wählen Sie in der Parameter - Liste den Bereich
+	'DOS ^ CBM' und stellen Sie die folgenden Para-
+	meter ein:
+
+	__`316 DOS => CBM `______________________
+
+	`341Zeilenvorschub:`
+	`40200	Zeilenvorschub ignorieren
+
+	Diese Option muß deaktiviert sein, sonst werden
+	nicht alle Grafikdaten kopiert.
+
+	`341Dateityp:`
+	`40200	SEQ
+
+	`40300	PRG
+
+	`40200	USR
+
+	Wählen Sie als Dateityp für die Ziel-Datei 'PRG'
+	um eine PRG-Datei zu erzeugen.
+	Siehe ^`1Optionen, DOS ^ CBM`
+
+	__`316 Ziel-Datei `________________________
+
+	`341Datum für Ziel-Datei:`
+	`40300	Original-Datei
+
+	`40200	Übernahme von GEOS
+
+	`341Ziel-Datei überschreiben:`
+	`40200	Ja, Ziel-Datei löschen
+
+	`40200	Nein, Datei ignorieren
+
+	`40300	Abfrage
+
+	Korrigieren Sie bei Bedarf die Einstellungen für
+	das Datum , die Uhrzeit und den  'Überschreib-
+	modus' in diesem Bereich.
+	Siehe ^`1Optionen, Ziel-Datei`
+
+_____________________________________
+
+		`1>> Weiter >>`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Copy-Opt",12
+"GDH_Copy-Opt",10
+"GDH_WorkShop",04
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2PCX-Grafik von MSDOS nach CBM kopieren`
+
+`30D`40100	Verlassen  Sie die  Funktion 'Optionen ändern'
+`30D`40101	und wählen Sie  im Menü  'Dateien kopieren'
+	die Funktion 'DOS ^ CBM, Dateien'. Wählen Sie
+nun Ihre Konfiguration in  der Laufwerksauswalbox
+und bestätigen Sie die Einstellungen mit 'OK'.
+GeoDOS ermittelt die Daten der DOS - Diskette und
+zeigt Ihnen die Dateiauswahlbox  mit den  verfüg-
+baren Dateien  und  Verzeichnissen. Wählen Sie die
+entsprechenden  Grafikdateien ,  erkennbar  durch
+'.PCX' am Ende des Dateinamen.  Nach einem Klick
+auf das 'OK' - Icon überprüft  GeoDOS die Dateiliste
+und startet den Kopiervorgang. Ist der Vorgang be-
+endet , wählen Sie  bitte aus dem  Menü 'Sonder-
+funktionen' den Punkt 'Nach BASIC verlassen'.
+Starten  Sie jetzt  GoDot. Wie Sie die PCX - Dateien
+auf dem Bildschirm anzeigen können , entnehmen
+Sie bitte der GoDot - Anleitung.
+
+_____________________________________
+
+	`1<< Zurück <<`
+
+Verwandte Themen:
+^`1Kopieren, DOS => CBM`
+^`1Auswahl Quell- & Ziel-Laufwerk`
+^`1Die Dateiauswahlbox`
+
+`2*** ENDE ***
+
+§§§
+"GDH_WorkShop",03
+"GDH_Copy-File",04
+"GDH_Grundlagen",11
+"GDH_Grundlagen",13
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2GeoPaint-Datei nach PCX kopieren`
+
+Sie haben eine GeoPaint-Datei und möchten diese
+in das PCX - Format wandeln. Dazu benötigen Sie
+allerdings einen  'GeoPaint ^ PCX' - Konverter mit
+dem Sie die GeoPaint - Grafik  in eine PCX - Datei
+umwandeln können.
+
+Gehen Sie danach bitte wie folgt vor:
+
+#	Starten Sie im Menü 'Dateien kopieren' die Funk-
+tion 'Optionen ändern' und richten Sie GeoDOS auf
+die folgenden Optionen ein:
+
+	`30D`40100	Löschen Sie alle Übersetzungstabellen.
+	`30D`40101	Grafikdateien müssen immer 1:1 kopiert
+	`30D`40102	werden.
+
+	Wählen Sie in der Parameter - Liste den Bereich
+	'CBM ^ DOS' und stellen Sie die folgenden Para-
+	meter ein:
+
+	__`316 CBM => DOS `______________________
+
+	`341Zeilenvorschub:`
+	`40200	Einfügen
+
+	Diese Option muß deaktiviert sein, sonst werden
+	die Daten fehlerhaft kopiert.
+
+	`341DOS-Dateiname:`
+	`40300	Name vorschlagen
+
+	`40200	Neu eingeben
+
+	Wählen  Sie 'Name vorschlage' wenn die  Datei-
+	namen am  Ende bereits  eine '.PCX' - Kennung
+	besitzen. Ist das nicht der Fall, dann sollten Sie
+	'Neu eingeben' wählen.
+	Siehe ^`1Optionen, CBM ^ DOS`
+
+	__`316 Ziel-Datei `________________________
+
+	`341Datum für Ziel-Datei:`
+	`40300	Original-Datei
+
+	`40200	Übernahme von GEOS
+
+	`341Ziel-Datei überschreiben:`
+	`40200	Ja, Ziel-Datei löschen
+
+	`40200	Nein, Datei ignorieren
+
+	`40300	Abfrage
+
+	Korrigieren Sie bei Bedarf die Einstellungen für
+	das Datum , die Uhrzeit und den  'Überschreib-
+	modus' in diesem Bereich.
+	Siehe ^`1Optionen, Ziel-Datei`
+
+_____________________________________
+
+		`1>> Weiter >>`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Copy-Opt",13
+"GDH_Copy-Opt",10
+"GDH_WorkShop",06
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2GeoPaint-Datei nach PCX kopieren`
+
+`30D`40100	Verlassen  Sie die  Funktion 'Optionen ändern'
+`30D`40101	und wählen Sie  im Menü  'Dateien kopieren'
+	die Funktion 'CBM ^ DOS, Dateien'. Wählen Sie
+nun Ihre Konfiguration in  der Laufwerksauswalbox
+und bestätigen Sie die Einstellungen mit 'OK'.
+Wählen Sie aus der Auswahl die PCX- Dateien, die
+Sie kopieren möchten und  bestätigen Sie die Aus-
+wahl mit  'OK'.  Anschließend  öffnet GeoDOS  die
+MSDOS-Zieldiskette. Sind auf der  Diskette im Ziel -
+Laufwerk Unterverzeichnisse vorhanden, dann kön-
+nen Sie jetzt das Zielverzeichnis wählen. Vor dem
+Kopiervorgang  müssen Sie  jetzt noch die MSDOS-
+Dateinamen eingeben. Achten Sie darauf, das der
+Name mit der Kennung '.PCX'  abgeschlossen wird.
+Anschließend beginnt  GeoDOS mit  dem  kopieren
+der Dateien.  Zum  weiterbearbeiten  der Grafiken
+können Sie ein  beliebiges PC - Zeichenprogramm
+verwenden (z.B. PaintBrush im Windows-Lieferum-
+fang oder ein anderes Bitmap-Zeichenprogramm).
+
+_____________________________________
+
+	`1<< Zurück <<`
+
+Verwandte Themen:
+^`1Kopieren, CBM => DOS`
+^`1Auswahl Quell- & Ziel-Laufwerk`
+^`1Die Dateiauswahlbox`
+
+`2*** ENDE ***
+
+§§§
+"GDH_WorkShop",05
+"GDH_Copy-File",06
+"GDH_Grundlagen",11
+"GDH_Grundlagen",13
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2PC-Texte nach GeoWrite konvertieren`
+
+PC-Texte können Sie zu  90% in sofort druckfähige
+GeoWrite-Dokumente konvertieren. Dafür ist es not-
+wendig zu wissen, welcher PC-Zeichensatz für die
+Texte  verwendet wurde , denn GeoDOS ist  in der
+Lage, drei der gebräuchlichsten zu bearbeiten:
+
+	#	PC437
+	#	PC850
+	#	PCWIN
+
+Die ersten beiden sind für reine DOS-Texte (erstellt
+z. B. mit "EDIT" unter MSDOS 6.x ) , der letztere ist
+für Windows-ASCII - Texte (erstellt z. B. mit "Write"
+aus dem Windows 3.x Lieferumfang).
+
+Um nun einen Text nach GeoWrite zu konvertieren,
+gehen Sie bitte wie folgt vor:
+
+#	Starten Sie im Menü 'Dateien kopieren' die Funk-
+tion 'Optionen ändern' und richten Sie GeoDOS auf
+die folgenden Optionen ein:
+
+	`30D`40100	Wählen Sie hier eine  Übersetzungs-
+	`30D`40101	Tabelle, um den PC-Zeichensatz an
+	`30D`40102	GeoWrite anzupassen.
+		In diesem Fall  müssen Sie eine Ta-
+		belle 'PC... => GEOS-ASCII' einstellen,
+		damit der PC-Text richtig konvertiert
+		werden kann.
+		Siehe ^`1Die Übersetzungstabellen`
+
+	`30D`40200	Wählen Sie  hier den Druckertreiber
+	`30D`40201	mit dem später das Dokument auch
+	`30D`40202	gedruckt werden soll.
+		Siehe ^`1GeoWrite-Dokument erstellen`
+
+	`30D`40300	Wählen Sie hier die Schriftart in der
+	`30D`40301	später der Text erstellt werden soll.
+	`30D`40302	(Empfohlen wird COMMODRE_GE)
+		Siehe ^`1GeoWrite-Dokument erstellen`
+
+_____________________________________
+
+		`1>> Weiter >>`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Tabellen",03
+"GDH_Copy-Opt",09
+"GDH_Copy-Opt",09
+"GDH_WorkShop",08
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2PC-Texte nach GeoWrite konvertieren`
+
+Wählen Sie nun in der Parameter- Liste den Bereich
+'DOS ^ GeoWrite' und stellen Sie dort die folgenden
+Parameter ein:
+
+	__`316 DOS => GeoWrite `___________________
+
+	`341Text-Format:`
+
+	`40100	Write Image V2.0
+
+	`40200	Write Image V2.1
+
+	Wählen Sie hier das Text -Format des GeoWrite-
+	Dokuments das erstellt werden soll. Bei Texten
+	die unter MSDOS erstellt wurden , sollte immer
+	das Format  V2.1 (80 Zeichen / Zeile) gewählt
+	werden. Bei Windows - Texten können Sie Ver-
+	suchsweise auch das V2.0- Format verwenden.
+	
+
+	`341Seiten-Layout:`
+
+	Erste Seiten-Nr.	`40300
+
+	`40200	Text neu formatieren
+
+	`40100	Seitenende übernehmen
+
+	`40200	Zeilen pro Seite	`40300
+
+	Ändern Sie bei Bedarf den Wert für die Nummer
+	der ersten Seite des Dokuments. Die Option 'Text
+	neu formatieren'  wird beim  konvertieren zwar
+	empfohlen , muß aber nicht unbedingt aktiviert
+	werden. Der Wert für 'Zeilen pro Seite' wird von
+	GeoDOS berechnet , wenn der  richtige  Drucker-
+	treiber aktiviert  und die  korrekte Schriftart ein-
+	gestellt wurde.
+	Siehe ^`1Optionen, DOS ^ GeoWrite`
+
+	__`316 Texte verbinden `___________________
+
+	`341Mehrere Texte zu einer Datei verbinden:`
+
+	`40200	Dateien zusammenfassen
+
+	`40100	Direkt verbinden
+
+	`40100	Leerzeile einfügen
+
+	`40200	Neue Seite beginnen
+
+	Wenn sie die PC- Texte zu einer GeoWrite - Datei
+	zusammenfassen möchten, dann sollten Sie die
+	obigen Einstellungen verwenden. Wenn Sie jede
+	Datei für sich in ein GeoWrite- Dokument konver-
+	tieren möchten , dann  sollten Sie  diese Option
+	deaktivieren (^	`40100 Dateien zusammenfassen)
+	Siehe ^`1Optionen, Texte verbinden`
+
+_____________________________________
+
+	`1<< Zurück <<`	`1>> Weiter >>`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Copy-Opt",14
+"GDH_Copy-Opt",22
+"GDH_WorkShop",07
+"GDH_WorkShop",09
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2PC-Texte nach GeoWrite konvertieren`
+
+	__`316 Seitenformat `________________________
+
+	`341Raneinstellungen:`
+
+	Linker Rand:	`40100	Rechter Rand:	`40100
+
+	Absatz-Tabulator:	`40100
+
+	Wenn  das  Textformat korrekt  gewählt  wurde,
+	werden  die Werte  für den  linken  und rechten
+	Rand bzw. für den Absatz-Tabulator von GeoDOS
+	automatisch auf die Maximalwerte gesetzt.
+
+	`341Tabulatoren:`
+
+	`40200	T1 bis T8	`40100
+
+		Hier können Sie die Werte für bis zu acht Tabu-
+	latoren festlegen.
+	Siehe ^`1Optionen, Seitenformat`
+
+	__`316 Ziel-Datei `________________________
+
+	`341Datum für Ziel-Datei:`
+	`40300	Original-Datei
+
+	`40200	Übernahme von GEOS
+
+	`341Ziel-Datei überschreiben:`
+	`40200	Ja, Ziel-Datei löschen
+
+	`40200	Nein, Datei ignorieren
+
+	`40300	Abfrage
+
+	Korrigieren Sie bei Bedarf die Einstellungen für
+	das Datum , die Uhrzeit und den  'Überschreib-
+	modus' in diesem Bereich.
+	Siehe ^`1Optionen, Ziel-Datei`
+
+_____________________________________
+
+	`1<< Zurück <<`	`1>> Weiter >>`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Copy-Opt",21
+"GDH_Copy-Opt",10
+"GDH_WorkShop",08
+"GDH_WorkShop",10
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2PC-Texte nach GeoWrite konvertieren`
+
+`30D`40100	Verlassen  Sie die  Funktion 'Optionen ändern'
+`30D`40101	und wählen Sie  im Menü  'Dateien kopieren'
+	die Funktion 'DOS ^ GeoWrite'. Wählen Sie nun
+Ihre Konfiguration in  der Laufwerksauswalbox und
+bestätigen Sie die Einstellungen mit 'OK'.
+GeoDOS ermittelt die Daten der DOS - Diskette und
+zeigt Ihnen die Dateiauswahlbox  mit den  verfüg-
+baren Dateien  und  Verzeichnissen. Wählen Sie die
+entsprechenden PC -Textdateien. Nach einem Klick
+auf das 'OK' - Icon überprüft  GeoDOS die Dateiliste
+und startet den Kopiervorgang. Ist der Vorgang be-
+endet , dann öffnen Sie  nun das fertige GeoWrite-
+Dokument über  das Menü  'Sonderfunktionen' und
+'GeoWrite - Dokument öffnen'.  Falls  die  Umlaute
+nicht korrekt übersetzt wurden , haben Sie hier die
+falsche  Tabelle  verwendet.  Wiederholen Sie den
+Vorgang mit einer anderen Übersetzungstabelle.
+
+_____________________________________
+
+	`1<< Zurück <<`
+
+Verwandte Themen:
+^`1Kopieren, DOS => GeoWrite`
+^`1Auswahl Quell- & Ziel-Laufwerk`
+^`1Die Dateiauswahlbox`
+
+`2*** ENDE ***
+
+§§§
+"GDH_WorkShop",09
+"GDH_Copy-File",04
+"GDH_Grundlagen",11
+"GDH_Grundlagen",13
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2GeoWrite-Texte nach MSDOS kopieren`
+
+GeoDOS ist in der Lage die GeoWrite - Formate V2.0
+und V2.1 in das PC-Textformat zu konvertieren. Das
+Programm unterstützt dabei drei PC-Zeichensätze:
+
+	#	PC437
+	#	PC850
+	#	PCWIN
+
+Die ersten beiden sind für reine DOS-Texte (erstellt
+z. B. mit "EDIT" unter MSDOS 6.x ) , der letztere ist
+für Windows-ASCII - Texte (erstellt z. B. mit "Write"
+aus dem Windows 3.x Lieferumfang).
+
+Im GeoWrite - Dokument enthaltene Photo - Scraps
+werden dabei nicht mitkopiert.
+
+Um nun ein GeoWrite-Dokument in einen PC - Text
+zu konvertieren, gehen Sie bitte wie folgt vor:
+
+#	Starten Sie im Menü 'Dateien kopieren' die Funk-
+tion 'Optionen ändern' und richten Sie GeoDOS auf
+die folgenden Optionen ein:
+
+	`30D`40100	Wählen Sie hier eine  Übersetzungs-
+	`30D`40101	Tabelle, um den GEOS - Zeichensatz
+	`30D`40102	an das PC-Format anzupassen.
+		In diesem Fall  müssen Sie eine Ta-
+		belle 'GEOS-ASCII => PC...' einstellen,
+		damit das Dokument richtig konver-
+		tiert werden kann.
+		Siehe ^`1Die Übersetzungstabellen`
+
+_____________________________________
+
+		`1>> Weiter >>`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Tabellen",03
+"GDH_WorkShop",12
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2GeoWrite-Texte nach MSDOS kopieren`
+
+Wählen Sie nun in der Parameter- Liste den Bereich
+'GeoWrite ^ DOS' und stellen Sie dort die folgenden
+Parameter ein:
+
+	__`316 GeoWrite => DOS `___________________
+
+	`341Zeilenvorschub:`
+
+	`40200	Einfügen
+
+	MSDOS-Texte benötigen am Ende einer Zeile den
+	Zeilenvorschub  (Code $0A), deshalb muß diese
+	Option hier aktiviert werden.
+
+	`341GeoWrite-Seitenende:`
+
+	`40100	Übernehmen
+
+	Aktivieren  Sie diese Option , damit in  der Text-
+	datei auf dem PC  die Seiten die gleiche Länge
+	haben wie im GeoWrite-Dokument.
+
+	`341DOS-Dateiname:`
+	`40200	Name vorschlagen
+
+	`40100	Neu eingeben
+
+	Wählen  Sie 'Name vorschlage' wenn die Datei-
+	namen bereits im 8+3-Format vorliegen. Ist das
+	noch nicht der Fall, dann sollten Sie die Option
+	'Neu eingeben' wählen.
+	Siehe ^`1Optionen, GeoWrite ^ DOS`
+
+	__`316 Ziel-Datei `________________________
+
+	`341Datum für Ziel-Datei:`
+	`40200	Original-Datei
+
+	`40100	Übernahme von GEOS
+
+	`341Ziel-Datei überschreiben:`
+	`40100	Ja, Ziel-Datei löschen
+
+	`40100	Nein, Datei ignorieren
+
+	`40200	Abfrage
+
+	Korrigieren Sie bei Bedarf die Einstellungen für
+	das Datum , die Uhrzeit und den  'Überschreib-
+	modus' in diesem Bereich.
+	Siehe ^`1Optionen, Ziel-Datei`
+
+_____________________________________
+
+	`1<< Zurück <<`	`1>> Weiter >>`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Copy-Opt",15
+"GDH_Copy-Opt",10
+"GDH_WorkShop",11
+"GDH_WorkShop",13
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2GeoWrite-Texte nach MSDOS kopieren`
+
+`30D`40100	Verlassen Sie die  Funktion 'Optionen ändern'
+`30D`40101	und wählen Sie  im Menü  'Dateien kopieren'
+	die Funktion 'GeoWrite ^ MSDOS'.  Wählen Sie
+nun Ihre Konfiguration in der Laufwerksauswalbox
+und bestätigen Sie die Einstellungen mit 'OK'.
+Wählen Sie aus der Auswahl die Text- Dateien, die
+Sie kopieren möchten und  bestätigen Sie die Aus-
+wahl mit  'OK'.  Anschließend  öffnet GeoDOS  die
+MSDOS-Zieldiskette. Sind auf der  Diskette im Ziel -
+Laufwerk Unterverzeichnisse vorhanden, dann kön-
+nen Sie jetzt das Zielverzeichnis wählen. Vor dem
+Kopiervorgang  müssen Sie  jetzt noch die MSDOS-
+Dateinamen  eingeben. Anschließend  beginnt das
+Programm mit dem kopieren der Dateien.
+
+_____________________________________
+
+	`1<< Zurück <<`
+
+Verwandte Themen:
+^`1Kopieren, GeoWrite => DOS`
+^`1Auswahl Quell- & Ziel-Laufwerk`
+^`1Die Dateiauswahlbox`
+
+`2*** ENDE ***
+
+§§§
+"GDH_WorkShop",12
+"GDH_Copy-File",06
+"GDH_Grundlagen",11
+"GDH_Grundlagen",13
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2BTX-Texte nach GeoWrite kopieren`
+
+Mit GeoDOS ist es möglich, BTX-Seiten die mit dem
+T-Online - Decoder für den C64 über die 'F6'- Taste
+gespeichert wurden , in ein GeoWrite-Dokument zu
+konvertieren.
+
+Gehen Sie dazu bitte wie folgt vor:
+
+#	Starten Sie im Menü 'Dateien kopieren' die Funk-
+tion 'Optionen ändern' und richten Sie GeoDOS auf
+die folgenden Optionen ein:
+
+	`30D`40100	Wählen Sie hier  die Übersetzungsta-
+	`30D`40101	belle 'BTX => GEOS-ASCII' um den BTX
+	`30D`40102	Zeichensatz an GeoWrite anzupassen.
+		Siehe ^`1Die Übersetzungstabellen`
+
+	`30D`40200	Wählen Sie  hier den Druckertreiber
+	`30D`40201	mit dem später das Dokument auch
+	`30D`40202	gedruckt werden soll.
+		Siehe ^`1GeoWrite-Dokument erstellen`
+
+	`30D`40300	Wählen Sie hier die Schriftart in der
+	`30D`40301	später der Text erstellt werden soll.
+	`30D`40302	(Empfohlen wird COMMODRE_GE)
+		Siehe ^`1GeoWrite-Dokument erstellen`
+
+_____________________________________
+
+		`1>> Weiter >>`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Tabellen",03
+"GDH_Copy-Opt",09
+"GDH_Copy-Opt",09
+"GDH_WorkShop",15
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2BTX-Texte nach GeoWrite kopieren`
+
+Wählen Sie nun in der Parameter- Liste den Bereich
+'Text ^ GeoWrite' und stellen Sie dort die folgenden
+Parameter ein:
+
+	__`316 Text => GeoWrite `__________________
+
+	`341Text-Format:`
+
+	`40200	Write Image V2.0
+
+	`40100	Write Image V2.1
+
+	Wählen Sie das GeoWrite V2.0-Format.  BTX-Texte
+	haben eine feste Breite von 40-Zeichen. Format
+	V2.0 (60 Zeichen/Zeile) ist dafür ausreichend.
+	
+
+	`341Seiten-Layout:`
+
+	Erste Seiten-Nr.	`40300
+
+	`40100	Text neu formatieren
+
+	`40100	Seitenende übernehmen
+
+	`40200	Zeilen pro Seite	`40300
+
+	Ändern Sie bei Bedarf den Wert für die Nummer
+	der ersten Seite des Dokuments. BTX- Textseiten
+	haben eine feste Länge von  24 Zeilen / Seite.
+	Damit passen zwei BTX-Texte auf eine GeoWrite-
+	Seite. Ändern Sie den Wert für 'Zeilen pro Seite'
+	auf 50 Zeilen (nicht 48 Zeilen! )
+	Siehe ^`1Optionen, Text ^ GeoWrite`
+
+	__`316 Texte verbinden `___________________
+
+	`341Mehrere Texte zu einer Datei verbinden:`
+
+	`40200	Dateien zusammenfassen
+
+	`40100	Direkt verbinden
+
+	`40200	Leerzeile einfügen
+
+	`40100	Neue Seite beginnen
+
+	Diese Einstellungen  stellen sicher , das  jeweils
+	zwei BTX - Seiten auf einer GeoWrite - Seite ge-
+	speichert werden.  Wenn Sie jede  BTX-Seite für
+	sich auf eine GeoWrite- Seite kopieren möchten,
+	dann wählen Sie ^	`40200 Neue Seite beginnen.
+	Siehe ^`1Optionen, Texte verbinden`
+
+_____________________________________
+
+	`1<< Zurück <<`	`1>> Weiter >>`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Copy-Opt",17
+"GDH_Copy-Opt",22
+"GDH_WorkShop",14
+"GDH_WorkShop",16
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2BTX-Texte nach GeoWrite kopieren`
+
+	__`316 Seitenformat `________________________
+
+	`341Raneinstellungen:`
+
+	Linker Rand:	`40100	Rechter Rand:	`40100
+
+	Absatz-Tabulator:	`40100
+
+	Setzen Sie die  Werte für den linken Rand  und
+	den Absatz- Tabulator auf 22. Damit werden die
+	BTX-Texte mittig auf der GeoWrite-Seite plaziert.
+
+	`341Tabulatoren:`
+
+	`40200	T1 bis T8	`40100
+
+	Tabulatoren werden hier nicht benötigt.
+	Siehe ^`1Optionen, Seitenformat`
+
+	__`316 Ziel-Datei `________________________
+
+	`341Datum für Ziel-Datei:`
+	`40200	Original-Datei
+
+	`40300	Übernahme von GEOS
+
+	`341Ziel-Datei überschreiben:`
+	`40200	Ja, Ziel-Datei löschen
+
+	`40200	Nein, Datei ignorieren
+
+	`40300	Abfrage
+
+	Korrigieren Sie bei Bedarf die Einstellungen für
+	das Datum , die Uhrzeit und den  'Überschreib-
+	modus' in diesem Bereich.
+	Siehe ^`1Optionen, Ziel-Datei`
+
+_____________________________________
+
+	`1<< Zurück <<`	`1>> Weiter >>`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Copy-Opt",21
+"GDH_Copy-Opt",10
+"GDH_WorkShop",15
+"GDH_WorkShop",17
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2GeoDOS - WorkShop`
+`2BTX-Texte nach GeoWrite kopieren`
+
+`30D`40100	Verlassen  Sie die  Funktion 'Optionen ändern'
+`30D`40101	und wählen Sie  im Menü  'Dateien kopieren'
+	die Funktion 'Text ^ GeoWrite'. Wählen Sie nun
+Ihre Konfiguration in  der Laufwerksauswalbox und
+bestätigen Sie die Einstellungen mit 'OK'.
+GeoDOS zeigt Ihnen  die Dateiauswahlbox  mit den
+vorhandenen Dateien.  Wählen  Sie die BTX - Texte,
+die Sie in das neue GeoWrite - Dokument einbinden
+möchten. Nach einem Klick auf das 'OK'- Icon über-
+prüft GeoDOS die  Dateiliste und startet den Kopier-
+vorgang. Ist der Vorgang beendet, dann öffnen Sie
+nun das fertige GeoWrite-Dokument über  das Menü
+'Sonderfunktionen' und 'GeoWrite-Dokument öffnen'.
+
+_____________________________________
+
+	`1<< Zurück <<`
+
+Verwandte Themen:
+^`1Kopieren, Text => GeoWrite`
+^`1Auswahl Quell- & Ziel-Laufwerk`
+^`1Die Dateiauswahlbox`
+
+`2*** ENDE ***
+
+§§§
+"GDH_WorkShop",16
+"GDH_Copy-File",08
+"GDH_Grundlagen",11
+"GDH_Grundlagen",13
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§

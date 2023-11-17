@@ -1,0 +1,233 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+*******************************************************************************
+*** Übersicht Quellcodes                                                    ***
+*******************************************************************************
+
+Assemblieren:	Benötigt Datei:	Erstellt Datei:	Information:
+===============================================================================
+src.KernalG3/a	src.KernalG3/b	tmp.G3_Kernal64	Kernaldatei von
+	- G3_ColorBox64		$9D80-$FFFF mit
+	- G3_SvLdGEOSvar		Maustreiber und
+	- G3_SetVecRAM		Zeichensatz!
+	- G3_IntScrnSave
+	- G3_TaskSwitch
+	- G3_SetSysColor
+	- G3_NewMainIRQ
+	- G3_NewMainLoop
+	- G3_NewEnterDT
+	- G3_NewClrDesk
+	- G3_New1stInit
+	- G3_NewToBasic
+	- G3_NewGetScanL
+	- G3_NewRec
+	- G3_FastRec
+	- G3_FillRam
+	- G3_NewMoveData
+	- G3_NewCRC
+	- G3_NewPanicBox
+	- G3_NewSetDev
+	- G3_NewFindFTyp
+	- G3_NewFindFile
+	- G3_NewGetFHdr
+	- G3_NewGetFile
+	- G3_NewLoadDA
+	- G3_NewDoMenu
+	- G3_NewDoIcons
+	- G3_NewDlgBox
+	- G3_NewMseToRec
+	- G3_NewGetStrg
+	- G3_NewAlarm
+	- G3_UseFontG3
+	- G3_GetBackScrn
+	- G3_Patch_REU.1
+	- G3_Patch_CMD.1
+	- G3_Patch_BBG.1
+	- G3_Patch_SCPU
+	fnt.GEOS 64.us		Zeichensatz US
+	fnt.GEOS 64.de		Zeichensatz DE
+	SuperMouse64		Maustreiber über
+			d-Befehl einlesen
+-------------------------------------------------------------------------------
+src.MakeKernal	-	MP_MakeKernal	Kernal packen um
+------------------------------------------------------------	SysBoot-Datei zu
+ => MP_MakeKernal			erstellen.
+    starten !!!	tmp.G3_Kernal64	obj.G3_Kernal64
+-------------------------------------------------------------------------------
+
+*******************************************************************************
+*** Übersicht Quellcodes                                                    ***
+*******************************************************************************
+
+Assemblieren:	Benötigt Datei:	Erstellt Datei:	Information:
+===============================================================================
+src.1541_Turbo	-	obj.Turbo41	Floppy41-TurboDOS
+src.1571_Turbo	-	obj.Turbo71	Floppy71-TurboDOS
+src.1581_Turbo	-	obj.Turbo81	Floppy81-TurboDOS
+src.1541_Device	obj.Turbo41	DiskDev_1541	1541-Treiber
+	- DD_41/71/81
+src.1571_Device	obj.Turbo71	DiskDev_1571	1541-Treiber
+	- DD_41/71/81
+src.1581_Device	obj.Turbo81	DiskDev_1581	1541-Treiber
+	- DD_41/71/81
+src.RAM41	- DD_41/71/81	DiskDev_RAM41	RAM41-Treiber
+src.RAM71	- DD_41/71/81	DiskDev_RAM71	RAM71-Treiber
+src.RAM81	- DD_41/71/81	DiskDev_RAM81	RAM81-Treiber
+src.RAMLink41	- DD_RL/RAM	DiskDev_RL41	RAMLink41-Treiber
+src.RAMLink71	- DD_RL/RAM	DiskDev_RL71	RAMLink71-Treiber
+src.RAMLink81	- DD_RL/RAM	DiskDev_RL81	RAMLink81-Treiber
+-------------------------------------------------------------------------------
+src.MEGA DISKDRV	-	mod.MDD_#100
+src.INIT C=1541	-	mod.MDD_#101
+src.DISK C=1541	DiskDev_1541	mod.MDD_#102
+src.INIT C=1571	-	mod.MDD_#103
+src.DISK C=1571	DiskDev_1571	mod.MDD_#104
+src.INIT C=1581	-	mod.MDD_#105
+src.DISK C=1581	DiskDev_1581	mod.MDD_#106
+src.INIT RAM41	-	mod.MDD_#107
+src.DISK RAM41	DiskDev_RAM41	mod.MDD_#108
+src.INIT RAM71	-	mod.MDD_#109
+src.DISK RAM71	DiskDev_RAM71	mod.MDD_#110
+src.INIT RAM81	-	mod.MDD_#111
+src.DISK RAM81	DiskDev_RAM81	mod.MDD_#112
+src.INIT RL41	-	mod.MDD_#113
+src.DISK RL41	DiskDev_RL41	mod.MDD_#114
+src.INIT RL71	-	mod.MDD_#115
+src.DISK RL71	DiskDev_RL71	mod.MDD_#116
+src.INIT RL81	-	mod.MDD_#117
+src.DISK RL81	DiskDev_RL81	mod.MDD_#118
+-------------------------------------------------------------------------------
+lnk.MEGA DISKDRV	mod.MDD_#1xy	MEGA DISKDRIVER	Treiberdatei.
+-------------------------------------------------------------------------------
+ext.NewToBasic	-	obj.NewToBasic
+ext.NewPanicBox	-	obj.NewPanicBox
+ext.GetNextDay	-	obj.GetNextDay
+ext.NewGetFiles	-	obj.NewGetFiles
+ext.ClrDlgScreen	-	obj.ClrDlgScreen
+ext.TaskSwitch	- FontType3	obj.TaskSwitch
+	fnt.GeoDOS #3
+ext.ScreenSaver	-	obj.ScreenSaver
+ext.GetBackScrn	-	obj.GetBackScrn
+-------------------------------------------------------------------------------
+src.BOOT.1	DiskDev_xyz	MEGA BOOT.1	Laufwerkstreiber
+			für Bootlaufwerk!
+	obj.G3_Kernal64		Gepacktes Kernal!
+-------------------------------------------------------------------------------
+src.BOOT.2	obj.NewToBasic	MEGA BOOT.2
+	obj.NewPanicBox
+	obj.GetNextDay
+	obj.NewGetFiles
+	obj.ClrDlgScreen
+	obj.TaskSwitch
+	obj.ScreenSaver
+	obj.GetBackScrn
+-------------------------------------------------------------------------------
+src.StartGEOS	-	MEGA GEOS	Startprogramm
+-------------------------------------------------------------------------------
+src.StartRBOOT	-	MEGA RBOOT	ReBoot-Programm
+-------------------------------------------------------------------------------
+src.RBOOT.SYS	-	MEGA RBOOT.SYS	RAM-Erkennung
+-------------------------------------------------------------------------------
+src.AutoBoot	-	obj.AutoBoot	AutoBoot-Routine.
+-------------------------------------------------------------------------------
+src.Patch_REU.1	- G3_Patch_REU.1	obj.Patch_REU.1	Patches die dann
+src.Patch_CMD.1	- G3_Patch_CMD.1	obj.Patch_CMD.1	über GEOS BOOT im
+src.Patch_BBG.1	- G3_Patch_BBG.1	obj.Patch_BBG.1	Kernal installiert
+src.Patch_BBG.2	-	obj.Patch_BBG.2	werden
+src.Patch_BBG.3	obj.Patch_BBG.2	obj.Patch_BBG.3
+src.Patch_BBG.4	-	obj.Patch_BBG.4
+src.Patch_SCPU	- G3_Patch_SCPU	obj.Patch_SCPU	Neue SCPU-Tools
+-------------------------------------------------------------------------------
+src.GEOS BOOT	obj.AutoBoot	MEGA BOOT	Achtung! Quellcode
+	obj.Patch_REU.1		enthält Laufwerks-
+	obj.Patch_CMD.1		typ Bootlaufwerk!!
+	obj.Patch_BBG.1		Ändern auf S.1
+	obj.Patch_BBG.3
+	obj.Patch_BBG.4
+	obj.Patch_SCPU
+-------------------------------------------------------------------------------
+src.MegaMakeBoot	-		Erstellt BootDisk
+-------------------------------------------------------------------------------
+src.MEGA STARTP	obj.Patch_REU.1		enthält Laufwerks-
+	obj.Patch_CMD.1		typ Bootlaufwerk!!
+	obj.Patch_BBG.1		Ändern auf S.1
+	obj.Patch_BBG.3
+	obj.Patch_BBG.4
+	obj.Patch_SCPU
+-------------------------------------------------------------------------------
+
+*******************************************************************************
+*** Übersicht Speicherbelegung GEOS-64K-Bank                                ***
+*******************************************************************************
+
+REU:	C64:	Verwendung:
+-------------------------------------------------------------------------------
+$0000-$78FF	-	Speicher für MoveData.
+
+$7900-$7DFF	$8400-$88FF	Systemvariablen Teil #1.
+
+$7E00-$82FF	$4000-$44FF	ReBoot-Routine.
+
+$8300-$907F	$9000-$9D7F	Laufwerkstreiber Lfwk. A:
+$9080-$9DFF	$9000-$9D7F	Laufwerkstreiber Lfwk. B:
+$9E00-$ABFF	$9000-$9D7F	Laufwerkstreiber Lfwk. C:
+$AB80-$B8FF	$9000-$9D7F	Laufwerkstreiber Lfwk. D:
+
+$B900-$BB7F	$9D80-$9FFF	Kernal Teil #1.
+$BB80-$CC3F	$BF40-$CFFF	Kernal Teil #2.
+$CC40-$FC3F	$D000-$FFFF	Kernal Teil #3.
+
+$FC40-$FC7F	$84C1-$8500	Mauszeiger für ReBoot.
+
+$FE00-$FEFF	$DE00-$DEFF	BBGRAM: ReBoot einlesen.
+$FF00-$FFFF	$E100-$E1FF	BBGRAM: DoRAMOp-Funktionen.
+
+*******************************************************************************
+*** Übersicht Speicherbelegung MegaPatch-64K-Bank                           ***
+*******************************************************************************
+
+REU:	C64:	Verwendung:
+-----------------------------------------------------------
+a) Ohne Hintergrundbild:
+$0000-$7FFF	-	Speicher für SwapFile.
+b) Mit Hintergrundbild:
+$0000-$5DFF	-	Speicher für SwapFile.
+
+Wenn kein SwapFile aktiv ist, dann ist steht Bereich zur freien Verfügung.
+-----------------------------------------------------------
+$5e00-$7d40	$A000-$BF3F	GRAFIK: Hintergrundgrafik.
+$7d40-$8128	$8C00-$8FE7	FARBE : Hintergrundgrafik.
+$8128-$81b0	$8000-$8087	Hintergrundbild einlesen.
+
+$81b0-$a0f0	$A000-$BF3F	GRAFIK: Bei Bedarf Zwischenspeicher
+$a0f0-$a4d8	$8C00-$8FE7	FARBE : für Bildschirmschoner.
+$a4d8-$b0d8	$4000-$4BFF	Bildschirmschoner.
+
+$b0d8-$d0d8	$6000-$7FFF	Dateiauswahlbox.
+$d0d8-$d128	$8000-$804F	Nächsten Tag berechnen.
+$d128-$d328	$8E00-$8FFF	ToBASIC-Routine.
+$d328-$d3d8	$8000-$80AF	PANIC!-Routine.
+$d3d8-$d4d7	$8000-$80FF	Dialogboxbildschirm zurücksetzen.
+$d4d8-$D8BF	$8C00-$8FE7	FARBE : Bildschirm.
+$d8c0-$D9BF	$8100-$81FF	Infoblock Druckertreiber.
+$d9c0-$DFFF	$7900-$7F3F	Druckertreiber
+$e000-$FFFF	$A000-$BF3F	GRAFIK: Bildschirm.
+
+*******************************************************************************
+*** Übersicht Speicherbelegung Switcher-64K-Bank                            ***
+*******************************************************************************
+
+REU:	C64:	Verwendung:
+-----------------------------------------------------------
+$0000-$3FFF	$0000-$3FFF	Speicher Teil #1.
+$4000-$5FFF	$4000-$5FFF	Switcher. Liegt in der Systembank in
+		der auch Task #1 gespeichert wird.
+$6000-$CFFF	$6000-$CFFF	Speicher Teil #2.
+$D000-$DFFF	$D000-$DFFF	Variablen und I/O-Register.
+$E000-$FFFF	$4000-$5FFF	Speicher Teil #3.

@@ -1,0 +1,50 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+`2Was ist neu in GDOS64?`
+
+Stand: 2023/05/21
+
+	`301Inhalt:`
+	>> Neue SD2IEC-Funktionen
+	>> Autor für ausgewählte Dateien setzen
+	>> Verify bei DiskCopy für 1541/1571
+	>> Fehlerkorrekturen
+
+`361* Neue SD2IEC-Funktionen`
+
+Es können nun ganze DiskImages von der SD-Karte gelöscht werden. Umbenennen und duplizieren ist ebenfalls möglich. Außerdem können Verzeichnisse erstellt und umbenannt werden.
+
+`361* Autor für ausgewählte Dateien setzen`
+
+Datei-Info kann jetzt dazu verwendet werden, um den Autor einer Datei für alle ausgewählten Dateien zu übernehmen.
+Das Bildschirm-Flag kann nur noch für Programme verändert werden, da es z.B. bei Dokumenten keine Funktion hat.
+
+`361* Verify bei DiskCopy für 1541/1571`
+
+Bei den Laufwerkstreibern für 1541/1571 existiert eine Verify-Funktion über VerWriteBlock. Nur die 1571 führt beim schreiben eines einzelnen Blocks über PutBlock automatisch ein Verify durch, bei der 1541 ist es optional. Für die Routine WriteBlock gibt es kein automatisches Verify.
+DiskCopy erlaubt nun das einschalten der Verify- Funktion, allerdings nur für 1541/1571, da die anderen Laufwerkstreiber diese Funktion nicht unterstützen (Rückmeldung immer $00=OK).
+
+`361* Fehlerkorrekturen`
+
+In GeoDesk kann ein DiskCopy von RAM71 auf C=1571 zu Fehlern führen. Dabei werden einige Blocks vom Laufwerk nicht auf der Diskette gespeichert ohne das ein Fehler gemeldet wird.
+Vor dem schreiben des Puffers wird nun ein NewDisk ausgeführt, damit tritt der Fehler auf 1571 nicht mehr auf.
+
+Verwandte Themen:
+^`1Hauptseite`
+^`1Was ist neu in GDOS64?`
+
+`2*** Seitenende ***`
+
+§§§
+"de.Index.001",01
+"de.Index.001",02
+
+§§§
+
+§§§

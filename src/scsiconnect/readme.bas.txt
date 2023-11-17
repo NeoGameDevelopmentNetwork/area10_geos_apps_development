@@ -1,0 +1,22 @@
+   10 print "{clr}some notes, december 26,2019:"
+   11 print "* scsi-connect 1.5 by vca west 2003"
+   12 print "---------------------------------------"
+   13 print "reassembled dec.2019 by m.kanet to"
+   14 print "add support for commodore64."
+   15 print
+   20 print "* scsi-connect64 modified by m.kanet"
+   21 print "---------------------------------------"
+   22 print "both version do require the cmd file"
+   23 print "'copyright cmd 89' on all cmdhd default"
+   24 print "partitions."
+   25 print
+   30 print "* scsi-connect128+"
+   31 print "* scsi-connect64+"
+   32 print "---------------------------------------"
+   33 print "the plus-versions do include the above"
+   34 print "mentioned cmd autostart file."
+   35 print "therefore you do not need to keep a"
+   36 print "a copy of 'copyright cmd 89' on all"
+   37 print "default partitions on scsi-devices."
+   38 print
+   40 print "use at own risk! enjoy!"

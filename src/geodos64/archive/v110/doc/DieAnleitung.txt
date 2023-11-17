@@ -1,0 +1,1218 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+                <MISSING_IMAGE_DATA>
+                <MISSING_IMAGE_DATA>
+
+One Vision Softworks präsentiert:
+-------------------------------
+
+                <MISSING_IMAGE_DATA>
+
+Ein Programm für C64 in Verbindung mit GEOS 64 V2.x
+und einem 3.5" Diskettenlaufwerk.
+
+MSDOS 3.5" - Disketten unter GEOS 64 bearbeiten
+und PC-/C64-Texte konvertieren.
+
+Dokumentation
+________________
+
+Anleitung zu geoDOS 64 - Stand: März '96
+
+(w) von Markus Kanet, One Vision Softworks
+Weitergabe und Duplikation, auch auszugsweise, ist untersagt.
+
+geoDOS 64 V1.00
+________________
+
+Willkommen in der Welt von geoDOS.
+Ein Programm für GEOS 64-Anwender, zum komfortablen kopieren
+von Daten zwischen PCs und dem C64.
+
+Bevor Sie mit der Arbeit beginnen, lesen Sie sich bitte diese Anleitung genau durch. geoDOS ist zwar weitestgehend selbsterklärend, aber es gibt ein paar Dinge die man unbedingt beachten sollte. Also: lieber ein paar Minuten Zeit nehmen, als nachher Streß, Frust und Ärger!
+
+Anmerkungen:
+---------
+
+Besonders bedanken möchte ich mich bei Oliver Weißflach, der mir bei den Beta-Tests, beim Brainstorming und bei der Fehlersuche sehr geholfen hat.
+Ein extra Dank geht an die Firma Creative Micro Designs. Diese Firma entwickelt unermütlich Hardware für den C64 und das in bester Qualität. Dieses Programm wäre niemals entstanden, ohne die Unterstützung der CMD HD, FD und besonders der RAMLink.
+
+Wichtiger Hinweis:
+------------
+
+Ich weise darauf hin, daß die in dieser Anleitung verwendeten Soft- und Hardware- bezeichnungen bzw. Markennamen der jeweiligen Firmen im allgemeinen warenzeichen-, marken- oder patentrechtlichem Schutz unterliegen.
+
+Die einzelnen Teile dieses Programms und der Anleitung unterliegen dem Copyright des Autors. Weitergabe und Duplikation, auch auszugsweise, ist untersagt.
+
+Dieses Programm wurde von mir mit größter Sorgfalt entwickelt. Trotzdem sind Fehler nicht ganz auszuschließen. Ich sehe mich deshalb dazu gezwungen darauf hinzuweisen, daß weder eine Garantie noch irgendeine Haftung für Folgen, die auf die Anwendung dieses Programms zurückgehen, übernommen werden kann. Für die Mitteilung eventueller Fehler bin ich jederzeit dankbar.
+
+Diese Version von geoDOS 64 ist vollwertige Software und Weitergabe, auch unentgeltlich, ist untersagt. Updates zu geoDOS gibt es nur gegen Nachweis der Serien-Nummer Ihrer geoDOS - Version (im Startbildschirm am unteren Bildrand).
+
+One Vision SoftWorks
+Markus Kanet
+
+Internet: darkvision ü gmx.eu
+
+Inhalt:
+
+	Kapitel:		Seite:
+-----------------------------------------------------------
+	Titelseite		Seite	1
+	Inhaltsverzeichnis	Seite	3
+	Der Inhalt der Programm-Diskette	Seite	5
+
+1)	System-Vorraussetzungen
+	1.1	Software	Seite	6
+	1.2	Hardware	Seite	6
+	1.3	Disketten-Formate	Seite	7
+
+2)	Wichtige Hinweise
+	2.1	Hinweise für RAMLink-Besitzer	Seite	7
+	2.2	Hinweise zu Hardware-Erweiterungen	Seite	7
+	2.3	Wenn geoDOS nicht startet	Seite	7
+
+3)	geoDOS-Grundlagen
+	3.1	Allgemeine Hinweise	Seite	8
+	3.2	Laufwerks-Auswahlbox	Seite	9
+	3.3	Datei-Auswahlbox	Seite	10
+		3.3.1	Einzel-Auswahl	Seite	11
+		3.3.2	Mehrfach-Auswahl	Seite	11
+		3.3.3	Weiterblättern	Seite	11
+	3.4	Wissenswertes über MSDOS-Disketten	Seite	12
+
+4)	Installation	Seite	13
+	4.1	Hinweise für Besitzer von CMD-Geräten	Seite	13
+
+5)	Programmstart	Seite	13
+
+6)	Das Hauptmenü	Seite	14
+	6.1	Das "GEOS"-Menü
+		6.1.1	Info	Seite	14
+		6.1.2	DeskTop	Seite	14
+		6.1.3	Verlassen	Seite	14
+		6.1.4	BASIC	Seite	14
+	6.2	Das "Kopieren"-Menü
+		6.2.1	Parameter	Seite	15
+		6.2.2	DOS -> CBM  und  DOS -> geoWrite	Seite	22
+		6.2.3	CBM -> DOS  und  geoWrite -> DOS	Seite	23
+	6.3	Das "DOS-Menü"
+		6.3.1	Formatieren	Seite	25
+		6.3.2	Umbenennen	Seite	25
+		6.3.3	Directory	Seite	26
+	6.4	Das "CBM-Menü"
+		6.4.1	Formatieren	Seite	27
+		6.4.2	Umbenennen	Seite	27
+		6.4.3	Directory	Seite	28
+		6.4.4	Partitionen	Seite	30
+
+Inhalt:
+
+Kapitel:	Seite:
+-----------------------------------------------------------
+	6.5	Die "Quick-Start"-Menüs
+		6.5.1	Das "geoWrite"-Menü	Seite	31
+		6.5.2	Das "Quick-Start"-Menü	Seite	31
+
+7)	Die Druck-Funktionen
+	7.1	Drucken von Verzeichnissen	Seite	32
+		7.1.1	Das "Druck-Menü"	Seite	32
+		7.1.2	Verzeichnis-Ausdruck MSDOS	Seite	33
+		7.1.3	Verzeichnis-Ausdruck Commodore	Seite	34
+		7.1.4	Drucker wählen	Seite	35
+
+Anhang A	Fehlermeldungen	Seite	36
+
+Anhang B	Tips vom Programmierer	Seite	38
+	B.1	Eine PCX-Datei zum C64 übertragen	Seite	38
+	B.2	Eine geoPaint-Datei zum C64 übertragen	Seite	38
+	B.3	Einen PC-Text nach geoWrite konvertieren	Seite	39
+	B.4	Einen geoWrite-Text zum PC konvertieren	Seite	40
+	B.5	BTX-Seiten nach geoWrite konvertieren	Seite	40
+
+Anhang C	Die Übersetzungstabellen	Seite	42
+	C.1	Die DOS-Tabellen	Seite	42
+	C.2	Die C64-Tabellen	Seite	43
+
+	Schlußwort	Seite	44
+
+Inhalt der geoDOS-Programm-Diskette
+------------------------------------
+
+Kontrollieren Sie bitte zuerst den Lieferumfang von geoDOS 64. Die folgenden Dateien sollten sich auf der Programm-Diskette befinden:
+
+-	geoDOS 64
+Das Hauptprogramm. Es ist der Kern von geoDOS. Mit ihm können Sie Dateien kopieren, Disketten formatieren und Verzeichnisse ausdrucken.
+
+-	Die Übersetzungstabellen für MSDOS-Texte:
+Diese Dateien benötigen Sie um MSDOS-Texte in das C64-Format zu konver- tieren. Diese Tabellen sorgen dafür, das Umlaute und Sonderzeichen an das C64-Textformat angepaßt werden. Folgende Tabellen befinden sich auf der Programm-Diskette:
+
+-	"PC437	>	GEOS-ASCII"
+-	"PC850	>	GEOS-ASCII"
+-	"PCWIN	>	GEOS-ASCII"
+-	"BTX	>	GEOS-ASCII"
+-	"PC437	>	PETSCII"
+-	"PC850	>	PETSCII"
+-	"PCWIN	>	PETSCII"
+-	"PC437	>	Mastertext"
+-	"PC437	>	Startexter"
+
+-	Die Übersetzungstabellen für C64-Texte:
+Diese Dateien benötigen Sie um C64-Texte in das MSDOS-Format zu konver- tieren. Diese Tabellen sorgen dafür, das Umlaute und Sonderzeichen an das MSDOS-Textformat angepaßt werden. Folgende Tabellen befinden sich auf der Programm-Diskette:
+
+-	"GEOS-ASCII	>	PC437"
+-	"GEOS-ASCII	>	PC850"
+-	"GEOS-ASCII	>	PCWIN"
+-	"GEOS-ASCII	>	BTX"
+-	"PETSCII	>	PC437"
+-	"PETSCII	>	PC850"
+-	"PETSCII	>	PCWIN"
+-	"Mastertext	>	PC437"
+-	"Startexter	>	PC437"
+
+Kopieren Sie als erstes alle Dateien auf eine Arbeitsdiskette. Sollten einige Dateien fehlen oder beim kopieren der einzelnen Dateien Lesefehler auftreten, so wenden Sie sich bitte direkt an mich, die Adresse finden Sie auf dem Titel-Blatt. Sie bekommen dann um- gehend Ersatz. Verwahren Sie die Original-Diskette an einem sicheren Ort.
+
+<1.> System-Vorraussetzungen.
+-------------------
+
+<1.1> Die Software.
+-------------
+geoDOS läuft ausschließlich unter GEOS 64 in der Version 2.0 oder höher. Besitzer von GEOS 128 können das Programm nicht verwenden. geoDOS ist kompatibel zu TopDesk, CLI, geoShell und gateWay.
+
+<1.2> Die Hardware.
+-------------
+geoDOS benötigt mindestens zwei Laufwerke. Eines davon muß ein 3.5"-Disketten- Laufwerk sein. Entweder ein Commodore VC1581, ein CMD FD2000 oder FD4000-Laufwerk. Das zweite Laufwerk ist beliebig. Eine RAM-Erweiterung ist nicht erforderlich. Folgende Hardware wird von geoDOS erkannt und vollständig unterstützt (in der letzten Spalte finden Sie die Anzeige unter geoDOS für die Status-Zeile):
+
+	Laufwerks-Typ:		Kapazität:	geoDOS:
+-----------------------------------------------------------
+	b	Commodore-Laufwerk	1541	170 Kb	1541
+	c	Commodore-Laufwerk	1571	340 Kb	1571
+	d	Commodore-Laufwerk	1581	790 Kb	1581
+
+	Laufwerke von CMD:
+	e	CMD-Laufwerk	FD2000	1600 Kb	CMD FD2
+	f	CMD-Laufwerk	FD4000	3200 Kb	CMD FD4
+	g	CMD-Festplatte	HD	variabel	CMD HD
+
+	Speichererweiterung RAMLink von CMD:
+	h	 RAM-Erweiterung	RAMLink	variabel	CMD RL
+
+	Speichererweiterung RAMDrive:
+	i	 RAM-Erweiterung	RAMDrive	variabel	RAMDrv
+
+	Andere Speichererweiterungen wie etwa Commodore REU oder BBG-RAM:
+	j	RAM-Laufwerk	RAM1541	170Kb	RAM1541
+	k	RAM-Laufwerk	RAM1571	340Kb	RAM1571
+	l	RAM-Laufwerk	RAM1581	790Kb	RAM1581
+
+Diese Laufwerke werden unter geoDOS vollständig erkannt und in deren Funktionen auch voll unterstützt. Die Produkte RAMDrive und RAMLink sind in ihrer Arbeitsweise identisch. Deshalb wird im folgenden nur noch von RAMLink gesprochen. Das wechseln von Partitionen auf CMD-Geräten (FD,HD, RAMDrive / RAMLink) funktioniert einfach und ohne Probleme durch anwählen in einer Auswahlbox.
+
+<1.3> Disketten-Formate.
+----------------
+geoDOS kann zum kopieren von Daten zwischen PC und C64 nur 3.5"-Disketten vom Typ DD (720Kb), HD (1.44Mb) und ED (2.88Mb) verwenden. Das Commodore-Laufwerk VC1581 ist nur in der Lage, 720Kb-Disketten zu verarbeiten. Die FD2000 von CMD kann 720Kb und 1.44Mb lesen und schreiben. Die FD4000 unterstützt zusätzlich das 2.88Mb - Format.
+
+<2.> Wichtige Hinweise.
+----------------
+
+<2.1> Hinweise für RAMLink-Besitzer.
+------------------------
+Werkseitig wird die RAMLink mit einer Geräteadresse 16 ausgeliefert. geoDOS wurde zwar auf diesen Umstand vorbereitet, generell sollten aber alle Laufwerke unter GEOS nur mit Adressen von 8 - 11 betrieben werden. Falls das bei Ihrer RAMLink noch nicht der Fall ist, gibt es zwei Möglichkeiten dies zu ändern:
+
+- Wenn die RAMLink unter GEOS als Laufwerk A: oder B: betrieben wird, dann können Sie mit den SWAP-8/SWAP-9 Tasten die Geräteadresse zeitweilig ändern.
+
+- Soll die Adresse dauerhaft geändert werden, so starten Sie das Programm "RAM-TOOLS" von der RAMLink-Diskette. Wählen Sie Punkt (1) und ändern Sie die Geräteadresse auf einen Wert von 8 - 11.
+
+<2.2> Hinweise zu Hardware-Erweiterungen.
+-----------------------------
+Während der Entwicklungsphase wurde das Programm auf einem C64 mit RAMLink und Jiffy-DOS cCMD in allen Laufwerken getestet. Sollten Sie unter GEOS noch zusätzliche Erweiterungen aktiviert haben, z.B. Floppy-Speeder oder ähnliches, so deaktivieren Sie diese bitte zuerst, falls es beim Programm-Start Probleme gibt. Startet geoDOS noch immer nicht, wenden Sie sich dann bitte direkt an mich. Lesen Sie dazu unter <Kapitel 2.3> "Wenn geoDOS nicht startet" nach.
+
+<2.3> Wenn geoDOS nicht startet.
+----------------------
+Sollte geoDOS nicht korrekt starten, wenden Sie sich bitte direkt an mich. Teilen Sie mir dazu Ihre Geräte-Konfiguration mit. Wichtig ist dabei mit welcher Adresse die Geräte unter BASIC und unter GEOS betrieben werden. Beispiel:
+
+	Laufwerkstyp:		BASIC:	GEOS:
+-----------------------------------------------------------
+	Laufwerk A:	Commodore 1541	8	A:
+	Laufwerk B:	CMD RAMLink	11	(Mit SWAP auf 9)  B:
+	Laufwerk C:	CMD FD4000	10	C:
+	Laufwerk D:	Kein Laufwerk
+
+Zusätzlich benötige ich noch Angaben über das Problem, also welches Laufwerk nicht als solches erkannt wird, oder wann sich geoDOS beim Programm-Start aufhängt und was dabei am Bildschirm zu sehen ist. Ich versuche dann das Problem zu lösen.
+
+<3.> Grundlagen.
+-----------
+
+<3.1> Allgemeine Hinweise.
+------------------
+geoDOS arbeitet fensterorientiert. Alle Ein- und Ausgaben finden innerhalb von kleinen Fenstern statt. Arbeitsfenster sind dabei nach einem bestimmten Schema aufgebaut:
+
+<3.1.1> Hinweise zu den geoDOS-Fenstern.
+----------------------------
+G Arbeitsfenster bestehen immer aus dem sogenannten "Close-Icon",  der Titel-Zeile und mindestens einem Anwender-Icon (in der Regel "OK" oder "Abbruch"). Welche Funktion das aktuelle Fenster hat, steht in der Titel-Zeile. Ein Klick auf das "Close-Icon" schließt das aktuelle Fenster bzw. beendet das aktuelle Menü.
+
+b c d Fehlermeldungen oder Warnungen zeigt geoDOS in den Hinweis-Fenstern an. Je nach Art der Meldung (Frage, Information oder Warnung) finden Sie eines der drei oben aufgeführten Zeichen. In der Regel können Sie hier die Meldung mit "OK" oder "Abbruch" bestätigen.
+
+c Grundsätzlich zeigt geoDOS immer an, was es gerade macht. Dazu bedient sich das Programm den Info-Fenstern. Diese Fenster benötigen keine weitere Erklärung.
+
+<3.1.2> Fehlermeldungen.
+---------------
+Im allgemeinen fängt geoDOS alle Disketten-Fehler ab. Es erscheint dann eine Info-Box mit der Nummer des Fehler-Codes. Eine Aufstellung aller Fehler-Codes finden Sie im <Anhang A> "Fehlermeldungen". Nach einem Mausklick auf "OK" kommen Sie immer zum Hauptmenü zurück.
+
+<3.2> Die Laufwerks-Auswahlbox.
+----------------------
+
+<3.2.1> Ziel-Laufwerk wählen.
+-------------------
+Es öffnet sich ein Auswahlfenster das in etwa wie folgt aussehen könnte (je nach Laufwerkskonfiguration werden bei Ihnen andere Laufwerk-Icons angezeigt):
+
+                <MISSING_IMAGE_DATA>
+
+Links oben sehen Sie wieder das Close-Icon, welches Sie zum Hauptmenü zurückführt. In der Mitte der Box sehen Sie Ihren C64, darunter Ihre Laufwerkskonfiguration. Von links nach rechts die Laufwerke A: bis D:, die genaue Bezeichnung für jedes Laufwerk finden Sie in der Status-Zeile am unteren Bildrand. Alle Laufwerke werden dabei durch ein entsprechendes Laufwerks-Symbol gekennzeichnet (vgl. <Kapitel 1.1> "Die Hardware"). Auf welches Laufwerk geoDOS zugreift, wird durch eine Verbindung vom C64 zum Laufwerk symbolisiert. Wenn das gewünschte Laufwerk bereits mit dem C64-Icon verbunden ist, klicken Sie auf "OK" und die Auswahlbox verschwindet. Möchten Sie ein anderes Laufwerk auswählen, klicken Sie einfach mit der Maus auf das entsprechende Symbol und die Auswahlbox schließt sich automatisch.
+
+<3.2.2> Quell- und Ziel-Laufwerk wählen.
+---------------------------
+Auch hier öffnet sich eine Auswahlbox mit Ihrer Laufwerkskonfiguration:
+
+                <MISSING_IMAGE_DATA>
+
+Diese Auswahlbox unterscheidet sich von der unter <Kapitel 3.2.1> beschriebenen Aus- wahlbox nur dadurch, das über dem C64-Icon nochmals die Laufwerkskonfiguration zu sehen ist. Diese stellen die Quell-Laufwerke da. Die untere Reihe steht für die Ziel- Laufwerke. Wenn Sie Daten kopieren, ist die Richtung immer von oben, über den C64, nach unten. Auch hier wird die aktuelle Einstellung durch eine Verbindungslinie "Quell- Laufwerk - C64 - Ziel-Laufwerk" dargestellt. Die Laufwerke werden auch durch einen Mausklick auf das entsprechende Laufwerks-Symbol gewechselt. Beendet wird die Auswahlbox durch einen Mausklick auf "OK".
+
+<3.3> Die Datei-Auswahlbox.
+-------------------
+Diese Auswahlbox ist in ihrer Anwendung sehr unterschiedlich. Hier können Sie Dateien zum kopieren wählen, einen Modus zum formatieren von Disketten festlegen oder einen neuen Drucker installieren. Eine solche Auswahlbox kann max. 255 Einträge aufnehmen. Einträge werden ausgewählt, indem sie mit der Maus angeklickt werden. Gibt es mehr als acht Einträge in der Auswahlbox, so werden am unteren Fensterrand zusätzlich noch Scroll-Icons angezeigt.
+
+                <MISSING_IMAGE_DATA>
+
+Erklärung (von links nach rechts):
+-----------------------
+	L Eine Datei weiter,	M eine Datei zurück,
+	N Eine Seite vorwärts,	O eine Seite zurück,
+	P Zum Anfang,	Q zum Ende der Liste.
+
+Wenn mehrere Dateien ausgewählt werden können (z.B. bei der Datei-Auswahl beim kopieren) gibt es zwei weitere Icons:
+
+	R Alle Dateien abwählen,	S alle Dateien auswählen.
+
+Das "Abbruch"-Icon schließt die Auswahlbox. Das "OK"-Icon ist unterschiedlich belegt. Eine genauere Beschreibung der einzelnen Funktionen für dieses Icon finden Sie auf der nächsten Seite.
+
+<3.3.1> Auswahl einer Datei.
+------------------
+Als Beispiel nehmen wir die Auswahl einer Übersetzungstabelle im Parameter-Menü (näheres dazu finden Sie im <Kapitel 6.2.1> "PARAMETER"). Um eine Tabelle auszuwählen klicken Sie mit der Maus einfach auf den entsprechenden Eintrag. Die Auswahlbox schließt sich danach automatisch. In diesem Fall hat ein Mausklick auf das "OK"-Icon die gleiche Wirkung wie ein Mausklick auf das "Abbruch"-Icon: Die Auswahlbox wird beendet und Sie kehren zum vorherigen Menü zurück.
+
+                <MISSING_IMAGE_DATA>
+
+<3.3.2> Auswahl mehrerer Dateien.
+----------------------
+Als Beispiel für eine solche Auswahlbox nehmen wir die Dateiauswahl "geoWrite nach MSDOS" (näheres dazu finden Sie im <Kapitel 6.2.3> "KOPIEREN"). Markieren Sie die Dateien welche Sie kopieren möchten durch einen Mausklick wie schon im <Kapitel 3.3.1> beschrieben. Ausgewählte Dateien werden mit weißer Schrift auf dunklem Hintergrund dargestellt. Ihre Dateiauswahl bestätigen Sie durch einen Mausklick auf das "OK"-Icon. Mit einem Mausklick auf das "Abbruch"-Icon wird die Auswahlbox beendet.
+
+                <MISSING_IMAGE_DATA>
+
+<3.3.3> Weiterblättern.
+--------------
+In Einzelfällen kann das "OK"-Icon noch eine dritte Funktion besitzen: Das weiterblättern. MSDOS-Verzeichnisse können mehr als 255 Datei-Einträge besitzen, sie werden nur durch den verfügbaren Diskettenspeicher begrenzt. Wenn ein Verzeichnis mehr als 255 Dateien enthält, können Sie mit einem Mausklick auf das "OK"-Icon zu den nächsten 255 Einträgen gelangen. Ist das Ende des Verzeichnisses erreicht, kehrt die Auswahlbox wieder zum Verzeichnisanfang zurück.
+
+<3.4> Wissenswertes über MSDOS-Disketten.
+-----------------------------
+MSDOS-Disketten sind anders aufgebaut als Commodore-Disketten. Ich möchte hier nicht näher darauf eingehen, aber es sollten dennoch einige Begriffe erläutert werden.
+
+- Block:
+Kleinste Einheit auf Commodore-Disketten zum speichern von Daten. Kann maximal 254 Daten-Bytes aufnehmen.
+
+- Sektor:
+Kleinste Einheit auf MSDOS-Disketten zum speichern von Daten. Ein Sektor kann maximal 512 Daten-Bytes aufnehmen.
+
+- Cluster:
+Kleinste Einheit zum speichern von Dateien (nicht Daten!). Besteht in der Regel aus 1 oder 2 Sektoren. Kann aber auch ein vielfaches davon sein (4,8,16...).
+
+Im Gegensatz zu Commodore-Disketten, auf denen Programme in einzelnen Blocks gespeichert sind, werden auf MSDOS-Disketten Programme in Clustern gespeichert. Dies ist wichtig zu wissen, denn davon ist abhängig, wieviele Dateien auf einer Diskette gespeichert werden können.
+
+Auf einer Commodore-Diskette können so viele Dateien gespeichert werden, wie freie Blocks zur Verfügung stehen. Auf MSDOS-Disketten ist die Anzahl der Cluster, und nicht die Anzahl der freien Bytes oder Sektoren, maßgebend. Beispiel:
+
+- Auf einer MSDOS-Diskette sind noch 9216 Bytes frei.
+- Die Diskette ist in Cluster zu je zwei Sektoren a 512 Bytes organisiert.
+- Jeder Cluster besteht also aus 1024 Bytes (= zwei Sektoren * 512 Bytes).
+- Somit stehen noch 9 Cluster (9 * 1024 = 9216 Bytes) für Daten zur Verfügung.
+- Sie möchten 32 Dateien zu je 250 Bytes kopieren.
+- 32 Dateien * 250 Bytes macht zusammen 8000 Byte.
+
+Theoretisch würde der Platz auf der PC-Diskette also ausreichen (benötigt werden 8000 Byte, auf der MSDOS-Diskette sind noch 9216 Bytes frei). Aber da pro Cluster nur eine einzelne Datei gespeichert werden kann, ist nur Platz für 9 Dateien (es sind ja nur noch 9 Cluster frei!). Wie Sie sehen können, arbeiten PCs sehr unwirtschaftlich. In diesem Fall werden von einem Cluster (1024 Byte) nur 250 Bytes verwendet, der Rest geht verloren. Wundern Sie sich also nicht wenn geoDOS meldet "Nicht genügend freier Speicher auf Ziel-Diskette" obwohl noch genügend freie Bytes vorhanden sind. In diesem Fall ist die Anzahl der Dateien zu groß, nicht die Summe der Datei-Größen.
+
+Es gibt aber noch eine andere Möglichkeit: Wenn das Inhaltsverzeichnis voll ist! Wie Sie vielleicht wissen, kann unter GEOS 64 ein Directory maximal 144 Dateien aufnehmen (auch wenn die 1581 theoretisch Platz für 296 Einträge hat). Unter MSDOS gibt es eine ähnliche Begrenzung, allerdings nur für das Hauptverzeichnis. Dieses ist in seiner Länge begrenzt. Das Hauptverzeichnis kann aber von Diskette zu Diskette unterschiedlich viele Dateien aufnehmen. Auf 720Kb-Disketten sind es 112 Einträge, auf 1.44Mb-Disketten sind es 224 Einträge. Diese Werte können allerdings schwanken. Unterverzeichnisse sind in ihrer Länge nur durch den verfügbaren Disketten-Speicher begrenzt.
+
+<4.> Installation.
+-----------
+Im Gegensatz zu anderen GEOS-Programmen besitzt geoDOS keinen eigenen Kopierschutz.  Kopieren Sie es einfach direkt auf Ihre Arbeits-Disketten. Während der Arbeit mit geoDOS dürfen Sie die Programm-Diskette nicht aus dem Laufwerk nehmen. geoDOS besitzt eine Vielzahl von Funktionen, die bei Bedarf von Diskette nachgeladen werden. Falls Sie eine RAM-Disk als Laufwerk A: oder B: unter GEOS konfiguriert haben, kopieren Sie das Programm auf dieses Laufwerk. Für die Arbeit mit geoDOS benötigen Sie außerdem die Übersetzungstabellen von der geoDOS-Programm-Diskette. Wenn Sie mit geoDOS auch drucken möchten, benötigen Sie außerdem noch die erforderlichen Druckertreiber.
+
+<4.1> Wichtig für Besitzer von CMD-Geräten.
+-----------------------------
+Beim Start von geoDOS wird geprüft ob das Programm von einem CMD-Laufwerk gebootet wurde. Falls ja, ermittelt geoDOS direkt nach dem Start die aktive Partition auf dem Boot-Laufwerk, die "Start-Partition". Wenn Sie unter geoDOS später Partitionen wechseln wollen, greift geoDOS beim Nachladen der einzelnen Programmteile und Über- setzungstabellen immer auf die Start-Partition zurück! Besitzer eines CMD FD-Laufwerks können zwar die Partition auf der Start-Diskette wechseln, aber falls geoDOS von der CMD FD gebootet wurde, muß die Diskette im Laufwerk verbleiben! Wurde geoDOS allerdings von einem anderen Laufwerk gestartet, können auf der CMD FD Disketten und Partitionen beliebig gewechselt werden. Damit wäre alles wichtige zur Installation von geoDOS gesagt.
+
+<5.> Programm-Start.
+--------------
+Das Programm wird vom DeskTop per Mausklick gestartet. Zu Beginn wird die Hardware überprüft. Dabei erscheint zuerst das Laufwerk, welches gerade überprüft wird, mit dem Zusatz "Test...". Wurde das Laufwerk korrekt erkannt, erscheint die genaue Laufwerks-Bezeichnung und die "echte" Geräte-Adresse. Dies dauert in der Regel nur wenige Sekunden. Wird die Überprüfung aller vier möglichen Laufwerke nicht korrekt beendet, so lesen Sie bitte unter <Kapitel 2.> "Wichtige Hinweise" nach. Am unteren Bildrand wird außerdem noch die Versions-Nummer angezeigt. So könnte die Initialisierung bei Ihnen aussehen:
+
+                <MISSING_IMAGE_DATA>
+                <MISSING_IMAGE_DATA>
+
+So wie oben dargestellt sollte die Hardware-Erkennung abgeschlossen werden. Nach erfolgreichem Test wird das Titelbild von geoDOS angezeigt. Mit einem Mausklick gelangen Sie in das geoDOS-Hauptmenü.
+
+<6.> Das Hauptmenü
+--------------
+Das Hauptmenü teilt sich in vier Bereiche:
+
+- Die Titel-Zeile, sie zeigt die geoDOS Versions-Nummer.
+- geoDOS-Menü-Leiste.
+- Der geoDOS-DeskTop mit den beiden "Quick-Menüs".
+- Die Status-Zeile, sie zeigt Ihre aktive Geräte-Konfiguration.
+
+Die Titel-Zeile besteht aus dem Programm-Namen mit Versions-Angabe und dem "Close-Icon" in der linken oberen Ecke des Bildschirms. Hier, im Hauptmenü, gelangen Sie damit zurück zum DeskTop. Es entspricht in seiner Funktion dem Menüpunkt "DESKTOP" im Abschnitt <6.1.2>.
+
+<6.1> Der Menüpunkt "GEOS"
+-------------------
+
+<6.1.1> "INFO"
+---------
+Dieser Menüpunkt zeigt Ihnen das Titelbild von geoDOS. Ein Mausklick führt Sie zum geoDOS-Hauptmenü zurück.
+
+<6.1.2> "DESKTOP"
+-----------
+Mit diesem Menüpunkt können sie geoDOS beenden und zum DeskTop zurückkehren. Dieser Menüpunkt ist gleichzusetzen mit einem Klick auf das Close-Icon in der Titel-Zeile.
+
+z Für Besitzer von CMD-Geräten: Wurde im Verlauf der geoDOS-Sitzung die Partition auf dem Start-Laufwerk gewechselt, so bleibt diese aktiviert! Möchten Sie zur Start-Partition zurückkehren, können Sie das durch den Menüpunkt "Verlassen".
+
+<6.1.3> "VERLASSEN"
+-------------
+Auch mit diesem Menüpunkt beenden Sie geoDOS und kehren zum DeskTop zurück.
+
+z Handelt es sich beim Start-Laufwerk um ein CMD-Laufwerk, so wird  automatisch die Start-Partition wieder eingestellt. Sie müssen die Partition also nicht "von Hand" wieder zurücksetzen. Die gewählten Partitionen auf anderen CMD-Laufwerken bleiben davon unberührt.
+
+<6.1.4> "BASIC"
+---------
+Wenn Sie von geoDOS aus direkt zum BASIC des C64 wechseln möchten, so wählen Sie diesen Menüpunkt. ACHTUNG! Es erfolgt keine Sicherheitsabfrage!
+
+<6.2> Der Menüpunkt "KOPIEREN"
+---------------------
+
+<6.2.1> "PARAMETER"
+-------------
+Dieses Menü dient dazu, geoDOS auf die Arbeit vorzubereiten. Hier können Sie alle wichtigen Einstellungen vornehmen. Nach dem anwählen dieses Menüpunktes erscheint der folgende Bildschirm:
+
+                <MISSING_IMAGE_DATA>
+                <MISSING_IMAGE_DATA>
+
+Der Bildschirm teilt sich in drei Bereiche:
+
+- Die Icon-Leiste am oberen Bildrand,
+- die Icon-Leiste am rechten Bildrand und
+- der Parameter-Block.
+
+Im Parameter-Block werden die aktuellen Einstellungen angezeigt bzw. die benötigten Parameter abgefragt. Je nach angewähltem Menü stehen hier andere Daten (beachten Sie die folgenden Kapitel). Am rechten unteren Rand des Parameter-Blocks finden Sie die "Eselsohren". Ein Mausklick auf die obere Ecke blättert eine Seite vor, ein Mausklick auf die untere Ecke blättert eine Seite zurück.
+
+<6.2.1.1> Die obere Icon-Leiste
+--------------------
+T Mit diesem Icon können Sie die Standard-Werte aufrufen, die auch beim Start von geoDOS aktiv sind. Daten werden nun unverändert vom Quell-Laufwerk auf das Ziel- Laufwerk kopiert (nach der Anwahl "MSDOS nach CBM" oder "CBM nach MSDOS").
+
+F Beim Konvertieren "DOS nach geoWrite" ermittelt geoDOS die maximale Anzahl Zeilen pro Seite in einem geoWrite-Dokumentes mit Hilfe des Druckertreibers und der verwendeten Schriftart. Für die anderen Kopier-Modi ist dieser Menüpunkt nicht wichtig. Wählen Sie hier den Druckertreiber, mit dem das Ziel-Dokument später auch ausgedruckt werden soll. Nach Anwahl des "Drucker"-Icons erscheint eine Auswahlbox mit den verfügbaren Treibern auf Diskette. Welches Laufwerk zur Zeit aktiv ist, können Sie anhand der Titel-Zeile feststellen. Handelt es sich dabei um ein CMD-Laufwerk wird am unteren Bildrand die aktive Partition angezeigt. Die Auswahlbox könnte wie folgt aussehen (siehe nächste Seite):
+
+<6.2.1.1> Die obere Icon-Leiste (Fortsetzung)
+-----------------------------
+
+                <MISSING_IMAGE_DATA>
+
+Mit den "LAUFWERK X:"-Einträgen in der Tabelle können Sie das Laufwerk wechseln. Falls es sich beim aktiven Laufwerk ein CMD-Laufwerk handelt, erscheint zusätzlich der Eintrag "PARTITIONEN". Wollen Sie die Partition wechseln, so klicken Sie auf diesen Eintrag und es erscheint eine Auswahlbox mit den verfügbaren Partitionen. Der Wechsel der Partition wird beim verlassen der Auswahlbox wieder rückgängig gemacht!
+
+X Auch dieser Menüpunkt wird nur bei der Konvertierung von MSDOS-Texten nach geoWrite benötigt. Hier wählen Sie die Schriftart, mit welcher der Text im geoWrite- Dokument dargestellt wird. Außerdem benötigt geoDOS die Schriftart zur Berechnung der maximalen Anzahl Zeilen auf einer geoWrite-Seite. Nach Anwahl dieses Icons erscheint eine Auswahlbox, welcher der bei der Drucker-Auswahl entspricht. Die erste Schriftart in der Tabelle ist immer "BSW", damit aktivieren Sie den GEOS-System-Zeichensatz. Damit wird der konvertierte MSDOS-Text unter geoWrite in "BSW" (siehe Schriftart-Menü in geoWrite) dargestellt. Wählen Sie eine Schriftart aus und es öffnet sich anschließend eine weitere Auswahlbox mit den verfügbaren Punktgrößen des gewählten Zeichensatzes (nicht nach der Anwahl von "BSW". Diese Schriftart existiert nur in der Punktgröße    "9 Punkte"). Klicken Sie auf "OK"-Icon wenn Sie eine andere Schriftart wählen möchten. Lesen Sie dazu auch <Kapitel 6.2.1.2> "DOS nach geoWrite".
+
+U geoDOS benützt zum kopieren von Text-Dateien sogenannte "Übersetzungs- tabellen". Dabei werden Umlaute und Sonderzeichen konvertiert und an das ent- sprechende Ziel-Textformat angepaßt. Wollen Sie die Daten unverändert kopieren, z.B. bei Grafiken oder Programmen, dann wählen Sie das "1:1"-Icon. Es löscht die Einstellungen für die Übersetzungstabellen.
+
+V Mit diesem Icon wählen Sie eine Tabelle, mit der MSDOS-Texte in C64-Textformate übersetzt werden können. geoDOS öffnet dazu das Start-Laufwerk und zeigt alle verfügbaren Tabellen an. Der erste Eintrag ist immer "1:1 Übertragung". Dieser Eintrag hat die gleiche Wirkung wie das "1:1"-Icon.
+
+z Im PC-Bereich sind derzeit drei ASCII-Formate gebräuchlich: PC437, PC850 und PCWIN. Die ersten beiden Formate sind für reine DOS-Texte gedacht. PCWIN übersetzt Windows-ASCII-Texte. Weitere Informationen finden Sie im <Anhang B.3> "Texte konvertieren" und im <Anhang C>.
+
+W Um Texte vom C64 in das MSDOS-Format zu konvertieren, benötigen Sie das Gegenstück zum "D-C"-Icon. Auch hier gibt es verschiedene Tabellen. Wählen Sie die entsprechende Tabelle aus, danach kehren Sie zurück zum Parameter-Menü.
+
+H Haben Sie alle Einstellungen überpüft, können Sie das Parameter-Menü mit dem "EXIT"-Icon wieder in Richtung Hauptmenü verlassen.
+
+<6.2.1.2> Die Icon-Leiste am rechten Bildrand
+------------------------------
+Mit diesen Menüs können Sie die einzelnen Optionen des Parameter-Menüs anwählen und korrigieren. Dabei gibt es zwei Möglichkeiten die voreingestellten Werte zu ändern. Handelt es sich um einen Wahlparameter (erkennbar durch ein Kontroll-Kästchen am Zeilenanfang), so können Sie diese per Mausklick auf das Kästchen aktivieren a oder deaktivieren b. Handelt es sich bei der Option um einen Zahlenwert, so muß dieser zum ändern mit der Maus angeklickt werden. Die Eingabe wird dann durch "RETURN" übernommen. Nun zu den einzelnen Optionen:
+
+ab Nachdem mit der Maus auf dieses Icon geklickt wurde, werden im Parameter-Block die aktiven Einstellungen für die Übersetzungstabellen, der aktive Druckertreiber und die gewählte Schriftart mit Punktgröße dargestellt. Um die angezeigten Werte zu ändern, benützen Sie das dazugehörige Icon am oberen Bildrand (siehe <Kapitel 6.2.1.1> "Die Icon-Leiste am oberen Bildrand").
+
+cd Hier können Sie diverse Parameter für die zu erstellende Ziel-Datei einstellen. Hier eine Liste der möglichen Optionen:
+
+-	Datum & Uhrzeit für die Ziel-Datei festlegen:
+	---------------------------
+	a Übernehmen von der Original-Datei.
+	b Datum & Uhrzeit von GEOS übernehmen.
+
+-	Automatisch überschreiben, falls Datei auf Ziel-Laufwerk schon vorhanden:
+	---------------------------------------------
+	b Ja, Datei auf dem Ziel-Laufwerk löschen.
+	b Nein, Quell-Datei ignorieren.
+	a Sicherheits-Abfrage.
+
+ef Beim kopieren von Daten und Texten aus dem MSDOS-Format in das C64-Format gibt es zwei Optionen.
+
+-	Zeilenvorschub-Code $0A in PC-Texten:
+	------------------------
+	b Zeilenvorschub ignorieren.
+Bei PC-Texten ist es üblich, daß das Zeilenende durch die Codefolge $0D (Textcursor zurück zum Anfang der Zeile) und $0A (Zeilen- vorschub) gekennzeichnet wird. Die meisten C64-Textverarbeitungen benötigen diesen extra Zeilenvorschub nicht, da dies vom Textprogramm in der Regel automatisch erfolgt. Falls Sie Programme, Daten oder Grafiken kopieren, muß diese Funktion deaktiviert sein, da sonst in der Ziel-Datei wichtige Informationen fehlen könnten!
+
+-	Commodore-Datei-Typ für Ziel-Datei:
+	----------------------
+	a Typ Commodore SEQ.
+	b Typ Commodore PRG.
+	b Typ Commodore USR.
+Den Datei-Typ für die Ziel-Datei müssen Sie selbst festlegen da hier keine feste Regel vorgegeben werden kann. Beim kopieren von Texten sollten Sie das Handbuch zu Ihrem Textprogramm beachten. Lesen Sie dazu auch <Anhang B.3> "Texte konvertieren" und <Anhang C>.
+
+<6.2.1.2> Die Icon-Leiste am rechten Bildrand (Fortsetzung)
+---------------------------------------
+
+gh Wenn Sie Dateien vom C64-Format in das PC-Format kopieren wollen, können Sie hier die Einstellungen verändern:
+
+-	Zeilenvorschub-Code $0A in PC-Texten:
+	------------------------
+	b Zeilenvorschub einfügen.
+Wie unter "DOS-CBM" bereits beschrieben, benötigen die meisten PC- Textprogramme am Zeilenende den Zeilenvorschub-Code $0A. Hier können Sie wählen ob beim kopieren von C64-Texten dieses Zeichen an das Zeilenende angehängt werden soll. Ohne diesen Code könnte Ihr PC-Textprogramm den C64-Text nur als lange "Textwurst" darstellen. Sollte dies der Fall sein, müssen Sie diese Option aktivieren. Falls Sie Daten, Grafiken oder Programme kopieren, muß diese Funktion deaktiviert sein!
+
+-	MSDOS-Dateiname:
+	-----------
+	a Name vorschlagen.
+	b Dateinamen neu eingeben.
+Diese Option ist zuständig für die Eingabe des MSDOS-Dateinamens. Dateien im C64-Format können einen max. 16 Zeichen langen Datei- namen besitzen. Bei MSDOS-Dateien stehen nur "8 + 3" Zeichen für den Dateinamen zur Verfügung. Um nun beim kopieren von C64-Dateien die C64-Dateinamen an das DOS-Format anzupassen, gibt es zwei Möglich- keiten: "Name vorschlagen" erzeugt automatisch eine Tabelle mit gültigen Dateinamen im "8+3"-Format, welche anschließend am Bildschirm angezeigt wird. Mit "Neu eingeben" werden Sie zur Eingabe eines neuen Dateinamens für jede Datei aufgefordert.
+
+ij Unter geoDOS ist es möglich, PC-Texte direkt nach geoWrite zu konvertieren. Mit einem Mausklick auf dieses Icon stellen Sie die Optionen für das geoWrite-Textformat ein. Hier die Optionen im einzelnen:
+
+-	geoWrite-Textformat:
+	-------------
+	a Write Image 2.0	(60 NLQ-Zeichen/Zeile).
+	b Write Image 2.1	(80 NLQ-Zeichen/Zeile).
+
+-	Erste Seiten-Nr.:
+	----------
+Mit einem Mausklick auf den Zahlenwert bestimmen Sie die Nr. der ersten geoWrite-Seite. Standardmäßig liegt dieser Wert bei <1>.
+
+-	geoWrite-Text beim ersten Start neu formatieren:
+	------------------------------
+	b Text neu formatieren.
+Ist die Funktion aktiviert, dann prüft geoWrite beim ersten Start der Text-Datei die Seitenlänge jeder Seite. Sie können die Option deaktiviert lassen, wenn Sie die nächsten beiden Optionen richtig anwenden. Sollte in Ihrem Text-Dokument zwischen zwei Seiten etwas Text "fehlen" (der Text fehlt hier nicht wirklich, nur liegt er hinter dem Seitenende der aktuellen Seite und kann von geoWrite nicht mehr dargestellt werden), kopieren Sie diesen Text bitte nochmals, diesmal mit aktivierter Option.
+
+<6.2.1.2> Die Icon-Leiste am rechten Bildrand (Fortsetzung)
+---------------------------------------
+
+-	Seitenende im PC-Text übernehmen:
+	---------------------
+	b Seitenende übernehemen.
+Einige PC-Texte besitzen am Ende einer Textseite ein "Seitenende"-Kennzeichen. Wenn Sie diese Funktion aktivieren, dann wird mit dem Beginn einer neuen PC-Textseite gleichzeitig eine neue geoWrite-Seite  erzeugt (entspricht der Funktion C+ L unter geoWrite).
+
+-	Zeilen pro Seite:
+	----------
+Mit einem Mausklick auf den Zahlenwert bestimmen Sie die Anzahl der Zeilen auf einer geoWrite-Seite. Hierbei wird nur die Anzahl der "Zeilen- ende"-Kennungen gezählt (bei Fließtext kommt es dabei zu Problemen. Bei solchen Texten sollten Sie die Option "Neu formatieren" aktivieren). Ist der eingestellte Wert erreicht, fügt geoDOS eine neue Seite ein. Eine neue Seite wird ebenfalls eingefügt, wenn die aktuelle Seite beim kopieren mehr als 6600 Zeichen enthält. Mehr Zeichen kann geoWrite nicht auf einer Seite verwalten. In diesem Fall wird der Text beim ersten Start von geoWrite neu formatiert, da dann die Seitenlänge in jedem Fall neu berechnet werden muß.
+
+Zur Berechnung der Seitenlänge noch ein paar Informationen:
+-------------------------------------
+Generell sollten Sie bei der Konvertierung von MSDOS-Texten nach geoWrite zuerst den Druckertreiber einstellen und die Schriftart wählen. Danach berechnet geoDOS die max. Anzahl Zeilen pro Seite.
+
+Die meisten PC-Texte werden mit einem "RETURN" am Ende der Zeile abgeschlossen. Der Text ist also nicht breiter als 80 Zeichen. Möchten Sie einen solchen Text kopieren, dann aktivieren Sie die folgenden Optionen:
+
+	b Text neu formatieren
+	b Seitenende übernehmen
+	a Anzahl Zeilen pro Seite
+
+Sollte der PC-Text "Seitenende"-Markierungen enthalten (entspricht der Funktion C+ L bei geoWrite-Dokumenten) benötigen Sie folgende Einstellungen:
+
+	b Text neu formatieren
+	a Seitenende übernehmen
+	b Anzahl Zeilen pro Seite
+
+Wenn sich eine Zeile im PC-Text über mehrere Bildschirmzeilen erstreckt, handelt es sich um Fließtexte. geoDOS ist nicht in der Lage bei solchen Texten die Länge einer Seite korrekt zu berechnen. Für diesen Fall aktivieren Sie folgende Einstellungen:
+
+	a Text neu formatieren
+	a Seitenende übernehmen
+	b Anzahl Zeilen pro Seite
+
+Diese Einstellungen sollten Sie auch dann wählen, wenn in Ihrem Ziel-Dokument zwischen zwei Seiten etwas Text "fehlt". geoWrite formatiert dann beim ersten öffnen des Textes das komplette Dokument neu.
+
+<6.2.1.2> Die Icon-Leiste am rechten Bildrand (Fortsetzung)
+---------------------------------------
+
+kl Wenn Sie geoWrite-Texte in das PC-Textformat kopieren wollen, können Sie hier die Einstellungen verändern:
+
+-	Zeilenvorschub-Code $0A in PC-Texten:
+	------------------------
+	b Zeilenvorschub einfügen.
+Diese Option ist identisch mit dem Menü "CBM-DOS".
+
+-	"Seitenende"-Kennung bei geoWrite-Texten:
+	--------------------------
+	b Seitenende ignorieren.
+Wenn Sie möchten, das eine PC-Textseite gleich lang wird wie unter geoWrite, dann müssen Sie diese Option deaktivieren. Ist die Funktion aktiviert, werden alle Seiten des geoWrite-Textes direkt hintereinander in die Ziel-Datei kopiert.
+
+-	MSDOS-Dateiname:
+	-----------
+	a Name vorschlagen.
+	b Dateinamen neu eingeben.
+Diese Option ist identisch mit dem Menü "CBM-DOS".
+
+mn Wenn Sie PC-Texte in das geoWrite-Format konvertieren, haben Sie hier die Möglichkeit die Einstellungen für Ränder und Tabulatoren festzulegen. Alle Zahlenangaben beziehen sich dabei auf das geoWrite-Lineal in Abhängigkeit vom ge- wählten Text-Format (Write Image V2.0 oder V2.1).
+
+-	Linker Rand:	(entspricht dem linken "M" im geoWrite-Lineal).
+	-------
+Geben Sie hier den Wert für den linken Rand ein. Beim Write Image V2.0 muß der Wert zwischen 12 und 61 liegen, beim Format V2.1 zwischen 2 und 71. Bei fehlerhaften Werten müssen Sie die Eingabe wiederholen. Abgeschlossen wird die Eingabe mit "RETURN".
+
+-	Rechter Rand:	(entspricht dem rechten "M" im geoWrite-Lineal).
+	--------
+Geben Sie hier den Wert für den rechten Rand ein. Beim Write Image V2.0 muß der Wert zwischen 22 und 72 liegen, beim Format V2.1 zwischen 12 und 82. Bei fehlerhaften Werten müssen Sie die Eingabe wiederholen. Abgeschlossen wird die Eingabe mit "RETURN".
+
+-	Absatz-Tabulator:	(entspricht dem "P" im geoWrite-Lineal).
+	----------
+Wenn Sie einzelne Absätze im Text einrücken möchten, können Sie hier den Wert für die Einrückung eingeben. Beim Write Image V2.0 muß der Wert zwischen 12 und 61 liegen, beim Format V2.1 zwischen 2 und 71. DOS-Texte sind in der Regel keine Fließtexte, deshalb beginnt jede Zeile am Absatz-Tabulator. Der linke Rand wird für diese Texte durch diesen Wert bestimmt. Bei fehlerhaften Werten müssen Sie die Eingabe wiederholen. Abgeschlossen wird die Eingabe mit "RETURN".
+
+<6.2.1.2> Die Icon-Leiste am rechten Bildrand (Fortsetzung)
+---------------------------------------
+
+-	Tabulatoren:
+	-------
+Im Gegensatz zu anderen Textkonvertern kann geoDOS auch Tabulator- Stops aus PC-Texten übernehmen. Die Position für diese Tabulatoren im geoWrite-Text können Sie hier eingeben. Klicken Sie dazu mit der Maus auf das Zahlenfeld. Der Wert muß zwischen dem für den linken und dem rechten Rand liegen. Soll der Tabulator nicht gesetzt werden, so geben Sie den Wert für den rechten Rand ein. Die Tabulatoren sind standardmäßig auf "linksbündig" eingestellt. Soll der Tabulator "rechts- bündig" (Dezimal-Tabulator) gesetzt werden, aktivieren Sie das Kontroll- Kästchen links neben der Tabulator-Nummer. Beispiele:
+
+	b	Tab 1:  Linksbündig,	a	Tab 1:  Dezimal-Tabulator.
+
+op Diese Option ist ganz nützlich, wenn Sie viele kleinere PC-Texte besitzen. Diese können Sie dann nämlich zu einer geoWrite-Datei verbinden! Dabei haben Sie die Auswahl zwischen verschiedenen Verfahren:
+
+-	PC-Texte zu einer geoWrite-Datei verbinden:
+	---------------------------
+	b Dateien verbinden.
+Bei aktivierter Option verbindet geoDOS die einzelnen PC-Texte unter Berücksichtigung der folgenden Parameter:
+
+	b Direkt verbinden.
+geoDOS kopiert dabei alle PC-Texte direkt hintereinander.
+
+	b Leerzeile einfügen.
+geoDOS fügt zwischen den einzelnen PC-Texten immer eine Leerzeile ein.
+
+	b Neue Seite beginnen.
+Zu beginn jeder PC-Textdatei beginnt geoDOS eine neue Seite.
+
+Egal welche der drei Verbindungs-Modi Sie verwenden, geoDOS berücksichtigt dabei die Einstellungen für die Seitenlänge im Menü "DOS-geoWrite".
+
+<6.2.2> Dateien von MSDOS nach CBM und geoWrite kopieren
+-----------------------------------------
+Nun kommen wir zu den wichtigsten Menüpunkten unter geoDOS: Die Kopierfunktionen. Wählen Sie aus dem "KOPIEREN"-Menü den entsprechenden Eintrag aus:
+
+-	MSDOS nach CBM:
+Wenn die Ziel-Dateien im Commodore-Format abgelegt werden sollen.
+
+-	MSDOS nach geoWrite:
+Wenn Sie geoWrite-Texte erzeugen möchten.
+
+Danach öffnet sich die Laufwerks-Auswahlbox (siehe <Kapitel 3.2.2> "Quell- und Ziel- Laufwerk wählen"). Wählen Sie aus der oberen Konfiguration das DOS-kompatible Quell-Laufwerk, aus der unteren Konfiguration das Ziel-Laufwerk. Quell- und Ziel- Laufwerk dürfen nicht identisch sein! Haben Sie das Quell- und Ziel-Laufwerk eingestellt, bestätigen Sie Ihre Angaben mit "OK". geoDOS ließt nun die Disketten-Daten der Quell- Diskette ein. Anschließend sucht das Programm weitere Unterverzeichnisse und Dateien zum kopieren. Befinden sich keine Dateien auf Diskette, erhalten Sie eine Fehlermeldung. Im anderen Fall erscheint die Auswahlbox mit den verfügbaren Verzeichnissen und Dateien:
+
+                <MISSING_IMAGE_DATA>
+
+Im oberen Beispiel werden am Anfang der Datei-Liste einige Unterverzeichnisse ange- zeigt (erkennbar durch das vorangestellte ">"). Um ein solches Verzeichnis zu öffnen, klicken Sie mit der Maus einfach auf den Verzeichnis-Eintrag. Danach sucht geoDOS wieder nach weiteren Daten. Befinden Sie sich in einem Unterverzeichnis, so werden am Anfang der Datei-Liste immer mindestens zwei weitere Einträge angezeigt:
+
+>	Verzeichnis erneut einlesen (praktisch ohne Wirkung).
+<	Zurück zum letzten Unterverzeichnis bzw. zum Hauptverzeichnis.
+
+In der Auswahlbox können max. 255 Einträge eingelesen werden (Verzeichnisse und Dateien zusammen). Besitzt das Verzeichnis mehrere Datei-Einträge, dann können Sie mit einem Klick auf "OK" die nächsten 255 Einträge einlesen. Dabei dürfen aber keine Dateien angewählt sein! In diesem Fall wird die Auswahl bestätigt und geoDOS beginnt mit dem Kopiervorgang. Zuvor wird noch geprüft ob auf dem Ziel-Laufwerk genügend freier Speicher verfügbar ist. Kalkulieren Sie den freien Speicher auf dem Ziel-Laufwerk nicht zu knapp! Falls Sie eine geoWrite-Text-Datei erzeugen und dabei mehrere Dateien zu- sammenfassen möchten, werden Sie nun zur Eingabe eines Dateinamens für die Gesamt- Datei aufgefordert. Danach wird überprüft ob auf dem Ziel-Laufwerk bereits Dateien mit gleichen Namen wie die Quell-Dateien vorhanden sind. Falls ja geht geoDOS nun so vor wie im Parameter-Menü unter "DOS - CBM" bzw. "DOS - geoWrite" eingestellt. Je nach gewählter Einstellung löscht geoDOS die Ziel-Datei, übergeht die entsprechende Quell- Datei oder das Programm überläßt Ihnen die Auswahl, indem es eine Info-Box anzeigt. Dort können Sie dann festlegen ob Sie die Datei löschen, übergehen oder der Quell-Datei einen neuen Namen geben möchten. Im letzten Fall erscheint ein Eingabe-Fenster mit folgenden Icons (siehe nächste Seite):
+
+<6.2.2> Dateien von MSDOS nach CBM und geoWrite kopieren (Fortsetzung)
+--------------------------------------------------
+G	Mit dem "Close"-Icon kommen Sie zurück zum Hauptmenü.
+qr	Löscht das Eingabefeld für den Dateinamen.
+t	Erzeugt automatisch einen Commodore-Namen aus dem DOS-Namen.
+u	Zurück zur Info-Box.
+
+Wurden alle Dateien überprüft, färbt geoDOS den Bildschirm schwarz und beginnt mit dem Kopiervorgang. Am unteren Bildrand finden Sie die folgenden Informationen:
+
+-	Kopiere:	Zeigt den Namen der gerade kopierten Datei.
+Beim Modus "MSDOS-geoWrite" wird für den Fall das Sie mehrere Texte zusammenfassen möchten nur der Name des Gesamt-Files angezeigt!
+-	Dateien:	Die Anzahl der noch zu kopierenden Dateien.
+-	Bytes:	Die Anzahl der noch zu kopierenden Bytes der Datei.
+-	Seite:	Zeigt die kopierte geoWrite-Seite (nur bei "DOS-geoWrite").
+
+Ist der Vorgang beendet, kehrt geoDOS zum Hauptmenü zurück. Tritt während des Kopiervorgangs ein Disketten-Fehler auf, so zeigt geoDOS den zugehörigen Fehler-Code an und nach einen Klick auf "OK" kommen Sie zurück ins geoDOS-Menü. Eine Tabelle aller Fehler-Codes finden Sie im <Anhang A> "Fehlermeldungen".
+
+<6.2.3> Dateien von CBM und geoWrite nach MSDOS kopieren
+-----------------------------------------
+Wählen Sie aus dem "KOPIEREN"-Menü den entsprechenden Eintrag aus:
+
+-	CBM nach MSDOS:
+Wenn die Quell-Dateien im Commodore-Format vorliegen.
+
+-	geoWrite nach MSDOS:
+Wenn Sie geoWrite-Texte nach MSDOS kopieren möchten.
+
+Danach öffnet sich die Laufwerks-Auswahlbox (siehe <Kapitel 3.2.2> "Quell- und Ziel- Laufwerk wählen"). Wählen Sie aus der oberen Konfiguration das Quell-Laufwerk, aus der unteren Konfiguration das DOS-kompatible Ziel-Laufwerk. Die Laufwerke dürfen nicht identisch sein! Haben Sie Quell- und Ziel-Laufwerk eingestellt, bestätigen Sie Ihre Angaben mit "OK". geoDOS beginnt nun die Disketten-Daten der Ziel-Diskette einzulesen. Anschließend sucht geoDOS auf der Ziel-Diskette nach weiteren Unterverzeichnissen. Wurden weitere Verzeichnisse gefunden, so können Sie wie unter <Kapitel 6.2.2> "Kopieren MSDOS nach CBM und geoWrite" ein neues Verzeichnis wählen, in das geoDOS die Daten ablegen soll. Bestätigen Sie mit einem Mausklick auf das "OK"-Icon das eingestellte Verzeichnis. Danach sucht geoDOS auf dem Quell-Laufwerk nach Dateien zum kopieren. Befinden sich keine Dateien auf Diskette, erhalten Sie eine Fehlermeldung. Im anderen Fall erscheint die Auswahlbox mit den verfügbaren Dateien. Auch hier wird die Datei-Auswahl mit "OK" bestätigt. geoDOS ließt nun noch zu den ausgewählten Dateien einige Informationen von Diskette ein. Nachdem der freie Speicher auf dem Ziel-Laufwerk geprüft wurde, können Sie für die Commodore-Dateien einen neuen MSDOS-Dateinamen eingeben. Dabei geht geoDOS so vor, wie im Parameter-Menü unter "CBM-DOS" bzw. "geoWrite-DOS" eingestellt:
+
+<6.2.3> Dateien von CBM und geoWrite nach MSDOS kopieren (Fortsetzung)
+--------------------------------------------------
+
+-	Dateinamen vorschlagen:
+geoDOS erzeugt eine Tabelle mit Dateinamen. Diese werden aus den 16 Zeichen des Commodore-Dateinamens erzeugt und zwar im "8 + 3"-Format. Wollen Sie anschließend noch einen einzelnen Dateinamen ändern, klicken Sie  mit der Maus auf den entsprechenden Eintrag in der Datei-Liste. Danach werden Sie zur Eingabe eines neuen Dateinamens aufgefordert. Entsprechen alle DOS-Dateinamen Ihren Vorstellungen, so bestätigen Sie die Liste mit "OK" und geoDOS beginnt mit dem Kopiervorgang.
+
+-	Dateinamen neu eingeben:
+Sie werden zur Eingabe eines neuen Dateinamens für jede Commodore-Datei aufgefordert. Dabei erscheint ein Eingabe-Fenster mit folgenden Icons:
+G	Mit dem "Close"-Icon kommen Sie zurück zum Hauptmenü.
+qr	Löscht das Eingabefeld für den Dateinamen.
+s	Erzeugt automatisch einen DOS-Namen aus dem Commodore-Namen.
+u	Zurück zum Hauptmenü.
+
+Ist die Eingabe der Datei-Namen abgeschlossen, prüft geoDOS ob sich auf dem Ziel- Laufwerk bereits Dateien mit gleichem Namen befinden. Ist das der Fall, erscheint die Info-Box, wie sie bereits in <Kapitel 6.2.2> beschrieben wurde. Wurden keine Dateien mit gleichem Namen gefunden, beginnt geoDOS mit dem Kopiervorgang. Dazu wird wie bei "DOS-CBM" oder "DOS-geoWrite" zuerst der Bildschirm schwarz gefärbt. Am unteren Bildrand finden Sie die folgenden Informationen:
+
+-	Kopiere:	Zeigt den Namen der gerade kopierten Datei.
+-	Dateien:	Die Anzahl der noch zu kopierenden Dateien.
+-	Blocks:	Die Anzahl der noch zu kopierenden Blöcke der Datei.
+-	Seite:	Zeigt die gerade kopierte geoWrite-Seite (nur bei "geoWrite-DOS").
+
+Ist der Kopiervorgang beendet, wird das Verzeichnis der DOS-Diskette noch aktualisiert. Danach kehrt geoDOS zum Hauptmenü zurück. Tritt während des Kopiervorgangs ein Disketten-Fehler auf, so zeigt geoDOS den zugehörigen Fehler-Code an und nach einen Klick auf "OK" kommen Sie zurück ins geoDOS-Menü. Eine Tabelle aller Fehler-Codes finden Sie im <Anhang A> "Fehlermeldungen".
+
+<6.3> Der Menüpunkt "DOS-Menü"
+----------------------
+
+<6.3.1> "FORMATIEREN"
+--------------
+Hier können Sie MSDOS-Disketten formatieren. Zuerst erscheint wieder die Laufwerks- Auswahlbox. Klicken Sie auf das gewünschte DOS-Laufwerk oder bestätigen Sie das aktuelle Laufwerk mit einem Mausklick auf das "OK"-Icon. Es erscheint eine Auswahlbox mit den möglichen Format-Optionen. Unter geoDOS können die folgenden Disketten- Formate erzeugt werden:
+
+	Kapazität	Dichte	Laufwerk:	1581	FD2000	FD4000
+-----------------------------------------------------
+-	720Kb	DD		-	-	-
+-	1.44Mb	HD		-	-	-
+-	2.88Mb	ED		-	-	-
+
+z ACHTUNG! Verwenden Sie zum formatieren nur Disketten mit der ent- sprechenden Dichte wie oben angegeben! Wird z.B. eine HD-Diskette mit 720Kb formatiert, kann geoDOS seine Daten darauf speichern, der PC ist aber nicht in der Lage, die so formatierten Disketten zu bearbeiten! Besitzer einer 1581 sollten nur Disketten vom Typ DD verwenden.
+
+Klicken Sie nun mit der Maus auf das von Ihnen gewünschte Disketten-Format. Sie werden aufgefordert auf dem Ziel-Laufwerk eine neue Diskette einzulegen (ACHTUNG! Schreibschutz entfernen!), die Diskette wird nach einem Mausklick auf das "OK"-Icon formatiert. Danach können Sie noch einen neuen Namen für die Diskette eingeben, zum Abschluß zeigt geoDOS noch ein paar Disketten-Informationen:
+-	Disketten-Name (wie eingegeben),
+-	die Anzahl der freien Bytes auf Diskette,
+-	die Gesamtzahl der freie Sektoren,
+-	die max. Anzahl freier Cluster und
+-	max. Anzahl Dateien im Hauptverzeichnis.
+
+<6.3.2> "UMBENENNEN"
+--------------
+Nach Auswahl eines DOS-kompatiblen Laufwerks können Sie hier den Namen der ein- gelegten Diskette ändern. Dazu öffnet sich folgendes Eingabe-Fenster:
+
+                <MISSING_IMAGE_DATA>
+
+Erklärung der Fenster-Icons:
+G	Mit dem "Close"-Icon kommen Sie zurück zum geoDOS-Menü.
+qr	Löscht das Eingabefeld für den Disketten-Namen.
+u	Zurück zum Hauptmenü.
+
+<6.3.3> "DIRECTORY"
+-------------
+Auch hier müssen Sie zuerst ein DOS-Laufwerk wählen. Legen Sie dann eine Diskette in das Laufwerk und geoDOS beginnt mit dem einlesen des Directorys. Danach werden die ersten 16 Einträge angezeigt. Am oberen Bildrand stellt geoDOS einige Icons zur Verfügung. Diese haben folgende Bedeutung (von links nach rechts):
+
+A Weiterblättern: geoDOS holt die nächsten 16 Einträge von Diskette und zeigt diese auf dem Bildschirm an. Wurde das Ende des Directorys erreicht, werden Informationen zum Disketten-Verzeichnis sichtbar (siehe weiter unten).
+
+B Zum Anfang des Hauptverzeichnisses: geoDOS kann nur "vorwärts" im Directory blättern. Wollen Sie zum Anfang des Hauptverzeichnisses zurück, so klicken Sie mit der Maus auf dieses Icon.
+
+C Zum Anfang des aktuellen Unterverzeichnisses: Bedeutung ähnlich dem vorherigen Icon, jedoch kehrt geoDOS zum Anfang des Unterverzeichnisses zurück.
+
+D Diskette: Hiermit kann eine neue Diskette eingelesen werden. Wechseln Sie niemals die Diskette, wenn Sie nicht von geoDOS dazu aufgefordert werden! Ein Mausklick auf "OK" öffnet die neue Diskette, "Abbruch" kehrt zum Hauptmenü zurück.
+
+E Laufwerk: Wenn Sie mehrere Disketten-Laufwerke vom Typ VC1581 oder CMD FD unter GEOS besitzen, können Sie hier zwischen diesen Laufwerken wechseln.
+
+F Drucken: Ausdruck des aktuellen Directorys der gerade angezeigten Diskette. Beachten Sie dazu <Kapitel 7.1> "Drucken von Verzeichnissen".
+
+H Verlassen: Rückkehr zum geoDOS-Hauptmenü.
+
+In der Datei-Liste werden Unterverzeichnisse durch "<SubDir>" gekennzeichnet. Wollen Sie ein solches Verzeichnis öffnen, so klicken Sie mit der Maus einfach auf den Datei-Namen. In Unterverzeichnissen gibt es immer mindestens zwei Einträge. Zum einen ">" - dieser lädt den Verzeichnis-Inhalt erneut (hat also keine praktische Bedeutung). Zum anderen "<" - damit können Sie wieder ein Verzeichnis zurückblättern. Wenn Sie mit der Maus auf einen Datei-Eintrag klicken, erscheint eine Info-Box, welche noch zusätzliche Informationen zur ausgewählten Datei anzeigt. Die Info-Box verlassen Sie mit einem Klick auf das "OK"-Icon.
+
+Am Ende des Directorys (egal ob Haupt- oder Unterverzeichnis) zeigt geoDOS einige Informationen über die aktuelle Diskette an:
+
+-	Anzahl der Dateien im aktuellen Verzeichnis,
+-	Summe der Datei-Größen im aktuellen Verzeichnis,
+-	durch Dateien im aktuellen Verzeichnis belegter Speicher,
+-	die Anzahl der freier Cluster,
+-	Verfügbarer Speicher in Bytes auf Diskette und
+-	Gesamtspeicherkapazität der Diskette.
+
+Beachten Sie hierzu auch <Kapitel 3.4> "Wissenswertes über MSDOS-Disketten".
+
+<6.4> Der Menüpunkt "CBM-Menü"
+----------------------
+
+<6.4.1> "FORMATIEREN"
+--------------
+Hier können Sie Disketten im Commodore-Format erzeugen. Zuerst erscheint wieder die Laufwerks-Auswahlbox. Klicken Sie auf das gewünschte Laufwerk oder bestätigen Sie das aktuelle Laufwerk mit einem Mausklick auf das "OK"-Icon. Je nach Laufwerkstyp haben Sie die Wahl zwischen den folgenden Format-Optionen:
+
+1541	1571	1581	RAM	FD2	FD4	HD	RL/RD
+------------------------------------------------------
+- Inhalt löschen	-	-	-	-	-	-	-	-
+- Quick-Format	-	-	-	-	-	-	-	-
+- Standard 170Kb	-	-	-	-	-	-	-	-
+- Standard 340Kb	-	-	-	-	-	-	-	-
+- Standard 790Kb	-	-	-	-	-	-	-	-
+- Format RAM-Disk	-	-	-	-	-	-	-	-
+- Format Partition	-	-	-	-	-	-	-	-
+- Typ 1581, 790Kb	-	-	-	-	-	-	-	-
+- DD, 1x 790Kb	-	-	-	-	-	-	-	-
+- HD, 2x 790Kb	-	-	-	-	-	-	-	-
+- ED, 4x 790Kb	-	-	-	-	-	-	-	-
+- DD, CMD 800Kb	-	-	-	-	-	-	-	-
+- HD, CMD 1600Kb	-	-	-	-	-	-	-	-
+- ED, CMD 3200Kb	-	-	-	-	-	-	-	-
+
+Die Option "Quick-Format" steht nur bei 1541-Laufwerken zur Verfügung. Diese Routine formatiert eine Diskette in weniger als 15 Sekunden. Falls Ihr Laufwerk mit Jiffy-DOS cCMD ausgerüstet ist, benötigen Sie diese Format-Option nicht. Wählen Sie dann "Standard 170Kb".
+
+Die Optionen "CMD xxxKb" sollten Sie nur dann anwählen, wenn Sie unter gateWay oder einem anderen DeskTop arbeiten, der FD-Native-Mode Partitionen unterstützt. Die Disketten werden zwar formatiert, aber falls GEOS den Native-Mode nicht unterstützt, erscheint bei der Eingabe des Disketten-Namen eine Fehlermeldung.
+
+Wählen Sie also eine der obigen Format-Optionen. geoDOS fordert Sie nun dazu auf eine Diskette in das Ziel-Laufwerk einzulegen. Bestätigen Sie die Aufforderung mit "OK". Mit einem Mausklick auf das "Abbruch"-Icon kommen Sie zurück ins geoDOS-Menü. Das Programm formatiert nun die Diskette mit dem gewählten Format. Danach können Sie noch einen neuen Namen für die Disketten eingeben. Bei den FD-Optionen mit ein, zwei oder vier 1581-Partitionen können Sie für jede Partition einen neuen Namen wählen.
+
+<6.4.2> "UMBENENNEN"
+--------------
+Nach Auswahl eines Laufwerks können Sie hier den Namen der eingelegten Diskette ändern. Die Eingabe erfolgt wie unter <Kapitel 6.3.2> "UMBENENNEN" beschrieben. Bei CMD-Laufwerken (FD,HD,RL/RD) wird dabei auch der Name der entsprechenden Partition geändert!
+
+<6.4.3> "DIRECTORY"
+-------------
+Auch hier müssen Sie zuerst ein Laufwerk wählen. Legen Sie dann eine Diskette in das Laufwerk und geoDOS beginnt mit dem einlesen des Directorys. Danach werden die ersten 16 Einträge angezeigt. Am oberen Bildrand stellt geoDOS einige Icons zur Verfügung. Diese haben folgende Bedeutung (von links nach rechts):
+
+A Weiterblättern: geoDOS holt die nächsten 16 Einträge von Diskette und zeigt diese auf dem Bildschirm an. Wurde das Ende des Directorys erreicht, werden Informationen zum Disketten-Verzeichnis sichtbar (siehe weiter unten).
+
+B Zum Anfang des Verzeichnisses: geoDOS kann nur "vorwärts" im Directory blättern. Wollen Sie zum Anfang des Disketten-Verzeichnisses zurück, so klicken Sie mit der Maus auf dieses Icon.
+
+D Diskette: Dieses Icon erscheint nur dann, wenn es sich beim aktiven Laufwerk nicht um eine RAM41,71,81, RAMLink oder CMD HD handelt. Hiermit können Sie eine neue Diskette einlesen. Wechseln Sie niemals die Diskette, wenn Sie nicht von geoDOS dazu aufgefordert werden! Ein Mausklick auf "OK" öffnet die neue Diskette, "Abbruch" kehrt zum Hauptmenü zurück.
+
+I Partitionen: Dieses Icon erscheint nur dann, wenn es sich beim aktiven Laufwerk  um ein CMD-Laufwerk (FD,HD,RAMLink) handelt. Mit einem Mausklick auf dieses Icon erscheint eine Auswahlbox mit den verfügbaren Partitionen. Klicken Sie mit der Maus auf den entsprechenden Partitions-Eintrag. Wollen Sie die Partition nicht wechseln genügt ein Mausklick auf "Abbruch". Lesen Sie dazu auch <Kapitel 6.4.4> "PARTITIONEN".
+
+E Laufwerk: Mit einem Mausklick auf dieses Icon erscheint die Laufwerks-Auswahlbox. Wählen Sie hier das neue Laufwerk dessen Verzeichnis Sie sehen möchten.
+
+F Drucken: Ausdruck des aktuellen Directorys der gerade angezeigten Diskette. Beachten Sie dazu <Kapitel 7.1> "Drucken von Verzeichnissen".
+
+H Verlassen: Rückkehr zum geoDOS-Hauptmenü.
+
+Wenn Sie mit der Maus auf einen Datei-Eintrag klicken, erscheint eine Info-Box, welche noch zusätzliche Informationen zur ausgewählten Datei anzeigt:
+
+Titelzeile:	Dateiname und Commodore-Dateityp. Mögliche Datei-Typen sind:
+	DEL, SEQ, PRG, USR, REL, CBM, DIR und ???.
+
+Format:	"Commodore", "Sequentiell" oder "GEOS-VLIR".
+Typ:	GEOS-Dateityp.
+Klasse:	Versions-Nummer der Anwendung.
+Autor:	Name des Autors.
+Datum:	Datum und Uhrzeit der letzten Modifikation.
+Größe:	Größe der Datei in Blocks a 254 Bytes.
+Modus:	GEOS-Modus für Anwendung.
+Schreibschutz:	"Aktiv" oder "Nicht aktiv"
+Datei-Icon:	Zeigt das Datei-Icon der ausgewählten Datei.
+
+Die Info-Box verlassen Sie mit einem Klick auf das "OK"-Icon.
+
+<6.4.3> "DIRECTORY" (Fortsetzung)
+----------------------
+Am Ende des Directorys zeigt geoDOS einige Informationen über die aktuelle Diskette an:
+
+-	Anzahl der Dateien auf Diskette,
+-	Summe der Datei-Größen auf Diskette,
+-	durch Dateien auf Diskette belegter Speicher,
+-	Verfügbarer Speicher in Blocks auf Diskette und
+-	Gesamtspeicherkapazität der Diskette.
+
+Die Summe der Datei-Größen kann sich vom belegten Speicher auf Diskette unterschei- den. Dies ist z.B. der Fall wenn das Verzeichnis defekt ist oder manipuliert wurde. Die Anzeige des belegen Speichers ist in jedem Fall richtig, sofern der Verzeichnis-Kopf nicht defekt ist. Sollte dies der Fall sein, können Sie durch ein "Validate" oder "Diskette aufräumen" im DeskTop-Menü die Disketten-Struktur wieder herstellen.
+
+<6.4.3.1> Besonderheiten für CMD-"NATIVE-MODE"-Verzeichnisse
+-----------------------------------------
+Falls es sich bei der aktiven Diskette um eine CMD-Native-Mode-Partition handelt, gibt es ein paar Besonderheiten im Directory-Modus:
+
+Beim Mausklick auf einen Directory-Eintrag in der Datei-Liste wird geprüft, ob es sich hierbei um ein Unterverzeichnis handelt. Ist dies der Fall, wird das gewählte Verzeichnis geöffnet. Möchten Sie zum Hauptverzeichnis zurückkehren, klicken Sie mit der Maus auf das "Close"-Icon im Directory-Fenster. In diesem Fall schließt es das Unterverzeichnis und öffnet das Hauptverzeichnis der aktuellen Diskette.
+
+In der Titel-Zeile der Datei-Liste wird beim Hauptverzeichnis der Name der Diskette, bei Unterverzeichnissen der Name des Verzeichnisses, angezeigt.
+
+Wird der Directory-Modus beendet, so wird ein eventueller Verzeichnis-Wechsel wieder rückgängig gemacht.
+
+<6.4.4> "PARTITIONEN"
+--------------
+CMD-Geräte können in mehrere Partitionen unterteilt werden. Möchten Sie zwischen diesen Partitionen wechseln, wählen Sie diesen Menüpunkt. Es erscheint eine Auswahlbox mit allen verfügbaren, CMD-kompatiblen, Laufwerken und den verfügbaren Partitionen. Die Anzeige der verfügbaren Laufwerke entfällt, wenn nur ein CMD-Laufwerk ange- schlossen ist oder das Partitions-Menü von einem anderen geoDOS-Menü aus aufgerufen wurde (siehe <Kapitel 6.2.1> "PARAMETER", Drucker- und Schriftart-Auswahl und <Kapitel 6.4.3> "DIRECTORY"). Die Auswahlbox könnte wie folgt aussehen:
+
+                <MISSING_IMAGE_DATA>
+
+In der Partitions-Tabelle werden nur Partitionen des gleichen Typs angezeigt wie auf dem aktiven Laufwerk eingestellt. Rechts oben in der Titel-Zeile wird das aktive Laufwerk angezeigt. Am unteren Bildrand sehen Sie die aktive Partition. Möchten Sie auf ein anderes Laufwerk wechseln, wählen Sie den entsprechenden Laufwerks-Eintrag. Um eine Partition zu öffnen, klicken Sie mit der Maus einfach auf den Partitions-Eintrag in der Liste. Ist am Computer mehr als ein CMD-Laufwerk angeschlossen, erscheint nach dem Wechseln der Partition wieder die Auswahlbox. Ist nur ein CMD-Laufwerk vorhanden oder wurde das Menü von einem anderen geoDOS-Menü aus aufgerufen, so wird die Partitions-Auswahl beendet. Mit "Abbruch" können Sie die Auswahl vorzeitig abschließen.
+
+<6.5> Die "Quick-Start" Menüs
+--------------------
+
+<6.5.1> Das "geoWrite"-Menü
+-------------------
+Am linken unteren Bildrand sehen Sie das "geoWrite"-Icon. Befindet sich auf Laufwerk A: oder B: (und bei CMD-Laufwerken auf der aktiven Partition) eine Version von geoWrite, können Sie mit einem Mausklick auf dieses Icon ein weiteres Menü öffnen:
+
+-	geoWrite starten:
+Hiermit verlassen Sie geoDOS und starten geoWrite.
+
+-	geoWrite-Dokumente:
+Es erscheint eine Auswahlbox mit den verfügbaren geoWrite-Dokumenten. Wählen Sie ein Dokument aus und geoDOS startet geoWrite und öffnet dabei auch das gewählte Dokument.
+
+-	Zurück zu geoDOS:
+Hiermit verlassen Sie das Menü und kehren zurück zu geoDOS.
+
+<6.5.2> Das "Quick-Start"-Menü
+---------------------
+Am rechten unteren Bildrand sehen Sie das "Quick-Start"-Icon. Nachdem das Icon mit der Maus angeklickt wurde, öffnet sich folgendes Menü:
+
+-	Anwendungen starten:
+Es erscheint eine Auswahlbox mit den verfügbaren Applikationen. Wählen Sie ein Programm aus und geoDOS startet es automatisch.
+
+-	Dokumente:
+Es erscheint eine Auswahlbox mit den verfügbaren Dokumenten. Wählen Sie ein Dokument aus und geoDOS sucht zuerst nach der passenden Applikation. Falls geoDOS diese nicht findet kehrt das Programm zum geoDOS-Menü zurück. Im anderen Fall startet geoDOS die Applikation und öffnet dabei auch das gewählte Dokument.
+
+-	Desk-Accessories:
+Es erscheint eine Auswahlbox mit den verfügbaren DA's. Wählen Sie das entsprechende Programm aus. Anschließend löscht geoDOS den Bildschirm und aktiviert das gewählte DA. Nachdem Sie das DA verlassen haben erscheint wieder das geoDOS-Menü.
+
+-	Zurück zu geoDOS:
+Hiermit verlassen Sie das Menü und kehren zurück zu geoDOS.
+
+<7.> Die Druck-Funktionen
+-----------------
+
+<7.1> Drucken von Verzeichnissen
+----------------------
+Um das Verzeichnis einer Diskette auf dem Drucker auszugeben, wählen Sie zuerst im entsprechenden Menü den Punkt "DIRECTORY":
+
+-	"DOS-Menü":
+Wenn Sie das Verzeichnis einer DOS-Diskette ausdrucken möchten.
+
+-	"CBM-Menü":
+Wenn Sie ein Commodore-Verzeichnis drucken möchten.
+
+Nachdem das Verzeichnis auf dem Bildschirm erscheint, klicken Sie mit der Maus auf das Drucker-Symbol in der Icon-Leiste am oberen Bildrand. Der Bildschirm wird gelöscht und es erscheint das "Druck-Menü".
+
+<7.1.1> Das "Druck-Menü"
+----------------
+Es öffnet sich ein neues Fenster in welchem einige Informationen angezeigt werden: Der aktive Druckertreiber und die maximale Anzahl Zeilen pro Seite. Die Anzahl der Zeilen können Sie selbst wählen. Klicken Sie einfach auf die Icons "-" oder "+" um den Wert zu ändern. Je nach gewähltem Menü (DOS- oder Commodore-Verzeichnis) gibt es noch die folgenden Optionen:
+
+b	Einzelblatt-Papier verwenden:
+Hiermit können Sie geoDOS dazu veranlassen, nach jeder gedruckten Seite zu warten bis Sie ein neues Blatt Papier eingelegt haben. Falls Sie Endlos-Papier verwenden, oder Ihr Drucker über einen automatischen Einzelblatt-Einzug verfügt, lassen Sie diese Funktion deaktiviert.
+
+b	Ausführliches Verzeichnis drucken:	(Nur im "CBM-Menü")
+Normalerweise gibt geoDOS nur die wichtigsten Datei-Informationen aus. Benötigen Sie zusätzliche Informationen zu den Dateien, dann aktivieren Sie diese Option. Der Ausdruck erfolgt dann allerdings mit drei Zeilen pro Eintrag.
+
+Nun gibt es noch drei Icons am unteren Rand des "Druck-Menüs":
+
+v geoDOS liest den Druckertreiber von Diskette ein und beginnt mit dem Ausdruck des aktuellen Verzeichnisses. Ist der Druckertreiber nicht zu finden, erscheint eine Fehlermeldung.
+
+wx Hier können Sie einen neuen Druckertreiber wählen. In diesem Fall öffnet geoDOS das Start-Laufwerk (und bei CMD-Laufwerken die Start-Partition), denn falls es sich bei der aktuellen Diskette um eine DOS-Diskette handelt, wäre eine Drucker-Auswahl von diesem Laufwerk aus nicht möglich. Beachten Sie dazu auch das <Kapitel 7.1.4> "Druckertreiber wählen".
+
+u "Druck-Menü" beenden und zurück zur Verzeichnis-Anzeige.
+
+<7.1.2> Das MSDOS-Verzeichnis
+--------------------
+In der ersten Zeile finden Sie Datum & Uhrzeit an dem dieser Ausdruck erstellt wurde. Darunter wird der Name der aktuellen Diskette angezeigt und der Name des aktuellen Verzeichnisses. Daneben erscheint noch die aktuelle Seiten-Nummer. Ein Datei-Eintrag enthält folgende Informationen:
+
+-	Datei-Name:	Name der Datei im "8 + 3"-Format.
+-	Länge:	Länge der Datei in Bytes.
+		Bei Unterverzeichnissen wird hier "<Sub Dir>" angezeigt.
+-	Datum:	Datum und Uhrzeit der letzten Modifikation.
+-	Uhrzeit:
+-	Attribute:	Eingestellte Datei-Attribute.
+		(Diese werden von geoDOS allerdings nicht berücksichtigt!)
+		- Read-Only	Datei ist schreibgeschützt.
+		- Versteckt	Datei ist "unsichtbar".
+		- System	MSDOS-System-Datei.
+
+Am Ende des Verzeichnis-Ausdrucks erscheinen die gleichen Informationen wie im Directory-Modus. Hier nochmal zur Erinnerung die Daten:
+
+-	Anzahl der Dateien im aktuellen Verzeichnis,
+-	Summe der Datei-Größen im aktuellen Verzeichnis,
+-	durch Dateien im aktuellen Verzeichnis belegter Speicher,
+-	die Anzahl der freier Cluster,
+-	Verfügbarer Speicher in Bytes auf Diskette und
+-	Gesamtspeicherkapazität der Diskette.
+
+<7.1.3> Das Commodore-Verzeichnis
+------------------------
+In der ersten Zeile finden Sie Datum & Uhrzeit an dem dieser Ausdruck erstellt wurde. Darunter wird der Name der aktuellen Diskette angezeigt und daneben erscheint noch die aktuelle Seiten-Nummer. Beim Standard-Ausdruck enthält ein Datei-Eintrag die folgende Informationen:
+
+-	Datei-Name:	Name der Datei.
+-	Datei-Typ:	Commodore-Datei-Typ. Mögliche Datei-Typen sind:
+		DEL, SEQ, PRG, USR, REL, CBM, DIR und ???.
+-	Schreibschutz:	'*' kennzeichnet eine schreibgeschützte Datei.
+-	Länge:	Länge der Datei in Blocks.
+-	Datum:	Datum und Uhrzeit der letzten Modifikation.
+-	Uhrzeit:
+-	GEOS-Typ:	GEOS-Typ z.B. Applikation oder Druckertreiber.
+
+Im erweiterten Verzeichnis-Modus erscheinen noch die zusätzlichen Daten in einer zweiten Verzeichnis-Zeile:
+
+-	Autor:	Name des Autors der Datei.
+-	GEOS-Modus:	Modus in dem die GEOS-Anwendung lauffähig ist.
+		Mögliche Werte für den GEOS-Modus sind:
+		-	GEOS 64	: GEOS 64-Applikation.
+		-	GEOS 40	: GEOS 64 & 128 (40 Zeichen).
+		-	GEOS 40 & 80 Zeichen	: GEOS 64 & 128 (40 & 80 Zeichen).
+		-	GEOS 128, 80 Zeichen	: GEOS 128 im 80-Zeichen-Modus.
+-	Klasse:	GEOS-Klasse z.B. "Write Image V2.0" für geoWrite-Dokumente.
+
+Am Ende des Verzeichnis-Ausdrucks erscheinen die gleichen Informationen wie im Directory-Modus. Hier nochmal zur Erinnerung die Daten:
+
+-	Anzahl der Dateien auf Diskette,
+-	Summe der Datei-Größen auf Diskette,
+-	durch Dateien auf Diskette belegter Speicher,
+-	Verfügbarer Speicher in Blocks auf Diskette und
+-	Gesamtspeicherkapazität der Diskette.
+
+<7.1.4> Drucker wählen
+---------------
+geoDOS aktiviert zuerst das Start-Laufwerk und bei CMD-Geräten zusätzlich die Start- Partiton. Als nächstes werden die verfügbaren Druckertreiber eingelesen und in einer Auswahlbox aufgelistet. Die Auswahlbox könnte wie folgt aussehen:
+
+                <MISSING_IMAGE_DATA>
+
+Wählen Sie den neuen Druckertreiber indem Sie ihn mit der Maus anklicken. Danach schließt sich die Auswahlbox automatisch. Wollen Sie den aktuellen Treiber nicht ändern, so klicken Sie einfach auf das "Abbruch"-Icon.
+
+<Anhang A> Die Fehlermeldungen
+----------------------
+geoDOS dürfte die meisten Disketten-Fehler abfangen. Dabei liefert geoDOS Ihnen einen Fehler-Code. Nachfolgend der Code-Schlüssel. Zum einen in hexadizimaler und dahinter in dezimaler Schreibweise:
+
+Zuerst die geoDOS-Fehlermeldungen für Commodore-Disketten:
+-----------------------------------------------------------
+-	$01	1	Kein Platz für weitere Daten auf Diskette.
+-	$02	2	Ungültige Spur-Nummer.
+-	$03	3	Summe des freien Speichers auf Diskette nicht ausreichend.
+-	$04	4	Inhaltsverzeichnis ist voll.
+-	$05	5	Datei nicht gefunden.
+-	$06	6	BAM ist fehlerhaft.
+-	$07	7	VLIR-Datei noch nicht geöffnet.
+-	$08	8	Ungültiger Datensatz in einer VLIR-Datei.
+-	$09	9	Zu viele Datensätze in einer VLIR-Datei.
+-	$0A	10	Falsche Datei-Struktur.
+-	$0B	11	Pufferüberlauf beim Laden.
+-	$0C	12	Absichtlicher Abbruch-Fehler.
+-	$0D	13	Gerät nicht vorhanden.
+-	$0E	14	Falscher Grafikmodus (nur C128).
+
+Folgende Fehler können auf eine unformatierte oder defekte Diskette hinweisen:
+-----------------------------------------------------------
+-	$20	32	Datei-Header nicht gefunden.
+-	$21	33	Keine SYNC-Markierungen auf Diskette.
+-	$22	34	Datenblock nicht vorhanden.
+-	$23	35	Daten-Prüfsummenfehler.
+-	$25	37	Fehler beim Schreiben.
+-	$26	38	Schreibschutz auf Diskette.
+-	$27	39	Header-Prüfsummenfehler.
+
+Floppy-DOS-Fehlermeldungen:
+-----------------------------------------------------------
+-	$29	41	Falsche Disketten-ID.
+-	$2A	42	Unbekanntes Disketten-Format.
+-	$2E	46	Byte-Dekodierungsfehler.
+-	$73	115	Diskette mit falscher DOS-Marke.
+
+Die oben aufgeführten Fehlermeldungen sind mit den GEOS-Fehlermeldungen identisch.
+
+<Anhang A> Die Fehlermeldungen (Fortsetzung)
+-------------------------------
+
+geoDOS-Fehler bei MSDOS-Disketten:
+-----------------------------------------------------------
+-	$40	64	Boot-Sektor nicht gefunden.
+-	$41	65	FAT kann nicht geladen werden.
+-	$42	66	FAT inkompatibel (Mehr als 4096 Cluster, kommt zu 99.9% nicht vor).
+-	$43	67	Sektor kann nicht geladen werden.
+-	$44	68	Sektor kann nicht geschrieben werden.
+-	$45	69	Cluster kann nicht gelesen werden.
+-	$46	70	FAT kann nicht geschrieben werden.
+-	$47	71	Kein Platz für Dateien im Hauptverzeichnis.
+-	$48	72	Kein Platz für Dateien im Unterverzeichnis.
+-	$49	73	Diskette voll.
+
+In allen Fällen bleibt nur ein Mausklick auf "OK" und Sie kehren zum Hauptmenü zurück. Zusätzlich gibt es noch ein paar interne geoDOS-Fehlermeldungen:
+
+-	Fehler beim Nachladen der geoDOS-Programmteile!
+geoDOS kann das Hauptprogramm auf dem Start-Laufwerk (und bei CMD-Laufwerken auf der Start-Partition) nicht mehr finden. In keinem Fall dürfen Sie auf dem Laufwerk, von dem geoDOS gestartet wurde, die Diskette wechseln! Es hilft auch nichts eine andere Diskette mit geoDOS einzulegen. Für Besitzer von CMD-Geräten: Sie können allerdings jederzeit die Partition auf dem Start-Laufwerk wechseln ohne das auf jeder Partition geoDOS vorhanden sein muß!
+
+-	Funktion noch nicht verfügbar!
+In den Preview-Versionen sind nicht alle Programmteile integriert. Wenn eine Funktion nicht ausgeführt werden kann, erscheint diese Meldung. Dies ist eigentlich kein Fehler, sondern nur eine Information. Diese Meldung tritt bei der Voll-Version nicht auf!
+
+<Anhang B> Tips vom Programmierer
+-------------------------
+Da geoDOS sehr vielseitig ist, werde ich Ihnen nun noch einige Beispiele zeigen, wie Sie mit dem Programm Daten und Texte kopieren können.
+
+<Anhang B.1> Eine PCX-Grafik von MSDOS nach Commodore kopieren.
+----------------------------------------------
+Im ersten Beispiel nehmen wir an, sie haben auf einer MSDOS-Diskette einige Grafiken im PCX-Format vorliegen. PCX ist in der PC-Welt ein weitverbreiteter Standard für Bitmap- Grafiken. Um diese Grafiken nun auf dem C64 darstellen zu können benötigen Sie einen PCX-Viewer (z.B. GoDot für den C64). Wählen Sie nun im Parameter- Menü die folgenden Einstellungen (siehe <Kapitel 6.2.1> "PARAMETER"):
+
+-	T
+Damit setzen Sie alle Werte auf Standard-Werte zurück. geoDOS ist nun auf das kopieren von Daten, Grafiken und Programmen voreingestellt.
+
+-	cd
+Korrigieren Sie bei Bedarf die Einstellungen für das Datum, die Uhrzeit und den "Überschreibmodus".
+
+-	ef
+Wählen Sie für die Ziel-Datei den Commodore-Datei-Typ "PRG".
+
+Verlassen Sie das Parameter-Menü und wählen Sie "DOS-CBM" aus dem "Kopieren"-Menü. Wählen Sie ihre Konfiguration (siehe <Kapitel 3.2.2> "Quell- und Ziel-Laufwerk wählen") und bestätigen Sie die Einstellungen mit "OK". geoDOS ermittelt nun die Daten von der DOS-Diskette und zeigt Ihnen die Datei-Auswahlbox. Wählen Sie die entsprechenden Grafikdateien, erkennbar durch das ".PCX" am Namens-Ende. Nach einem Klick auf das "OK"-Icon und falls bis dahin keine Fehler aufgetreten sind, beginnt geoDOS mit dem kopieren der einzelnen Dateien. Wenn Sie sich wieder im Hauptmenü befinden wählen Sie aus dem "GEOS"-Menü den Punkt "BASIC" und starten Sie GoDot. Wie Sie nun die PCX-Dateien auf dem Bildschirm anzeigen können, entnehmen Sie der GoDot-Anleitung. Weitere Informationen zum Kopiervorgang können Sie <Kapitel 6.2.2> "MSDOS nach CBM kopieren" entnehmen.
+
+<Anhang B.2> Eine geoPaint-Datei nach MSDOS kopieren
+-------------------------------------
+Im zweiten Beispiel wollen wir nun eine geoPaint-Datei in das PCX-Format wandeln. Dazu benötigen Sie allerdings ein "geoPaint-PCX"-Konverter mit dem Sie die geoPaint- Grafiken in PCX-Dateien umwandeln können. Wählen Sie nun im Parameter-Menü die folgenden Einstellungen (siehe <Kapitel 6.2.1> "PARAMETER"):
+
+-	T
+Damit setzen Sie alle Werte auf Standard-Werte zurück. geoDOS ist nun auf das kopieren von Daten, Grafiken und Programmen voreingestellt.
+
+-	cd
+Korrigieren Sie bei Bedarf die Einstellungen für das Datum, die Uhrzeit und den "Überschreibmodus".
+
+-	gh
+Wählen Sie für die Einstellungen für die Eingabe von MSDOS-Dateinamen.
+
+<Anhang B.2> Eine geoPaint-Datei nach MSDOS kopieren (Fortsetzung)
+----------------------------------------------
+Verlassen Sie das Parameter-Menü und wählen Sie "CBM-DOS" aus dem "Kopieren"-Menü.  Wählen Sie jetzt die gewünschte Laufwerks-Konfiguration und bestätigen Sie diese mit "OK". Falls auf der DOS-Ziel-Diskette weitere Unterverzeichnisse existieren, können Sie sich nun entscheiden, wohin geoDOS die Daten schreiben soll. In der Datei-Auswahlbox wählen Sie nun die PCX-Dateien die Sie kopieren möchten. Vor dem Kopier-Vorgang müssen Sie jetzt noch die MSDOS-Dateinamen eingeben. Achten Sie darauf, das der Name mit einer ".PCX"-Endung abgeschlossen wird. Anschließend beginnt geoDOS mit dem Kopiervorgang. Zum weiterbearbeiten der PCX-Files können Sie ein beliebiges PC- Paint-Programm verwenden (z.B. PaintBrush im Windows-Lieferumfang).
+
+<Anhang B.3> PC-Texte nach geoWrite konvertieren
+----------------------------------
+Das ist sicherlich eine der Stärken von geoDOS. PC-Texte können Sie zu 90% in sofort druckfähige geoWrite-Dokumente konvertieren. Dazu ist es notwendig zu wissen, welches Text-Format für die PC-Texte verwendet wurde. geoDOS ist in der Lage drei der gebräuchlichsten Formate zu bearbeiten: PC437, PC850 und PCWIN. Die ersten beiden sind für reine DOS-Texte (erstellt z.B. mit "EDIT" unter MSDOS 6.x), das letztere Format ist für Windows-ASCII-Texte (erstellt z.B. mit "Write" aus dem Windows 3.x Lieferumfang). Um nun einen PC-Text nach geoWrite zu konvertieren, gehen Sie wie folgt vor:
+
+-	T
+Damit setzen Sie alle Werte auf Standard-Werte zurück.
+
+-	F
+Druckertreiber bestimmen bei geoWrite-Texten die max. Anzahl Zeilen pro Seite. Damit geoDOS hier den richtigen Wert einstellen kann, muß das Programm den für den Ausdruck der Texte richtigen Druckerteiber kennen.
+
+-	X
+Hier können Sie die gewünschte Schriftart für das geoWrite-Dokument wählen. geoDOS benötigt die Schriftart um die max. Anzahl von Zeilen pro Seite berechnen zu können.
+
+-	V
+Der PC-ASCII-Code unterscheidet sich vom GEOS-internen ASCII-Code erheb- lich. Außerdem kann der PC-Code viel mehr Zeichen enthalten als unter GEOS möglich. geoDOS nimmt hier die entsprechende Übersetzungen vor. Wählen Sie für einen ersten Versuch "PC437 (oder PC850,PCWIN) > GEOS-ASCII".
+
+-	cd
+Korrigieren Sie bei Bedarf die Einstellungen für das Datum, die Uhrzeit und den "Überschreibmodus".
+
+-	ij
+Wählen Sie für die Ziel-Datei das geoWrite-Textformat sowie die Nr. der ersten Seite und die Einstellungen für die max. Anzahl Zeilen pro Seite.
+
+Die Datei-Auswahl und der Kopiervorgang erfolgen wie unter <Kapitel B.1> beschrieben. Das fertige geoWrite-Dokument können Sie nun aus dem "geoWrite-Menü" wie im <Kapitel 6.5.1> beschrieben direkt öffnen. Falls die Umlaute nicht korrekt übersetzt wurden, haben Sie die falsche Tabelle verwendet. Wiederholen Sie den Kopiervorgang mit einer anderen Übersetzungstabelle.
+
+<Anhang B.4> geoWrite-Texte nach MSDOS kopieren
+-----------------------------------
+Nun möchte ich Ihnen auch noch den umgekehrten Weg zeigen, also einen geoWrite- Text nach MSDOS kopieren. Die so erzeugten Text-Dateien können in der Regel ohne Probleme von den gängigen PC-Textprogrammen gelesen werden.
+
+-	T
+Damit setzen Sie alle Werte auf Standard-Werte zurück.
+
+-	W
+Um den deutschen GEOS-Zeichensatz an das PC-Textformat anzupassen, müssen Sie hier eine Übersetzungstabelle wählen. Wird der Text auf dem PC mit Programmen wie "EDIT" (MSDOS) bearbeitet, dann wählen Sie "GEOS-ASCII > PC437". Arbeiten Sie unter Windows mit "Write" oder "Word", dann wählen Sie "GEOS-ASCII > PCWIN". Verwenden Sie keine Tabelle, so werden auf dem PC die GEOS-Umlaute als Sonderzeichen dargestellt.
+
+-	cd
+Korrigieren Sie bei Bedarf die Einstellungen für das Datum, die Uhrzeit und den "Überschreibmodus".
+
+-	kl
+Aktivieren Sie die Option "Linefeed einfügen" (sonst wird das geoWrite- Dokument vom PC-Textprogramm nicht korrekt dargestellt) und deaktivieren Sie die Option "Seitenende ignorieren" (dann bleibt die Länge einer Seite im PC-Text erhalten)
+
+Die Datei-Auswahl und der Kopiervorgang erfolgen wie unter <Kapitel B.2> beschrieben. Haben sie im geoWrite-Dokument auch Tabulatoren verwendet, so müssen Sie diese auf dem PC nachträglich auf die richtigen Positionen setzen.
+
+<Anhang B.5> BTX-Seiten nach geoWrite kopieren
+---------------------------------
+Als nächstes wollen wir nun BTX-Seiten, wie sie mit dem T-Online-Decoder für den C64 erstellt und gespeichert werden können, in eine geoWrite-Datei kopieren. Auf dem Software-Markt existieren dafür zwar schon einige Programme, aber geoDOS bietet durch die vielfältigen geoWrite-Optionen einige Vorteile. Da es zur Zeit noch keinen Modus "CBM-geoWrite" gibt, müssen wir die einzelnen BTX-Seiten zuerst auf eine MSDOS-Diskette kopieren. Gehen Sie dazu wie folgt vor:
+
+-	T
+Damit setzen Sie alle Werte auf Standard-Werte zurück. Die BTX-Seiten müssen unverändert auf die MSDOS-Diskette kopiert werden.
+
+-	cd
+Korrigieren Sie bei Bedarf die Einstellungen für das Datum, die Uhrzeit und den "Überschreibmodus".
+
+-	gh
+Wählen Sie für die Einstellungen für die Eingabe von MSDOS-Dateinamen.
+
+<Anhang B.5> BTX-Seiten nach geoWrite kopieren (Fortsetzung)
+------------------------------------------
+Verlassen Sie das Parameter-Menü und starten Sie den Kopiervorgang. Gehen Sie dazu wie unter <Anhang B.2> beschrieben vor. Nun haben wir die BTX-Seiten da wo wir sie benötigen und wir können damit beginnen diese zu einer geoWrite-Datei zu verbinden. geoDOS benötigt dazu folgende Einstellungen:
+
+-	F
+Wählen Sie hier den Druckertreiber, mit dem Sie später die BTX-Seiten auch ausdrucken möchten.
+
+-	X
+Da BTX-Seiten mit einer festen Zeilenbreite von 40 Zeichen arbeiten, sollten Sie hier einen NLQ-Font einstellen (z.B. COMMODORE_GE).
+
+-	V
+Wählen Sie hier die Tabelle "BTX > GEOS-ASCII".
+
+-	cd
+Korrigieren Sie bei Bedarf die Einstellungen für das Datum und die Uhrzeit und den "Überschreibmodus".
+
+-	ij
+Wählen Sie für die Ziel-Datei das geoWrite-Textformat sowie die Nr. der ersten Seite und die Einstellungen für die max. Seitenlänge. Geben Sie für die Anzahl der Zeilen pro Seite einen der folgenden Werte ein (nur sinnvoll wenn Original-BTX-Seiten mit 24 Zeilen Länge kopiert werden sollen):
+24	= Eine BTX-Seite pro geoWrite-Seite.
+48	= Zwei BTX-Seiten pro geoWrite-Seite.
+
+-	mn
+Hier können Sie nun noch den Wert für den linken Rand wählen.
+
+-	op
+Mit dieser Option können Sie die gewünschten BTX-Seiten zu einer geoWrite-Datei verbinden. Ist die Funktion deaktiviert, so wird für jede BTX- Seite eine neue geoWrite-Datei erzeugt. Wählen Sie hier als Einstellung:
+
+a Dateien verbinden.
+
+a Eine Leerzeile einfügen.
+
+Nun können Sie wie unter <Anhang B.1> weitermachen. Die BTX-Seiten müßten sich jetzt in Ihrem geoWrite-Dokument befinden.
+
+<Anhang C> Die Übersetzungstabellen
+-------------------------
+Nun noch ein paar Informationen zu den Übersetzungstabellen.
+
+<Anhang C.1> Die DOS-Tabellen
+--------------------
+
+-	"PC437	>	GEOS-ASCII"
+-	"PC850	>	GEOS-ASCII"
+-	"PCWIN	>	GEOS-ASCII"
+Diese Tabellen benötigen Sie, wenn Texte von MSDOS nach geoWrite kopiert werden sollen. Dabei werden die Umlaute und die Sonderzeichen so gut wie möglich an den GEOS-Zeichensatz angepaßt.
+
+-	"BTX	>	GEOS-ASCII"
+Diese Tabelle benötigen Sie, wenn Texte von BTX nach geoWrite kopiert werden sollen. Dabei werden ungültige Steuerzeichen aus dem BTX-Text ausgefiltert.
+
+-	"PC437	>	PETSCII"
+-	"PC850	>	PETSCII"
+-	"PCWIN	>	PETSCII"
+Diese Tabellen benötigen Sie, wenn Texte von MSDOS nach Standard- Commodore kopiert werden sollen. Dabei werden die Umlaute nicht verändert. Sonderzeichen werden so gut wie möglich an den Commodore- Zeichensatz angepaßt.
+
+-	"PC437	>	Mastertext"
+Diese Tabelle benötigen Sie, wenn Texte von MSDOS nach Mastertext kopiert werden sollen. Dabei werden die Umlaute und Sonderzeichen so gut wie möglich an den Mastertext-Zeichensatz angepaßt. Hierbei sollten Sie im Parameter-Menü "DOS-CBM" die Option "Linefeed ignorieren" einschalten. Als Datei-Typ wählen Sie "PRG". Anschließend müssen Sie die Dateien noch umbenennen. Der Name muß 16 Zeichen lang sein und mit einem "k" für komprimierte Mastertext-Dateien abgeschlossen werden. Aus technischen Gründen gehen die ersten beiden Zeichen der PC-Textdatei verloren.
+
+-	"PC437	>	Startexter"
+Diese Tabelle benötigen Sie, wenn Texte von MSDOS nach Startexter kopiert werden sollen. Dabei werden die Umlaute und Sonderzeichen an den Startexter-Zeichensatz angepaßt. Hierbei sollten Sie im Parameter-Menü "DOS-CBM" die Option "Linefeed ignorieren" einschalten. Als Datei-Typ wählen Sie "PRG". Aus technischen Gründen gehen die ersten beiden Zeichen der PC-Textdatei verloren. Starten Sie nun Startexter und laden Sie den Text. Anschließend muß der Text, ggf. mehrmals, neu formatiert werden.
+
+<Anhang C.2> Die Commodore-Tabellen
+--------------------------
+
+-	"GEOS-ASCII	>	PC437"
+-	"GEOS-ASCII	>	PC850"
+-	"GEOS-ASCII	>	PCWIN"
+Diese Tabellen benötigen Sie, wenn Texte von geoWrite nach MSDOS kopiert werden sollen. Dabei werden die Umlaute angepaßt. Ohne diese Tabellen erscheinen die Umlaute im PC-Text als Sonderzeichen. Hierbei sollten Sie im Parameter-Menü "CBM-DOS" die Option "Linefeed einfügen" einschalten.
+
+-	"GEOS-ASCII	>	BTX"
+Diese Tabelle benötigen Sie, wenn Texte von geoWrite nach BTX kopiert werden sollen. Achtung! Schreiben Sie den Text in geoWrite als Fließtext! Also ohne <RETURN> am Ende der Zeile zu drücken. Eine Zeile muß immer 40 Zeichen breit sein. Öffnen Sie dazu ein neues geoWrite-Dokument (V2.0). Setzen Sie den linken Rand auf <12> (dieser Wert ist voreingestellt wenn Sie ein neues Dokument erstellt haben), den Wert für den rechten Rand auf Position <52>. Schreiben Sie nun Ihren Text für die erste Zeile bis Sie am Ende der Zeile angekommen sind. Füllen Sie die Zeile bis zum rechten Rand mit Leerzeichen auf, solange bis der Cursor am linken Rand wieder erscheint. Schreiben Sie nun den Text für die zweite Zeile. Achten Sie dabei auf die max. Anzahl der Zeilen. Für Mails in *812# (Mitteilungsdienst der Telekom) liegt dieser Wert bei <18>.
+
+-	"PETSCII	>	PC437"
+-	"PETSCII	>	PC850"
+-	"PETSCII	>	PCWIN"
+Diese Tabellen benötigen Sie, wenn Texte von Standard-Commodore in das MSDOS-Format kopiert werden sollen. Sonderzeichen werden so gut wie möglich an den PC-Zeichensatz angepaßt. Auch hierbei sollten Sie im Parameter-Menü "CBM-DOS" die Option "Linefeed einfügen" einschalten.
+
+-	"Mastertext	>	PC437"
+Diese Tabelle benötigen Sie, wenn Texte vom Mastertext- in das MSDOS- Format kopieret werden sollen. Die Umlaute und Sonderzeichen werden dabei an den PC-Zeichensatz angepaßt. Hierbei sollten Sie im Parameter-Menü "CBM-DOS" die Option "Linefeed einfügen" einschalten. geoDOS kann nur komprimierte Mastertext-Dateien (erkennbar am "K" am Ende des Datei- namen) kopieren. Aus technischen Gründen werden am Anfang des PC-Textes zwei Zeichen eingefügt. Diese Zeichen können Sie später löschen.
+
+-	"Startexter	>	PC437"
+Diese Tabellen benötigen Sie, wenn Texte vom Startexter- in das MSDOS- Format kopiert werden sollen. Die Umlaute und Sonderzeichen werden dabei an den PC-Zeichensatz angepaßt. Hierbei sollten Sie im Parameter-Menü "CBM-DOS" die Option "Linefeed einfügen" einschalten. Aus technischen Gründen werden am Anfang des PC-Textes zwei Zeichen eingefügt. Diese Zeichen können Sie später löschen.
+
+Schlußwort
+____________
+
+Nun kennen Sie alle Funktionen von geoDOS. Dieses Programm ist sicherlich noch nicht perfekt und deshalb bin ich für Anregungen von jeder Seite dankbar. Im ganzen hat es ungefähr ein Jahr gedauert bis das Programm so wurde wie es heute ist. In der Zwischenzeit sind einige andere Programme auf dem Markt aufgetaucht, welche ebenfalls Dateien von MSDOS nach Commodore kopieren können. Für mich war aber klar, das ein solches Programm nur unter GEOS richtig komfortabel arbeiten kann. Außerdem wollte ich dem GEOS-Betriebssystem etwas "Farbe" vermitteln. Schon immer war ich der Meinung das die GEOS-Programme etwas "eintönig" wirken. Mit geoFAX (FAX-Programm für GEOS, von Maurice Randall) wurde dieses zwar etwas besser, aber der C64 kann noch mehr. Das wollte ich mit geoDOS beweisen. Zwar ist die Entwicklung von "farbiger" GEOS-Software etwas aufwendiger, aber solche Programme gewinnen sehr an Übersichtlichkeit. Ich hoffe das sich in Zukunft noch mehrere Programmierer finden, die sich dieser Idee anschließen.
+
+Unterstützen Sie die Entwicklung neuer GEOS-Software, indem Sie dieses Programm nicht an dritte weitergeben. Software-Entwicklung ist für jeden Programmierer harte Arbeit und Raubkopien bringen die Entwickler hochwertiger Software um Ihren rechtmäßigen Lohn für Ihre Arbeit.
+
+Nun wünsche ich allen C64-Usern und GEOS-Anwendern noch viel Spaß
+bei der Arbeit mit diesem Programm.
+
+                <MISSING_IMAGE_DATA>
+                <MISSING_IMAGE_DATA>
+
+(w) '95 - '96 von: Markus Kanet.
+Software für GEOS-Anwender.

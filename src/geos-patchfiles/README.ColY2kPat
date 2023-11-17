@@ -1,0 +1,44 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+Patches for Calendar and Blackjack from DeskPack
+
+These patches will apply a small menu color fix for Calendar and Blackjack when used as a DeskAccessory with GEOS/MegaPatch.
+In addition to this fix the Calendar patches will also fix the century used for the calendar (Y2k issue).
+
+MAKE SURE TO APPLY THESE PATCHES TO UNMODIFIED ORIGINAL APPLICATIONS ONLY!
+
+The PATCH-SYSTEM is required for these patches, a copy of the application can be found on the Go64 Magazine 1998-06 Side B:
+
+https://archive.org/details/Go64_1998-06_1998_CSW_Side_B
+
+The disk will include Version 1.2 of the PATCH-SYSTEM. Copy the PATCH-SYSTEM, the original and unmodied applications and the patches onto a disk, start the PATCH-SYSTEM and selected the matching patch file for the application and version.
+
+WARNING!
+After you have applied these patches to Calendar V1.2 (not V1.0) you must execute Calendar at least once to complete the patch!
+If Calendar will exit without any notice the patch was applied. If you get a PANIC-Error the patch has failed because it could not be saved to disk. Make sure the disk is not write protected.
+
+Problem:
+The application color was picked from the current COLOR_RAM. This caused random colors for the applications when using a coloured DESKTOP wallpaper, for example when using GeoDesk64.
+The patches will use the colors provided by the GEOS/MegaPatch system. This could either be the GEOS default screen color or the color used by applications for windows.
+
+The patches can be modified to use one of sysem colors or use a preconfigured custom color, see patch text for details.
+
+Example:
+Enable on of the following lines by add/remove the semicolon:
+
+; Change to LDA #$bf+NOP / dark gray+light gray
+	;	$a9,$bf,$ea	; Set custom color
+
+; Change to LDA $9FFD / C_GEOS_BACK
+	;	$ad,$fd,$9f	; Screen color for MP3 in $9FFD
+
+; Change to LDA $9FF7 / C_WINBACK  (Default)
+		$ad,$f7,$9f	; Window color for MP3 in $9FF7
+
+Note: When using the GEOS/MegaPatch system colors, the applications should not be used with GEOS 2.x anymore.

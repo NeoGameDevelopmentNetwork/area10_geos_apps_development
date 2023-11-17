@@ -1,0 +1,46 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+	`3b1GDOS64 - Hilfesystem
+	`3c1(w) M.Kanet
+____________________________________
+
+	`2geoWrite - Beispieldatei`
+____________________________________
+
+Diese Datei dient nur als Beispiel für das aufrufen des Hilfesystems aus geoWrite heraus.
+
+Dies funktioniert auch für andere Programme:
+Der Name der Hilfedatei leitet sich aus der GEOS-
+Klasse ab (max. 12Zeichen).
+
+Zusätzlich kann man "de." oder "en." als Prefix verwenden, wenn es Hilfedateien in beiden Sprachen gibt.
+____________________________________
+
+`2*** Seitenende ***`
+
+§§§
+
+§§§
+
+§§§
+
+`2Hinweis`
+
+Diese Datei enthält keine weiteren Textseiten.
+
+Zurück zur Hauptübersicht mit ^`1Übersicht`
+
+`2*** Seitenende ***`
+
+§§§
+"de.Index.001",01
+
+§§§
+
+§§§

@@ -1,0 +1,48 @@
+   10 print"{clr}{rvon} scsi-laufwerk fuer controller wechseln {rvof}";
+   20 print
+   21 print
+   30 print"hinweis:"
+   31 print
+   40 print"auf der startpartition der cmd-hd und"
+   41 print"allen weiteren scsi-geraeten wird die"
+   42 print"datei 'copyright cmd 89' benoetigt!"
+   50 print
+   60 print"keine ueberpruefung auf fehler!"
+   61 print
+   70 print"benutzung auf eigenes risiko!"
+   71 print
+   80 print"fortfahren? (j/n) ";
+   90 input ke$:if ke$<>"j"thenend
+   91 print
+   99 :
+  100 rem adressen abfragen
+  110 print"adresse cmd-hd? ";
+  120 input hd
+  130 print"adresse scsi-geraet? ";
+  140 input sc
+  199 :
+  200 rem scsi-id berechnen
+  210 id=asc(mid$(str$(sc),2)):id=id-48
+  299 :
+  300 rem befehlskanal oeffnen
+  310 open 15,hd,15
+  399 :
+  400 rem scsi-laufwerk starten
+  410 c1$=chr$(id)+chr$(0)+chr$(64)
+  420 c2$=chr$(27)+chr$(0)+chr$(0)+chr$(0)+chr$(1)+chr$(0)
+  430 co$=c1$+c2$
+  440 print#15,"s-c"co$
+  450 rem fehlerstatus abfragen
+  460 rem get#15,a$:printasc(a$+chr$(0))
+  499 :
+  500 rem hd-ram-programm erzeugen
+  510 c1$=chr$(169)+chr$(id)
+  520 c2$=chr$(76)+chr$(15)+chr$(142)
+  530 co$=c1$+c2$
+  540 print#15,"m-w"chr$(0)chr$(64)chr$(5)co$
+  599 :
+  600 rem scsi-laufwerk tauschen
+  610 print#15,"m-e"chr$(0)chr$(64)
+  699 :
+  900 rem befehlskanal schliessen
+  910 close 15

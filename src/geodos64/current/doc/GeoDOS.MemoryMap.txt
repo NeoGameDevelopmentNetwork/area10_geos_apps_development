@@ -1,0 +1,112 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+GeoDOS * Memory-Map
+für GeoDOS 64 V2.0x
+
+***********************************************************
+*                                                         *
+*  $C000-$FFFF  KERNAL_BASE     GEOS-Kernal               *
+*                               Grafik-/Menü-Routinen     *
+*---------------------------------------------------------*
+*                                                         *
+*  $BF40-$BFFF  KERNAL_BASE2    GEOS-System-Icons         *
+*                                                         *
+*---------------------------------------------------------*
+*                                                         *
+*  $A000-$BF3F  SCREEN_BASE     Grafikbildschirm #1       *
+*                               (Vordergrundgrafik)       *
+*---------------------------------------------------------*
+*                                                         *
+*  $9D80-$9FFF  KERNAL_BASE3    GEOS-Kernal               *
+*                               (SCPU-Patch)              *
+*---------------------------------------------------------*
+*                                                         *
+*  $9000-$9C7F  DISK_BASE       Laufwerkstreiber          *
+*                                                         *
+*---------------------------------------------------------*
+*                                                         *
+*  $8000-$8FFF  OS_BASE         Systemvariablen,          *
+*                               Farbspeicher              *
+*---------------------------------------------------------*
+*                                                         *
+*  $7F40-$7FFF  APP_VAR         Variablenspeicher für     *
+*                               Applikationen             *
+*---------------------------------------------------------*
+*                                                         *
+*  $7F00-$7FFF  Copy2Sek        Sektorspeicher #2 für     *
+*                               Kopierfunktionen          *
+*---------------------------------------------------------*
+*                                                         *
+*  $7E00-$7EFF  Cop1Sek         Sektorspeicher #1 für     *
+*                               Kopierfunktionen          *
+*---------------------------------------------------------*
+*                                                         *
+*  $7900-$7F3F  PRINT_BASE      Druckertreiber            *
+*                                                         *
+*---------------------------------------------------------*
+*                                                         *
+*  $7200-$78FF  DOS_Driver      MSDOS-Laufwerkstreiber    *
+*                                                         *
+*---------------------------------------------------------*
+*                                                         *
+*  $6400-$71FF  DrvSlctBase     Routine für               *
+*                               Laufwerksauswahl          *
+*---------------------------------------------------------*
+*                                                         *
+*  $6100-$71FF  FileNTab        Speicher für Dateinamen   *
+*                                                         *
+*---------------------------------------------------------*
+*                                                         *
+*  $6000-$60FF  FilePTab        Speicher für Partitions-  *
+*                               Nr. bei Dateiauswahl.     *
+*---------------------------------------------------------*
+*                                                         *
+*  $5F00-$60FF  Disk_Sek        MSDOS-Speicher für        *
+*                               aktuellen Sektor          *
+*---------------------------------------------------------*
+*                                                         *
+*  $6000-$60FF  Disk2_Sek       MSDOS-Speicher für        *
+*                               aktuellen Sektor (high).  *
+*---------------------------------------------------------*
+*                                                         *
+*  $5F00-$5FFF  Disk1_Sek       MSDOS-Speicher für        *
+*                               aktuellen Sektor (low).   *
+*---------------------------------------------------------*
+*                                                         *
+*  $4D00-$5EFF  FAT             Aktuelle MSDOS-FAT        *
+*                               (9 Sek. * 512 Bytes)      *
+*---------------------------------------------------------*
+*                                                         *
+*  $4B00-$4CFF  Boot_Sektor     MSDOS-Bootsektor          *
+*                               (1 Sek. * 512 Bytes)      *
+*---------------------------------------------------------*
+*                                                         *
+*  $4100-$4AFF  FileDTab        Kopier-Informationen      *
+*                               (10 Byte pro Datei)       *
+*---------------------------------------------------------*
+*                                                         *
+*  $4200-$4AFF  FileDTab1       Kopier-Informationen      *
+*                               ( 9 Byte pro Datei)       *
+*---------------------------------------------------------*
+*                                                         *
+*  $4300-$4AFF  FileDTab2       Kopier-Informationen      *
+*                               ( 8 Byte pro Datei)       *
+*---------------------------------------------------------*
+*                                                         *
+*  $4900-$4AFF  FileDTab3       Kopier-Informationen      *
+*                               ( 2 Byte pro Datei)       *
+*---------------------------------------------------------*
+*                                                         *
+*  $0400-$5FFF  GEODOS_BASE     GeoDOS, Variablen und     *
+*                               VLIR-Module               *
+*---------------------------------------------------------*
+*                                                         *
+*  $0000-$03FF  ZERO            GEOS-Systemvariablen      *
+*                                                         *
+***********************************************************

@@ -1,0 +1,23 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+Welcome to MegaPatch for GEOS - Version 3.3
+
+The current releases no longer contain TOPDESK as desktop application anymore. TOPDESK V4.x released with MegaPatch from 2000/2003 can still be used. TopDesk V5.x is recommended.
+The original DESKTOP from GEOS 2.x. can be used but does not support NativeMode.
+The desktop file must be named like this:
+	C64	"DESK TOP"  or
+	C128	"128 DESKTOP"
+
+To install MegaPatch on your C64 you have to run the SetupMP-File from your current deskTop.  Please follow the menus and copy all files to your MegaPatch-workdisk. If possible, please use an empty disk/partition when installing MegaPatch, you need about 230Kb(C64) or 240Kb(C128) free disk space. You need additional disk space for the desktop application. If you do only have a 1541 target disk you must use the custom installation and install only required files and disk drivers.
+
+After the files has been copied, MegaPatch will be loaded. After MegaPatch has been installed successfully, your deskTop appears on the screen.
+
+After MegaPatch has been installed you can reload MegaPatch anytime from a running GEOSV2-system using "GEOS.MP3".
+
+You will find more information in the file "README-EN" or in the user manual "USER-MANUAL-EN".

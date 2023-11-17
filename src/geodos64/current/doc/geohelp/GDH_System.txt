@@ -1,0 +1,688 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+`2Das Menü: 'System'`
+
+In diesem Kapitel finden Sie alle Informationen
+über das System-Menü von GeoDOS.
+
+_____________________________________
+
+`2*** Ende ***
+
+§§§
+
+§§§
+
+§§§
+
+`2System`
+`2Inhaltsverzeichnis`
+
+	Inhalt	Seite
+_____________________________________
+
+	`1Hauptübersicht`
+
+	Das Menü 'Hardware'
+		^`1Laufwerke tauschen`	3
+		^`1Druckertreiber wählen`	4
+		^`1Eingabetreiber wählen`	5
+		^`1CMD-Festplatten parken`	6
+		^`1CMD-Festplatten aktivieren`	7
+
+	Das Menü 'Software'
+		^`1GEOS-Uhrzeit`	8
+		^`1Farben ändern`	9
+		^`1Menü-Funktionen, Teil 1`	10
+		^`1Menü-Funktionen, Teil 2`	11
+		^`1Übersicht der Farbbereiche`	12
+		^`1Bubbles im Hauptmenü`	13
+		^`1Mittlere Maustaste konfigurieren`	14
+		^`1Laufwerksauswahl`	15
+		^`1Toolbox speichern`	16
+
+_____________________________________
+
+`2*** Ende ***`
+
+§§§
+"GDH_Index",02
+"GDH_System",03
+"GDH_System",04
+"GDH_System",05
+"GDH_System",06
+"GDH_System",07
+"GDH_System",08
+"GDH_System",09
+"GDH_System",10
+"GDH_System",11
+"GDH_System",12
+"GDH_System",13
+"GDH_System",14
+"GDH_System",15
+"GDH_System",16
+
+§§§
+
+§§§
+
+`30D`40100	`2Menü 'Hardware'`
+`30D`40101	`2Laufwerke tauschen`
+
+Unter GEOS kann es manchmal notwenig sein, die
+Reihenfolge der Laufwerke zu ändern.  Folgendes
+ist zu beachten, wenn sich ein Laufwerk vom Typ
+RAMLink zusammen  mit einem 1571 - Laufwerk im
+System befindet:
+Durch einen 'Fehler' im Laufwerkstreiber  der RAM-
+Link ist  es nicht  möglich , ein 1571 - kompatibles
+Laufwerk auf das Laufwerk D: zu tauschen.
+
+	Beispiel:
+
+	A:CMD_HD	B:CMD_RL	C:1571	D:1581
+
+	Hier ist es nicht möglich, die 1571 von Laufwerk
+	C: mit Laufwerk D: zu tauschen.
+
+Dies betrifft auch RAM 1571 - Laufwerke und 64Net-
+Partitionen vom Typ C=1571.
+
+GeoDOS erkennt  solche Tauschversuche und bricht
+den Vorgang mit einer Fehlermeldung ab.
+
+`2*** ENDE ***`
+
+§§§
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Menü 'Hardware'`
+`30D`40101	`2Druckertreiber wählen`
+
+Es öffnet sich eine Dateiauswahlbox mit allen ver-
+fügbaren  Druckertreibern.  Wenn  Sie einen Treiber
+von  einem anderen Laufwerk bzw. einer anderen Partition aktivieren möchten, können Sie das  über
+die Laufwerks- und Partitionsauswahl innerhalb der
+Dateiauswahlbox durchführen. Zu Beginn zeigt das
+Programm immer den Inhalt der GeoDOS - System-
+diskette an.
+
+GeoDOS speichert den Namen des neu  installierten
+Druckertreibers auf der GeoDOS - Systemdiskette in
+der Datei 'PRINTER.INI'.  Bei jedem Start von GeoDOS
+wird der Druckertreiber aus dieser Datei ausgelesen
+und im GEOS- Kernal angemeldet. Bei Verwendung
+eines C128 wird  dieser Druckertreiber noch nicht in
+den dafür reservierten Speicherbereich eingelesen.
+Erst wenn versucht wird, unter GeoDOS zu drucken,
+wird der Treiber von Diskette geladen und im C128-
+Speicher für  Druckertreiber gespeichert.  Erst  dann
+steht der Druckertreiber jederzeit zur Verfügung.
+
+Verwandte Themen:
+^`1Die Dateiauswahlbox, Laufwerk wechseln`
+^`1Die Dateiauswahlbox, Partition wechseln`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Grundlagen",15
+"GDH_Grundlagen",16
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Menü 'Hardware'`
+`30D`40101	`2Eingabetreiber wählen`
+
+Es öffnet sich eine Dateiauswahlbox mit allen ver-
+fügbaren  Eingabetreibern.  Wenn  Sie einen Treiber
+von  einem anderen  Laufwerk bzw. einer anderen Partition aktivieren möchten , können Sie das  über
+die Laufwerks- und Partitionsauswahl innerhalb der
+Dateiauswahlbox durchführen. Zu Beginn zeigt das
+Programm immer den Inhalt der GeoDOS - System-
+diskette an.
+
+Verwandte Themen:
+^`1Die Dateiauswahlbox, Laufwerk wechseln`
+^`1Die Dateiauswahlbox, Partition wechseln`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Grundlagen",15
+"GDH_Grundlagen",16
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`316`40100	`2Menü 'Hardware'`
+`316`40101	`2CMD-Festplatten parken`
+
+Der Motor von CMD-Festplatten läuft ständig, auch
+dann , wenn kein Zugriff auf die CMD_HD erfolgt.
+Mit  dieser Funktion können Sie den Motor der  HD
+komplett  abschalten.  Dieser Vorgang  schont die
+Laufwerksmechanik. Nach dem abschalten dürfen
+Sie unter  GEOS und BASIC nicht mehr  auf dieses
+Laufwerk zugreifen!
+
+Falls über den SCSI-Port der CMD HD eine weitere
+Festplatte angeschlossen  wurde , ist es möglich,
+das diese nicht geparkt wird.
+
+Verwandte Themen:
+^`1CMD-Festplatten aktivieren`
+
+`2*** ENDE ***
+
+§§§
+"GDH_System",07
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`32e`40100	`2Menü 'Hardware'`
+`32E`40101	`2CMD-Festplatten aktivieren`
+
+Das Gegenstück zur 'Laufwerk parken' - Funktion.
+Hiermit können Sie alle CMD- Festplatten wieder
+aktivieren  und unter GEOS und BASIC wieder an-
+sprechen.
+
+Verwandte Themen:
+^`1CMD-Festplatten parken`
+
+`2*** ENDE ***
+
+§§§
+"GDH_System",06
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Menü 'System'`
+`30D`40101	`2GEOS-Uhrzeit & CMD-RTC`
+
+Hier können Sie die aktuelle GEOS - Uhrzeit ändern
+und die Zeit in den RTC-Uhren der CMD-Geräte neu
+festlegen. Unterstützt werden CMD RL, CMD FD, CMD
+HD & SmartMouse (nur im C64-Modus).
+
+Die Icons am oberen Bildrand:
+
+`30D`40200	Damit beenden Sie die Uhrzeit-Eingabe.
+`30D`40201
+`30D`40202
+
+`30D`40300	Durch dieses Icon können Sie eine neue
+`30D`40301	Uhrzeit eingeben.
+`30D`40302
+
+`30D`40400	Wenn sich ein CMD-Laufwerk mit RTC-Uhr
+`30D`40401	im System befindet, können Sie hiermit
+`30D`40402	auf allen Geräten die Uhrzeit setzen.
+
+`30D`40500	Wenn sich ein CMD-Laufwerk mit RTC-Uhr
+`30D`40501	im System befindet , können Sie hiermit
+`30D`40502	die Uhrzeit  jedes  Gerätes einlesen. Von
+	welchem Laufwerk  die Uhrzeit  gelesen
+wurde , wird  im  unteren Bereich des  Bildschirms
+angezeigt.  GeoDOS  unterstützt die  Laufwerke mit
+RTC-Uhren im Bereich von 8 - 29. Also auch Geräte,
+die nicht unter GEOS angesprochen werden.
+
+Wenn sich  kein Gerät mit CMD - RTC im System be-
+findet , werden die letzten  beiden Icons nicht an-
+gezeigt.
+
+`361Eingabe & Korrektur der Uhrzeit:`
+
+Bewegen Sie den  Mauszeiger auf  das 'Neue Uhr-
+zeit' - Icon und bestätigen Sie es mit einem Maus-
+klick.  Der Cursor beginnt nun im Feld für  das Da-
+tum zu blinken.
+
+	#	Wochentag:
+		Dieses  Eingabefeld  erscheint  nur ,  wenn
+		RTC-Geräte angeschlossen sind. Während der
+		Eingabe  können  Sie mit  den <CURSOR UP>
+		und <CURSOR DOWN> den Wochentag ändern.
+
+	#	Datum:
+		Eingabe von Tag , Monat und Jahr  über die
+		Zahlentasten des  C64.  Mit  <CURSOR LINKS>
+		und  <CURSOR RECHTS>  kann der  Cursor im
+		Eingabefeld bewegt werden. Es findet aber
+		keine Format - Prüfung statt, ob das Datum
+		auch existiert (der 31.02.97 existiert nicht).
+
+	#	Uhrzeit:
+		Eingabe von Stunde (00-23), Minute (00-59)
+		und  Sekunde (00-59).
+
+	#	Eingelesen aus Laufwerk:
+		Erscheint nur , wenn Geräte mit RTC-Uhr an-
+		geschlossen sind.  In diesem Fall  wird hier
+		angezeigt , von welchem Laufwerk die RTC-
+		Uhrzeit eingelesen wurde.
+	
+Abgeschlossen wird die Eingabe über <RETURN>. Die
+Uhrzeit wird erst dann auf allen RTC-Geräten aktu-
+alisiert, wenn das 'SETZEN'-Icon angewählt wird.
+
+Das Hilfesystem ist über die <F1> - Taste erreichbar.
+
+`2*** ENDE ***
+
+§§§
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Menü 'System'`
+`30D`40101	`2Farben ändern`
+
+GeoDOS verwendet beim  ersten Start eine interne
+Farbtabelle um die GeoDOS - Farben zu erzeugen.
+Fast  alle Farben  können vom Anwender hier frei
+definiert werden.
+
+Der Menü-Bildschirm teilt sich in drei Bereiche:
+
+#	Die Titelzeile. Wenn Sie Farben verändert haben,
+können Sie mit einem  Mausklick auf die Titelzeile
+GeoDOS  auf die  neuen Farben  einstellen. Menüs,
+Titelzeile und DeskTop - Hintergrund  werden dann
+sofort an die neuen Farben angepaßt.
+
+#	Das Icon- Menü am oberen Bildrand Erklärungen
+zu den Icons finden Sie unter ^`1Menü-Funktionen`.
+
+# Unter dem Icon- Menü  befindet sich das Anzei-
+gefenster für den aktuellen Farbbereich. Über das
+Eselsohr  am  linken  Rand  des  Fensters können
+Sie den  Bereich  wechseln.  Eine Übersicht  über
+die einzelnen  Farbbereiche der  finden Sie unter
+Kapitel ^`1Farbbereiche`.
+
+# Im rechten unteren Bereich des Bildschirms be-
+findet  sich ein  verkleinerte  GeoDOS - Übersicht.
+Bewegen  Sie den  Mauszeiger auf den  Bereich,
+dessen Farbe Sie ändern möchten und bestätigen
+Sie den Bereich mit einem Mausklick.
+
+# Am linken Bildrand befindet sich Farbskala. Hier
+werden die aktuelle Farbeinstellungen angezeigt.
+Um nun die Farbe für den  gewählten Bereich zu
+ändern , klicken Sie einfach auf  die gewünschte
+Farbe.  Die linke Skala ist  dabei für den  Vorder-
+grund zuständig (z.B. Text , Iconbeschriftung) und
+die rechte  Skala für den Hintergrund  (z. B. Titel-
+zeile, Iconhintergrund).
+
+Das Hilfesystem ist über die <F1> - Taste erreichbar.
+
+`2*** ENDE ***`
+
+§§§
+"GDH_System",10
+"GDH_System",12
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Menü 'System'`
+`30D`40101	`2Farben ändern, Menü-Funktionen, Teil 1`
+
+Erklärung der Icons am oberen Bildrand:
+
+`30D`40200	Rückkehr zum GeoDOS - Hauptmenü.
+`30D`40201
+`30D`40202
+
+`30D`40300	GeoDOS-Faben ändern.
+`30D`40301
+`30D`40302
+
+Es erscheint eine Übersicht mit allen unter GeoDOS
+verwendeten Farben.
+
+`30D`40400	GEOS-Standard-Faben ändern.
+`30D`40401
+`30D`40402
+
+Es erscheint  eine Übersicht  mit allen  unter GEOS
+verwendeten Farben für Standard-Applikationen.
+
+`30D`40500	Farbeinstellungen speichern.
+`30D`40501
+`30D`40502
+
+Die  aktuellen Einstellungen  werden in der Datei
+'COLOR.INI'  auf  Diskette  gespeichert.  Diese wird
+beim nächsten Start automatisch eingelesen.
+
+`30D`40600	Farbeinstellungen zurücksetzen.
+`30D`40601
+`30D`40602
+
+GeoDOS installiert eine vordefinierte Farbtabelle die
+auch dann automatisch installiert wird, wenn keine
+'COLOR.INI'-Datei auf der GeoDOS-Systemdiskette ge-
+funden wurde.
+
+_____________________________________
+
+		`1>> Weiter >>`
+
+Verwandte Themen:
+^`1Farben ändern`
+^`1Bereichsübersicht`
+
+`2*** ENDE ***
+
+§§§
+"GDH_System",11
+"GDH_System",09
+"GDH_System",12
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Menü 'System'`
+`30D`40101	`2Farben ändern, Menü-Funktionen, Teil 2`
+
+Erklärung der Icons am oberen Bildrand:
+
+`30D`40200	Farbeinstellungen speichern.
+`30D`40201
+`30D`40202
+
+Das  Farb - Setup sucht zuerst nach vorhandenen
+Farbtabellen auf der Systemdiskette von GeoDOS.
+Es erscheint dann eine Dateiauswahlbox. Möchten
+Sie die Einstellung in eine  bestehende Datei auf
+Diskette sichern , dann wählen  Sie hier  die ent-
+sprechende Datei durch einen Mausklick.
+Wenn Sie die Einstellungen  in einer neuen Datei
+speichern möchten , wählen Sie in der Dateiaus-
+wahlbox das 'OK'-Icon.
+Sie werden dann  zur Eingabe des  Dateinamens
+aufgefordert.  Existiert die  Datei bereits  auf der
+GeoDOS-Systemdiskette , dann erscheint folgende
+Systemmeldung:
+
+	Vorhandene Datei ersetzen ?
+
+Ein Mausklick auf das 'Ja' - Icon  löscht die Datei
+auf  Diskette und  die neue Farbtabelle wird  ge-
+speichert.
+
+`30D`40300	Farbeinstellungen einlesen.
+`30D`40301
+`30D`40302
+
+Hier können Sie eine Farbtabelle von Diskette ein-
+lesen. Achtung! Die aktuellen Einstellungen gehen
+hierbei verloren.
+Es erscheint die Dateiauswahlbox mit den auf der
+GeoDOS-Systemdiskette verfügbaren Farbtabellen.
+Wählen Sie  hier die neue  Farbtabelle durch  an-
+klicken mit der Maus.
+
+`30D`40400	Farbtabellen anzeigen.
+`30D`40401
+`30D`40402
+
+GeoDOS sucht auf der GeoDOS-Systemdiskette nach
+GeoDOS-Farbdateien. Durch einen Mausklick auf das
+Icon wird jeweils die nächste Farbdatei eingelesen
+und installiert.  Die Bildschirmfarben werden dabei
+automatisch aktualisiert.
+
+_____________________________________
+
+	`1<< Zurück <<`
+
+Verwandte Themen:
+^`1Farben ändern`
+^`1Bereichsübersicht`
+
+`2*** ENDE ***
+
+§§§
+"GDH_System",10
+"GDH_System",09
+"GDH_System",12
+
+§§§
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Menü 'System'`
+`30D`40101	`2Farben ändern, Bereichsübersicht`
+
+	Nr.	Bereich
+_____________________________________
+
+	0	0	DeskTop	Hintergrund
+	0	1	DeskTop	Menü-Icons
+
+	0	2	Menüfenster	Hintergrund
+	0	3	Menüfenster	CLOSE-Icon
+	0	4	Menüfenster	Titelzeile
+	0	5	Menüfenster	Icons
+	0	6	Menüfenster	System-Icon
+	0	7	Menüfenster	Register
+
+	0	8	Dialogbox	Fenster
+	0	9	Dialogbox	CLOSE-Icon
+	1	0	Dialogbox	Titelzeile
+	1	1	Dialogbox	System-Icon
+
+	1	2	Dateiauswahlbox	Fenster
+	1	3	Dateiauswahlbox	CLOSE-Icon
+	1	4	Dateiauswahlbox	Titelzeile
+	1	5	Dateiauswahlbox	System-Icon
+	1	6	Dateiauswahlbox	Textfenster
+	1	7	Dateiauswahlbox	Scrollbalken
+
+	1	8	Infobox
+
+	1	9	Bubbles
+	2	0	Mauszeiger
+
+	2	1	GEOS-Standard	Mauszeiger
+	2	2	GEOS-Standard	Hintergrund
+	2	3	GEOS-Standard	Rahmen
+_____________________________________
+
+Verwandte Themen:
+^`1Farben ändern`
+^`1Menü-Funktionen`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_System",09
+"GDH_System",10
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`307`40100	`2Menü 'System'`
+`307`40101	`2'Bubbles' im Hauptmenü`
+
+Wenn im Hauptmenü der Mauszeiger auf ein Menü-
+Icon bewegt wird, erscheint eine Sprechblase (als
+'Bubble' bezeichnet) , welche das Icon beschriftet.
+Diese ' Bubbles ' verschwinden wieder , wenn der
+Mauszeiger den Bereich  des Icons wieder verläßt.
+Wer  sich an den 'Bubbles' stört , kann diese durch
+einen Mausklick deaktivieren.
+
+	`307`40100	'Bubbles' werden angezeigt.
+	`307`40101
+
+	`307`40200	'Bubbles' werden nicht mehr
+	`307`40201	angezeigt.
+
+Verwandte Themen:
+^`1Die 'Bubbles' im Hauptmenü`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_GeoDOS 64",10
+
+§§§
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Menü 'System'`
+`30D`40101	`2Mittlere Maustaste konfigurieren`
+
+GeoDOS  verwendet  im Hauptmenü standardmäßig
+bei "Drei-Tasten"-Mäusen (z.B. CMD SmartMouse) die
+mittlere Maustaste um das "GeoDOS verlassen" auf-
+zurufen. Einige Maustreiber oder auch der TrackBall
+von CMD belegen diese Maustaste aber mit anderen
+Funktionen  (z. B.  Mauszeiger beschleunigen).  Wer
+im Hauptmenü auf diese  Funktion nicht verzichten
+kann,  kann die mittlere Maustaste im Menü SYSTEM
+ändern. Wählen Sie die Option "Mittlere Maustaste":
+
+	`30D`40100	Die mittlere Maustaste ist aktiv.
+	`30D`40101
+
+	`30D`40200	Die mittlere Maustaste ist nicht
+	`30D`40201	aktiv (Maustreiber wird ausgeführt).
+
+Verwandte Themen:
+^`1Das Hauptmenü, Maustasten-Optionen`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_GeoDOS 64",06
+
+§§§
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Menü 'System'`
+`30D`40101	`2Laufwerksauswahl`
+
+Standardmäßig fragt GeoDOS vor jeder  Disketten-
+und Datei- Funktion nach dem Ziel-Laufwerk. Dies
+können Sie umgehen , indem Sie dieses Icon an-
+wählen.
+GeoDOS  übernimmt nun  für jede  Disketten- und
+Datei - Funktion das  zuletzt angesprochene Lauf-
+werk. In der Statuszeile des Hauptmenüs wird das
+Laufwerk welches  GeoDOS verwendet, durch ein
+' ! ' - Zeichen neben dem Laufwerks- Symbol an-
+gezeigt.
+
+Verwandte Themen:
+^`1Hauptmenü, Statuszeile`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_GeoDOS 64",07
+
+§§§
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Menü 'System'`
+`30D`40101	`2Toolbox speichern`
+
+Um  Veränderungen an  der Toolbox  dauerhaft zu
+speichern, klicken Sie mit dem Mauszeiger auf das
+'Toolbox speichern'-Icon.
+
+GeoDOS sichert dann die Einstellungen in der Datei
+'TOOLBOX.INI' auf der Systemdiskette von GeoDOS.
+
+Verwandte Themen:
+^`1Die Toolbox`
+
+`2*** ENDE ***
+
+§§§
+"GDH_GeoDOS 64",08
+
+§§§
+                <MISSING_IMAGE_DATA>
+
+§§§

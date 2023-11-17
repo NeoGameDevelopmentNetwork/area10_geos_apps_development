@@ -1,0 +1,897 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+MegaAssembler V5
+
+Version 2 entwickelt von
+Knupe, Ciprina, Bonse, Goehrke
+(c) 1989: Markt & Technik
+
+Update auf MegaAssembler V3/4/5,
+Fehlerbeseitigung und Erweiterung:
+1997-2023: Markus Kanet
+
+* Installationsanleitung
+* Verwenden des AutoAssembler-Modus
+* Steuerbefehle für AutoAssembler
+* Neue Pseudo-Opcodes
+* Sonstige Neuerungen
+* Fehlermeldungen
+* Korrekturen und Fehlerbeseitigungen
+
+Referenzdokumente:
+* Anhang1: Kommentare zum MegaAssembler V2
+           von Ronny & Roy Bachmann
+
+Aktualisiert: 21.05.2023/mk
+
+MegaAssembler:
+
+Installationsanleitung:
+Um MegaAssembler V4 kompilieren zu können werden folgende Programme und Dateien benötigt:
+
+- MegaAssembler V2
+- V-Link
+- TopSym
+- TopMac
+
+Der Quelltext benötigt zum Teil externe Symbole aus anderen Quelltext-Dateien. Daher muss vor dem kompillieren von den Quelltext-Dateien src.MegaAss0/2/3 die Funktion "ext.Symboltabelle" im Parameter-Menü aktiviert werden.
+
+Reihenfolge beim kompilieren:
+- src.MegaAss0
+- src.MegaAss1
+- src.MegaAss2
+- src.MegaAss3
+- src.MegaAss4
+- src.MegaAss5
+- src.MegaAss6
+
+Erzeugen der Programmdatei mit V-Link:
+- lnk.MegaAss
+
+MegaAssembler:
+
+Verwendung des Auto-Modus:
+Um die Automatik-Funktion nutzen zu können um mehrere Quelltexte automatisch nacheinander zu kompilieren muss zuerst eine Steuerdatei erstellt werden.
+Dazu mit geoWrite eine neue Datei anlegen:
+
+          o $4000
+          c "ass.SysFile V1.0"
+          n "ass.MegaAss"
+          f $04
+
+        :Dateiliste
+          b $f0,"src.MegaAss0",$00
+          b $f0,"src.MegaAss1",$00
+          b $f0,"src.MegaAss2",$00
+          b $f0,"src.MegaAss3",$00
+          b $f0,"src.MegaAss4",$00
+          b $f0,"src.MegaAss5",$00
+          b $f0,"src.MegaAss6",$00
+          b $f5
+          b $f0,"lnk.MegaAss",$00
+          b $ff
+
+        g $6000
+
+Wichtig ist der Bereich nach dem Label :Dateiliste:
+Der Wert $f0 zeigt an das ein Dateiname folgt. Dateiname mit $00 beenden.
+Der Wert $f5 wechselt zum Linker.
+Der Wert $ff definiert das Ende der Liste.
+
+Ladeadresse (o $4000), die GEOS-Klasse (c "ass.SysFile V1.0") und der GEOS-Typ (f $04) dürfen nicht verändert werden, der Dateiname kann frei gewählt werden.
+
+Der Pseudo-Opcode 'g' definiert die max. Endadresse der Datei bzw. wie gross die Datei max. sein darf. Die Endadresse von $6000 erlaubt max. 8192 Bytes an Dateinamen. Theoretisch sind Werte bis $8000 möglich, dies überschreibt dann aber den Hintergrundbildschirm. Das ist ungetestet, sollte aber funktionieren. Allerdings sind 8192 Bytes ausreichend um mehr als 400 Dateien automatisch übersetzen zu lassen. Werte über 16384 Bytes überschreiben Systembereiche von GEOS was zu einem Absturz führen kann.
+
+Als nächstes muss die Steuerdatei mit dem MegaAssembler kompiliert werden. Es wird dann eine Systemdatei erzeugt. So lange man keine neuen Quelltexte einbinden möchte muss man die Datei nicht mehr aktualisieren.
+
+Jetzt kann im Parameter-Menü die Option "AutoAssembler" eingeschaltet werden, der Menüeintrag wird dann mit einem * markiert.
+
+Im GEOS-Texte-Menü werden jetzt nur noch Systemdateien angezeigt. Eine der Systemdateien auswählen und MegaAssembler startet den Kompiliervorgang. Bei einem Fehler wird deorgang dann unterbrochen.
+
+Ein vorheriger Kompiliervorgang kann nach einem Fehler nicht wieder aufgenommen werden, dafür muss man bei mehreren Quelltexten nicht darauf warten die nächste Quelltext-Datei auszuwählen.
+
+Ein automatisches linken der Teildateien findet nicht statt.
+
+MegaAssembler:
+
+Befehlsübersicht für AutoAssembler-Steuerdateien:
+
+  b $f0,"DATEINAME",$00     Dateiname für MegaAssembler oder Linker definieren
+
+  b $f1                     Benutzer-Routine ausführen:
+           <PROGRAMM-CODE>  Nach dem $f1-Befehl folgt Programm-Code der durch
+           lda #<NEXT       den MegaAssembler/Linker ausgeführt wird. Dies kann
+           sta a0L          z.B. Code sein der die CMD-Partition auf dem Quell-
+           lda #>NEXT       Laufwerk wechselt oder das löschen einer Datei.
+           sta a0H          Zum Ende muss der Zeiger in :a0 auf das nächste
+           rts              Befehlsbyte gesetzt werden und der Code mit 'RTS'
+    :NEXT  $f0,...          beendet werden.
+                            In :a1L wird das Quelltext-Laufwerk übergeben,
+                            in :a1H wird das Objektcode-Laufwerk übergeben.
+
+  b $f2,<DEVICE>            Wechselt das Quelltext-Laufwerk auf <DEVICE>.
+                            Ist <DEVICE> == NULL dann wird das Standard-
+                            Laufwerk aktiviert welches über das Parameter-Menü
+                            festgelegt wurde.
+
+  b $f4                     Wechselt vom Linker zum MegaAssembler. Anschließend
+                            können über den $f0-Befehl weitere Dateinamen zum
+                            kompilieren angegeben werden.
+
+  b $f5                     Wechselt vom MegaAssembler zum Linker. Anschließend
+                            kann über den $f0-Befehl ein Dateiname anngegeben
+                            werden die dann vom Linker zum linken einer VLIR-
+                            Datei verwendet wird. Über $f4 kann zurück zum
+                            MegaAssembler gewechselt werden um weitere Quell-
+                            texte zu kompilieren.
+
+  b $ff                     Beendet der AutoAssembler-Modus.
+
+MegaAssembler:
+
+Beispiel für eine benutzerdefinierte
+Routine inkl. Partitionsechsel. Das
+wechseln vor Partitionen funktioniert
+nur mit einem instalierten MP3!
+:OPEN_SYMBOL	m
+	b $f1
+	lda	#DvAdr_Symbol	;Laufwerk = 0?
+	bne	:1	;Nein, weiter...
+	lda	a2L	;Standard-Laufwerk laden.
+	sec		;Laufwerk für Dialogbox setzen.
+	sbc	#8
+	clc
+	adc	#"A"
+	sta	:93
+	LoadW	r0,:90	;"Diskette einlegen"
+	jsr	DoDlgBox
+	jsr	MouseUp	;Warten bis keine Maustaste gedrückt.
+::0	lda	mouseData
+	bpl	:0
+	LoadB	pressFlag,NULL
+	jsr	MouseOff
+	jmp	:2
+
+::1	jsr	SetDevice	;Neues Laufwerk setzen.
+	lda	#DvPart_Symbol	;Ggf. Partition wechseln.
+	beq	:2
+	sta	r3H
+	jsr	OpenPartition
+	jsr	OpenDisk
+::2	lda	a1L
+	jsr	SetDevice
+	jsr	OpenDisk
+	LoadW	a0,:END_SYMBOL
+	rts
+
+::90	b $01
+	b $30
+	b $72
+	w $0040!DOUBLE_W
+	w $00ff!DOUBLE_W!ADD1_W
+	b DBTXTSTR,$10,$0e
+	w :91
+	b DBTXTSTR,$10,$1e
+	w :92
+	b OK,$02,$30
+	b NULL
+::91	b "Diskette einlegen: Symbol",NULL
+::92	b "Laufwerk: "
+::93	b "X",NULL
+
+::END_SYMBOL
+
+MegaAssembler:
+
+Pseudo-Opcodes im MegaAssembler V4
+* = Neue Funktionen gegenübr V2
+
+   n "Filename" Dateiname
+   c "Klasse"   GEOS-Klasse festlegen
+   f "Typ"      GEOS-Dateityp festlegen
+   a "Name"     Autor
+   z $00        C128 Bildschirmmodus
+   i icondata   Icon für Objektdatei
+
+   o $0000      Programm-Ladeadresse
+   p $0000      Startadresse festlegen
+   q $0000      Endadresse festlegen
+
+   t "Filename" externe Quelltext-Datei einlesen
+   d "Filename" seq. Datendatei einbinden
+   v "Filename" VLIR-Datensatz einbinden
+   j icondata   Grafik für Info-Header einfügen
+
+   b $00        8-Bit-Wert in Code einfügen
+   w $0000      16-Bit-Wert in Code einfügen
+   s $00-$FFFF  Anzahl Leerbytes $00 einfügen
+
+   m            Makrodefinition beginnen
+   /            Makro abschliesen
+
+*  e $0000      Adresse auf Überschreitung prüfen
+                und bis zur Adresse mit $00-Bytes
+                auffüllen
+*  g $0000      Adresse auf Überschreitung prüfen
+*  r $0000      Max. Endadresse festlegen
+                Bei Überschreitung Fehler anzeigen
+*  h "text"     Text für Info-Header festlegen
+                Mehrfachnennung möglich:
+                Jeder "h"-Opcode erzeugt eine neue Zeile
+*  k            Fügt das aktuelle Datum als Text in den
+                Code ein. Format: "yymmdd"
+*  l            Fügt das aktuelle Datum als Text in den
+                Code ein. Format: "yy.mm.dd"
+*  x            Fügt die aktuelle Zeit als Text in den
+                Code ein. Format: "hhmm"
+*  y            Fügt die aktuelle Zeit als Text in den
+                Code ein. Format: "hh:mm"
+*  u "Filename" PhotoScrap-Datei einbinden
+
+MegaAssembler:
+
+Sonstige Neuerungen:
+Neben den neuen Opcodes und der AutoAssembler-Funktion wurde der Symbolspeicher von 16Kb auf 24Kb vergrößert.
+
+Das GEOS-Texte-Menü zeigt am Anfang jetzt einen Eintrag "Weiter" oder "Zurück" an. Damit kann man jetzt mehr als 13 Quelltext-Dateien auswählen.
+
+Im Verlassen-Menü findet sich ein Eintrag "MegaAss-Opcodes", hier kann man eine Kurzreferenz der verfügbaren Opcodes einblenden. Schließen der Übersicht mit der Maustaste.
+
+Ab Version V4:
+In Pass#2 wird in der Statuszeile die Programm-Größe angezeigt. Dabei wurde immer die Endadresse +1 angezeigt. Bei einem Programm das von $E000-$FFFF im Speicher liegt wurde dann hier $E000-$0000 angezeigt. Das wurde in V4 soweit korrigiert das die Endadresse = das letzte Byte des Programms darstellt.
+
+Für den InfoBlock zeigt die Endadresse aber weiterhin auf "Endadresse +1", da ":SaveFile" aus diesen Werten die Anzahl der zu schreibenden Bytes errechnet.
+
+Es werden jetzt die Disk-Namen aller Laufwerke angezeigt.
+
+Wenn der Symbolspeicher überläuft kann es bei MegaAssembler V2 bis V4.2 zu irreführenden Fehlermeldungen oder zu einem Absturz kommen.
+
+Infotext aus dem ersten VLIR-Modul in VLIR-Datei übernehmen wenn zuvor noch kein Infotext über h-Opcode definiert wurde.
+
+Fehler beim öffnen der externen Symboltabelle behoben, wenn eine bestimmte Laufwerkskonfiguration verwendet wird (4x RAM-Laufwerk).
+
+Bei sehr großen Projekten war es bisher sinnvoll, den Assembler über einen Tastendruck beenden zu können. Um ein versehentliches beenden des Vorgangs zu verhindern kann jetzt über das Parameter-Menü unter >>Optionen die Möglichkeit zum Abbruch deaktiviert werden.
+
+Im Parameter-Menü kann unter GEOS/MegaPatch die Partition auf CMD-Laufwerken gewechselt werden.
+
+MegaAssembler:
+
+Beschreibung der Fehlermeldungen.
+
+Fehler  Beschreibung
+*******************************************************************************
+
+$01     Label unbekannt
+$02     Befehl/Makro unbekannt
+$03     Adressierungsart mit diesem Befehl unmöglich
+$04     Label doppelt definiert
+$05     Bedingter Sprung (branch) zu weit
+$06     Wert zu groß (>$ff)
+$07     Makroende (/) außerhalb einer Makrodefinition
+$08     ungültige Label-/Makrobezeichnung
+$09     Labelname als Makro gebraucht
+$0a     Makroname als Label gebraucht
+$0b      ')' fehlt
+$0c      '(' fehlt
+$0d     Argument fehlt
+$0e      'o' darf nur einmal benutzt werden
+$0f      'if' darf nicht geschachtelt werden
+$10      'else' ohne 'if'
+$11      'endif' ohne 'if'
+$12     Makros können nicht lokal definiert werden
+$13     Makros können nicht in eine Symboltabelle eingetragen werden
+$14     lokale Labels können nicht in eine Symboltabelle eingetragen werden
+$15     Label ist länger als 63 Zeichen
+$16     Branch-Sprungziel muss ein Label enthalten
+$17     Ungültige Zahlenangabe
+$18     Wert zu groß (>$ffff)
+$19     Kein Label angegeben
+$1a     Grafik als File-Icon ungeeignet
+$1b     Texte im w-Befehl nicht möglich.
+$1c     String nicht abgeschlossen
+$1d     Überlauf
+$1e     ungültige Makroparameterangabe
+$1f     Anzahl der Makroparameter ungültig
+$20     Fehlender oder bereits vergebener Filename
+$21     max. Makroschachtelungstiefe überschritten
+$22     max. Makroparameteranzahl überschritten
+$23     VLIR-Datensatz nicht ansprechbar
+$24     Grafik als Objektcode-Icon ungeeignet
+$25     ungültiger Filename
+$26     Keinen Textnamen angegeben
+
+*******************************************************************************
+Bit 7=1:Ist Bit #7 gesetzt, dann trat der Fehler innerhalb eines Makros auf.
+*******************************************************************************
+
+Eintrag in Labeltabelle:
+         Info1                  Info2      Info3         Info4      Info5
+*******************************************************************************
+Standard Byte-Länge             Labelname  Adresse(Word)
+Extern   Byte-Länge + %01000000 Labelname  Adresse(Word)
+Makro    Byte-Länge + %10000000 Makroname  Track         Sektor     BytePos
+Lokal    Byte-Länge             :Labelname Adresse(Word) Ende oder
+                                                         $01 falls Makro Label
+
+MegaAssembler:
+Korrekturen und Fehlerbeseitigung.
+
+;*** Fehler im MegaAssembler:
+;#1  In den Routinen:
+;    ":DefDataFile"
+;    ":DefVLIRFile"
+;    ":DefTextFile"
+;    wird der Name der angegebenen Datei mit dem Label ":DefFileName" ver-
+;    glichen. Das ist falsch! Richtig wäre der Vergleich mit dem Label
+;    ":ObjectFileName" = Name der Zieldatei. Der angegebene Name darf mit
+;    diesem Dateinamen nicht(!) übereinstimmen.
+;
+;#2  Routine:
+;    ":IsMakroErrInTab"
+;    wird mit falschen Werten verglichen. Wenn innerhalb eines Makros ein
+;    Fehler mehrfach auftritt, wird dieser Fehler auch mehrfach in die
+;    Fehlertabelle aufgenommen. Die folgenden Labels müssen getauscht werden:
+;    ":l3806" ändern in ":CurLineData2 +0"
+;    ":l3807" ändern in ":CurLineData2 +1"
+;    ":l3808" ändern in ":CurLineData2 +2"
+;    Das Makro mit den Fehlern wird dann nur noch einfach in die Fehler-
+;    Tabelle aufgenommen.
+;
+;#3  Label:
+;    ":MakroOpenFlags"
+;    Stack mit geöffneten Makros mit 10 Bytes zu groß definiert, da maximal
+;    5 Verschachtelungen möglich sind.
+;
+;#4  Routine:
+;    ":ClrMakOpenFlags"
+;    Entsprechend Punkt #3 werden hier 10 Bytes gelöscht, es sind aber nur
+;    5 Verschachtelungen möglich.
+;
+;#5  Routine:
+;    ":BackToTextFile"
+;    Nach Label ":102" wird die Adresse ":usedRecords" angesprochen. Es findet
+;    sich aber kein weiterer Zugriff auf diese Adresse, der Befehl kann also
+;    entfallen.
+;
+;#6  Routine:
+;    ":FindAssOpcode"
+;    Die Adresse ":Poi_CurLine" wird doppelt genutzt. In diesem Quelltext durch
+;    ":Vec_OpcodeTab" ersetzt. Später auf getrennte Speicherbereiche richten.
+;
+;#7  Routine:
+;    ":DefFirstGWbyte"
+;    Die erste Zeile muss lauten "LDA #$19". Bei einem GW-Text V1.x beginnt die
+;    Seite mit 10 Words (Randeinstellungen) + 4 Byte (NEWCARDSET) + 2 Byte
+;    für die Sektorverkettung. Macht zusammen 26. Dieser Wert -1 muss im LDA-
+;    Befehl angegeben werden (sh. VLINK-Quelltext!).
+;
+;#8  Routine:
+;    ":InsLabel2CharArea" und
+;    ":DefMakroStartPar"
+;    Diese Routinen fügen ein Label/Makro in den Symbolspeicher ein. Für den
+;    Fall das der Symbolspeicher überläuft wird am Ende des Assemblierungs-
+;    vorgangs versucht die Fehlerliste zu erstellen. Da der Fehlerspeicher
+;    aber durch die Anzeige "Symboltabelle voll" überschrieben wird, stürzt
+;    MegaAssembler ab oder erzeugt irreführende Fehler in der Fehlerliste.
+;    In V4.3 behoben, es wird in diesem Fall keine Fehlerliste erstellt.
+;
+;#9  Operand bei Pseudo-Opcodes:
+;    Bis zur Version 4.4 wurden die Operanden von Pseudo-Opcodes nicht
+;    auf Gültigkeit getestet. Wird z.B. "f" (GEOS-Dateityp) mit einem nicht
+;    definierten Label verwendet, dann wird der Operand mit "0" angenommen.
+;    Das erzeugt dann eine Nicht-GEOS-Datei, was bei VLIR-Dateien im Linker
+;    zu einem Folgefehler führt (siehe Linker, #6).
+;    Es gibt im Parameter-Menü jetzt eine Option um eine Überprüfung der
+;    Operanden vorzunehmen.
+;
+
+MegaAssembler:
+Korrekturen und Fehlerbeseitigung.
+
+;*** Fehler im MegaAssembler:
+;#10 Branch-Verzweigung:
+;    Die Versionen V2-V4.6 erzeugen einen falschen Branch-Befehl wenn das
+;    Sprungziel genau 128 Bytes vorwärts beträgt. Dies führt im erzeugten
+;    Programmcode zu einem Sprung rückwärts.
+;
+;#11 Ab Version V3/4 fehlt bei einigen Fehlermeldungen der Hinweis auf
+;    die fehlerhafte Zeile oder das Label mit dem ParityError.
+;    Der Fehler wurde in V5 korrigiert.
+;
+;    "Ab dem Quelltext-Label"
+;    "" <- Label fehlt!
+;    "stimmen die ermittelten Adressen"
+;    "in Pass1 und Pass2 nicht überein!"
+;
+;    "Bei der Makrodefinition"
+;    "" <- Makroname fehlt!
+;    "fehlt ein (gültiger) Makroname."
+;
+;*** Änderungen im Linker:
+;Hinweis: Im Gegensatz zur Version 2.0
+;         ist der Linker jetzt Teil
+;         des MegaAssemblers selbst.
+;
+;#1  Fehler beim linken von mehr als 16 Modulen:
+;    Wenn das 17, 18, 19... Modul nicht auf Diskette ist und im LinkText nich
+;    durch ein ';' ausgeklammert wurde, erscheint die Meldung
+;    "Datei nicht gefunden" und der Link-Vorgang wird abgebrochen.
+;    Fehler ist behoben.
+;
+;#2  Erzeugen von VLIR-Dateien jeden GEOS-Types.
+;    Der GEOS-Dateityp (Applikation, Hilfsmittel...) wird jetzt ebenfalls aus
+;    dem ersten Modul entnommen. Damit können jetzt auch VLIR-Dateien vom Typ
+;    "SYSTEM" oder "Hilfsmittel" erzeugt werden.
+;
+;#3  Infotext übergeben.
+;    VLink wurde um den "h"-Opcode ergänzt. Damit ist es möglich einen Text
+;    in den Infoblock der VLIR-Datei zu übertragen. Jeder "h"-Opcode definiert
+;    dabei eine eigene Zeile im Infotext, kann also öfters im LinkText
+;    angegeben werden. Am Ende jedes "h"-Opcodes wird dann ein CR-Code einge-
+;    tragen. Es können max. 95 Zeichen übergeben werden.
+;
+;#4  Komplette Überarbeitung des Quellcodes. Etliche Routinen wurden aus dem
+;    Programmcode entfernt, da diese nicht verwendet wurden. Außerdem wurden
+;    einige Befehle und Routinen optimiert. Der Programmcode wurde dabei um
+;    etwa 8% (705 Bytes) reduziert.
+;
+;#5  Rückkehr zum Hauptmenü nach "Parameter speichern". Ohne die Änderung gab
+;    es bisher keine visuelle Rückmeldung das die Funktion ausgeführt wurde.
+;
+;#6  Dateigröße anpassen wenn Nicht-GEOS-Dateien im Linker in eine VLIR-Datei
+;    eingebunden werden sollen. Wenn kein Infoblock vorhanden ist, dann wurde
+;    bisher die Dateigröße falsch berechnet.
+;
+
+Aufgestellt 1997-2023:
+Markus Kanet
+
+V. Vorwort
+
+Im Handbuch zum MegaAssembler befinden sich zwar viele und gute Erklärungen zu den GEOS-Routinen und -Speicherstellen, diese sind jedoch nicht vollständig und manche Routinen wurden gar nicht beachtet. Die hier gegebenen Informationen treffen nicht unbedingt auf GEOS-Systeme unter oder über V2.0 zu.
+
+T-A.9 AutoExecs
+
+AutoExecs haben genau denselben Aufbau wie Applikationen. Beendet werden Sie über die Routine EnterDeskTop. Ein AutoExec darf jedoch nur den Speicherbereich von $0400-$4fff belegen, da die Routine ResetHandle, welche ab $5000 im Speicher liegt, für die Ausführung der AutoExecs verantwortlich ist.
+
+T-B.1.4 Der Speicherbereich von $0400-$5fff
+
+Im Bereich $5000-$5fff liegen während des Bootvorgangs weitere Kernal-Routinen.
+
+T-B.1.5 Der Speicherbereich von $6000-$7f3f
+
+Im 80-Zeichenschirm nimmt der 8000 Byte große Bereich ab BACK_SCR_BASE die obere Hälfte des Hintergrundbildes auf.
+
+T-B.1.7 Der Speicherbereich von $8000-$8fff
+
+fileWritten ($8498)
+Findet man hier eine $00, so ist das VLIR-File schon gesichert. Ansonsten steht hier $ff.
+
+mouseData ($8505)
+Hier steht der Wert $00, wenn der Mausknopf gedrückt und $80, wenn er nicht gedrückt ist.
+
+dblClickCount ($8515)
+Solange hier nicht der Wert $00 steht, wird diese Speicherstelle mit jedem Interrupt dekrementiert.
+
+DB_DblBit ($8871)
+Hier muss im GEOS 128 eine Kopie von graphMode stehen, damit im 80-Zeichenschirm in einer Dialogbox ohne Schatten die Icons korrekt dargestellt werden.
+
+vdcClrMode ($88be)
+Der Farbmodus des 80-Zeichenschirms entspricht den Werten, die man für SetColorMode benutzt.
+
+sysRAMFlg ($88c4)
+Im GEOS 128 wird in der REU-Bank 0 nur der Speicherbereich $0000-$38ff für die MoveData-Routine genutzt.
+
+firstBoot ($88c5)
+Während des bootens der AutoExecs steht hier eine $00. Normalerweise ist in dieser Speicherstelle ein $ff zu finden.
+
+ramBase ($88c7-88ca)
+Hier wird für jedes Laufwerk, sofern es ein RAM- oder ein schattiertes Laufwerk ist, die Nummer der Bank abgelegt, ab der die RAM-Disk in der REU abgelegt ist. Beim zuerst installierten RAM-Laufwerk ist die normalerweise eine $01.
+
+T-B.1.8 Der Speicherbereich von $9000-$9fff
+
+Der Laufwerkstreiber darf nur bis Adresse $9d7f gehen.
+
+$9ea7-$9ea8
+Hier liegt im GEOS 64 die aktuelle Seriennummer.
+
+Ergänzung 24.09.2022/mk: Bei GEOS/MegaPatch kann die Adresse abweichen. Die Seriennummer sollte immer über GetSerialNumber abgefragt werden.
+
+$9f54-$9f55
+Hier liegt im GEOS 128 die aktuelle Seriennummer.
+
+T-B.1.9 Der Speicherbereich von $a000-$bf3f
+
+$a040-$bf7f
+Im 80-Zeichschirm befindet sich in diesem 8000 Byte großen Speicherbereich ab SCREEN_BASE+$40 die untere Hälfte der Hintergrundgrafik.
+
+T-B.1.10 Der Speicherbereich von $c000-$cfff
+
+bootName ($c006)
+Befindet man sich im originalen GEOS-System so steht hier "GEOS BOOT". Befindet man sich jedoch im GateWay-System, so findet man hier "GATEWAY".
+
+$c049
+Hier steht eine $ff, wenn man sich im geoRAM-System befindet.
+
+Ergänzung 24.09.2022/mk: Trifft nicht auf GEOS/MegaPatch zu. Hier steht ab GEOS_RAM_TYP=$9fa8 SCPU=$10, GEORAM=$20, C=REU=$40, RAMLink-DACC=$80.
+
+T-B.1.11 Der Speicherbereich von $d000-$dfff
+
+$d8c0-d9bf
+Im GEOS 128 liegt hier der Infoblock des Druckertreibers
+
+$d9c0-$dfff
+Im GEOS 128 liegt hier der aktuelle Druckertreiber.
+
+T-B.1.12 Der Speicherbereich von $e000-$ffff
+
+$fd00-$fe7f
+Hier liegt im GEOS 128 der Eingabetreiber.
+
+$fe80-fff9
+Hier liegt im GEOS 64 der Eingabetreiber (MOUSE_BASE bis END_MOUSE -1).
+
+T-B.1.13 Die Speicherbelegung von Bank 0 im GEOS 128
+
+$2000-$7fff
+Hier liegt das Swap-RAM, in dem beim Start eines Hilfsprogramms das Swap-File abgelegt wird.
+
+$ac00-$bfff
+Hier liegt der Cache-Speicher in dem von den 1541'er & 1571'er Treibern durch AccessCache das Directory abgelegt wird.
+
+$c000-$cfff
+Hier liegen weitere Kernal-Routinen.
+
+$d000-dd7f
+Ist keine REU installiert, so wird hier der gerade inaktive Laufwerkstreiber gespeichert.
+
+$e000-$ffff
+Hier liegen weitere Kernal-Routinen
+
+T-B.2.1 DoMenu ($c151)
+
+Durch einen Programmierfehler im GEOS 128 dürfen hier die x-Koordinaten eines horizontalen Menüs nicht größer als 255 sein. Es gibt jedoch das Patch 'MenüPatch 128', ein Auto-Exec, welches diesen Fehler behebt.
+
+Ergänzung 24.09.2022/mk: Im Akku wird die Nummer des Menüpunktes übergeben, über dem der Mauszeiger positioniert werden soll. Bei vertikalen Menüs funktioniert das aber nur wenn die Y-Koordinate des Menüs kleiner 127 ist. Ist in GEOS/MegaPatch behoben.
+
+T-B.2.2 GotoFirstMenu ($c1bd)
+
+Diese Routine darf auch angesprungen werden, wenn man sich im Hauptmenü befindet.
+
+T-B.2.7 DoIcons ($c15a)
+
+Will man keine Icons verwenden, so ist es nicht notwendig, eine Dummy-Icon-Tabelle zu installieren.
+
+T-B.4.12 Rectangle ($c124) & T-B.4.13 i_Rectangle ($c19f)
+
+Die Routinen zerstören auch r11.
+
+Ergänzung 24.09.2022/mk: Verändert nur r11L, da das Register als Zeilenzähler verwendet wird. r11H bleibt erhalten.
+
+T-B.4.26 SetNewMode ($c2dd)
+
+Wenn man im GEOS 128 den anderen Bildschirm aktivieren will, so setzt man graphMode auf den gewünschten Wert und ruft dann diese Routine auf. Zusätzlich sollte der neue Wert aus graphMode an die $8871 geschrieben werden.
+Verändert wird: Akku
+
+T-B.4.27 SetColorMode ($c2f5)
+
+Hiermit kann man im GEOS 128 auf dem 80-Zeichenschirm einen neuen Grafikmodus wählen. Möglich sind hierbei:
+Wert  Darstellung   Auflösung    Cardgröße (x*y)
+0     Monochrom     640*200      8*8
+1     Farbe         640*176      8*8
+2     Farbe         640*200      8*8         (nur VDC 64)
+3     Farbe         640*200      8*4         (nur VDC 64)
+4     Farbe         640*200      8*2         (nur VDC 64)
+Parameter: Akku = zu aktivierender Bildschirmmodus
+
+T-B.4.28 ColorCard ($c2f8)
+Diese Routine liest (C-Flag gelöscht) oder beschreibt (C-Flag gesetzt) im GEOS 128 eine Kachel auf dem 40- oder 80-Zeichenschirm. Verdopplung der Koordinaten durch DOUBLE_W ist nicht möglich.
+Parameter: r3-x-Koordinate, r11L-y-Koordinate, C-Flag, eventuell Akku-Farbwert (Bit 0-3: Hintergrund, Bit 4-7: Vordergrund)
+Übergeben wird: eventuell Akku-Farbwert
+Verändert wird: r5-r8, Akku, x, y
+
+T-B.4.29 ColorRectangle ($c2fb)
+Diese Routine färbt im GEOS 128 eine Bereich auf dem 40- oder 80-Zeichenschirm. Verdopplung der Koordinaten durch DOUBLE_W ist nicht möglich. Da sich diese Routine auf ColorCard stützt, sollte sie im 80-Zeichenschirm nicht benutzt und durch eine schnellere Routine werden.
+Parameter: r3-linke x-Koordinate, r4-rechte x-Koordinate, r2L-obere y-Koordinate, r2H-untere y-Koordinate, Akku-Farbwert (Bit 0-3: Hintergrund, Bit 4-7: Vordergrund)
+Verändert wird: r5-r8, Akku, x, y
+
+T-B.5.4 PutString ($c148)
+
+Die Routine verändert zusätzlich r0 und r11.
+
+T-B.5.11 CmpString ($c26b) & T-B.5.12 CmpFString ($c26e)
+
+Unterscheiden sich die zu vergleichenden Strings, so wird im y-Register ein Zeiger auf  das verschiedene Byte übergeben.
+
+T-B.5.18 InitTextPrompt ($c1c0)
+
+Setzt die Blinkfrequenz des Textcursors in alphaFlag und initialisiert in Sprite 1 die Grafik für den Textcursor. Als 40- Zeichenfarbe wird die aktuelle Farbe des Mauspfeils benutzt.
+Übergeben wird: Akku = Höhe des Textcursors.
+Verändert wird: Akku, x, y
+
+T-B.6.9 SetMsePic ($c2da)
+
+Verändert werden r0-r4L und die Prozessorregister.
+
+T-B.6.10 TempHideMouse ($c2d7)
+
+Diese Routine verändert zusätzlich das y-Register.
+
+T-B.7.6 $e045
+
+Diese Routine veranlasst den Soft-Sprite-Handler des 80-Zeichenschirm, die Sprites auf dem Bildschirm darzustellen.
+
+T-B.8.8 DoBOp ($c2ec)
+
+Bit 1  Bit 0  Beschreibung
+ 0      0     Verschieben von Adresse in r0 nach Adresse in r1
+              bzw. von Bank in r3L nach Bank in r3H
+ 1      0     Austausch von Adresse in r0 und Adresse in r1 bzw.
+              von Bank in r3L mit Bank in r3H
+ 1      1     Vergleich von Adresse in r0 und Adresse in r1 bzw.
+              von Bank in r3L und Bank in r3H
+Die Möglichkeit, von Adresse in r1 nach Adresse in r0 bzw. von Bank in r3H nach Bank in r3L zu verschieben (y-Register:%01) ist zwar vorgesehen, aber leider nicht möglich, da sich hier im GEOS-Kernal ein Programmierfehler befindet.
+
+T-B.8.15 VerifyRAM ($c2d1)
+
+In  Akku erhält man in Bit 5, ob der Bereich im Computerspeicher mit dem Bereich im REU-Speicher übereinstimmt (Bit gelöscht) oder nicht (Bit gesetzt).
+
+T-B.11.1 InitForIO ($c25c) & T-B.11.2 DoneWithIO ($c25f)
+
+Diese Routinen dürfen nicht geschachtelt werden: Ehe nach einem ersten InitForIO ein zweites InitForIO folgt, muss DoneWithIO aufgerufen werden.
+
+T-B.11.6 ExitTurbo ($c232) & T-B.11.7 PurgeTurbo ($c235)
+
+Das x-Register wird zwar verändert, man erhält aber keine Fehlermeldung.
+
+T-B.12.1.3 OpenDisk ($c2a1)
+
+Diese Routine darf r0 nicht zerstören.
+
+T-B.12.1.8 GetFiles ($c208)
+
+Beim Start von Applikationen muss das im Kapitel T-B.12.2.21 beschriebene beachtet werden.
+
+T-B.12.1.9 SaveFile ($c1ed)
+
+Will man ein sequentielles File abspeichern, so muss im Infoblock die Endadresse um ein einen Wert höher angegeben werden. Es ist nicht möglich, das zu speichernde File mit einem Infotext zu versehen, da SaveFile den Infotext selbstständig durch ein Null-Byte löscht. Verändert wird zusätzlich fileHeader.
+
+T-B.12.1.11 GetOPDPtr ($9036)
+(funktioniert nicht bei GEOS/MegaPatch ohne Patch)
+
+Diese Routine überprüft den GEOS-Rand. Intern wird GetDirHead aufgerufen.
+Übergeben wird: x-Fehlernummer, wenn y=$ff-kein Borderblock, wenn y=$00, dann r1L-Track & r1H-Sektor des Borderblocks
+Verändert wird: r1, r5, Akku, y
+
+Ergänzung 24.09.2022/mk: Funktioniert auch in GEOS/MegaPatch.
+
+T-B.12.2.1 NewDisk ($c1e1)
+
+Diese Routine darf r0 nicht zerstören.
+
+T-B.12.2.3 CalcBlksFree ($c1db)
+
+Das x-Register wird zwar verändert, es wird aber keine Fehlermeldung übergeben.
+
+T-B.12.2.12 FreeFile ($c226)
+
+Der Bereich diskBlkBuf wird zusätzlich verändert.
+
+T-B.12.2.16 Get1stDirEntry ($9030) &
+T-B.12.2.17 GetNxtDirEntry ($9033)
+
+Ist das eigentliche Directory zu Ende, so wird mit den Rand-Dateien fortgefahren, wobei intern GetOPDPtr verändert wird. Im y-Register wird übergeben, ob ein neuer Dateieintrag gelesen wurde ($00), oder ob keine Dateieinträge mehr vorhanden sind ($ff). Ist ein Borderblock vorhanden, so kann auch curDirHead & dir2Head verändert werden. Dies trifft natürlich auch auf alle Routinen zu, die sich auf GetNxtDirEntry stützen (FindFTypes, FindFile, RenameFile & GetFile).
+
+T-B.12.2.21 LdApplic ($c21d)
+
+Ist Bit 7 in r0L gesetzt, so kopiert diese Routine den Namen, auf den r2 zeigt, nach dataDiskName und den Namen, auf den r3 zeigt, nach dataFileName. Anschließend erhält r2 den Zeiger auf dataDiskName und r3 den Zeiger auf dataFileName.
+
+T-B.12.3.8 GetDiskBlkBuf ($903c)
+
+Es wird durch GetBlock ein Block nach diskBlkBuf eingelesen.
+Parameter: r1L-Track & r1H-Sektor des Blocks
+Übergeben wird: x-Fehlernummer, r4-Zeiger auf diskBlkBuf
+Verändert wird: Akku, y
+
+T-B.12.3.8 PutDiskBlkBuf ($903f)
+
+Es wird durch PutBlock der Block aus diskBlkBuf geschrieben.
+Parameter: r1L-Track & r1H-Sektor des Blocks
+Übergeben wird: x-Fehlernummer, r4-Zeiger auf diskBlkBuf
+Verändert wird: Akku, y
+
+T-B.12.4.4 PointRecord ($c280),
+
+Diese Routine verändert zusätzlich r4.
+
+T-B.12.4.7 AppendRecord ($c289),
+T-B.12.4.8 InsertRecord ($c286),
+
+Diese Routinen verändern zusätzlich r1 und r4.
+
+T-B.12.4.9 DeleteRecord ($c283),
+T-B.12.4.10 ReadRecord ($c28c) &
+T-B.12.4.11 WriteRecord ($c28f)
+
+Diese Routinen verändern zusätzlich diskBlkBuf.
+
+T-B.13 Druckertreiber
+
+Im GEOS 128 steht der Druckertreiber nicht in Bank 0 an $df80. Siehe Kapitel T-B.1.11.
+
+T-B.13.8 SetNLQ ($7915)
+
+Vor dieser Routine muss nicht StartASCII aufgerufen werden. Für SetNLQ gilt das gleiche wie für StartASCII, außer dass der NLQ- anstatt dem Draft-Modus aktiviert wird.
+
+T-B.14.5 DoInlineReturn ($c2a4)
+
+Ergänzung 24.09.2022/mk: Im Akku muss die Anzahl der Inlinebytes +1 übergeben werden. zusätzlich muss der Prozessorstatus auf den Stack gelegt werden. Beispiel:
+:Ex1      jsr i_test
+          b $01,$02,$03
+          ...            ; weiter im Programm
+
+:i_test   pla
+          sta returnAdress +0
+          pla
+          sta returnAdress +1
+          ...            ; weiter im Programm
+          php
+          lda #3 +1      ; 3 Inlinebytes +1
+          jmp DoInlineReturn
+
+T-B.13.9 PrintFCodes ($7918)
+
+Diese Routine ist nur bei den HQ-Treibern ab Version 3.1 vorhanden. Sie druckt eine Zeichenkette, die NULL-Bytes enthalten darf, aus.
+Parameter: r0-Zeiger auf die Zeichenkette, r1-Zeiger auf Arbeitsbuffer, r2-Anzahl der zu sendenden Bytes
+
+T-B.14.9 ToBasic ($c241)
+
+Die Informationen, die im MegaAssembler-Handbuch zu dieser Routine angegeben werden, stimmen größtenteils überhaupt nicht. Der Kommandostring, auf den r0 zeigt, muss aus normalen (unter GEOS großgeschriebenen) ASCII-Zeichen bestehen (z.B. PRINT"HALLO") und mit einem NULL-Byte enden. Außerdem darf der String nur im Bereich zwischen $4000 und $bfff abgelegt werden.
+Die folgende Routine verläßt GEOS ohne anschließend einen Befehl auszuführen:
+	LoadW	r0,:10
+	LoadB	r5L,$00
+	sta	r5H
+	jmp	ToBasic
+::10	b	$00
+Ein Basicprogramm muss im GEOS 64 nach $0801, im GEOS 128 nach $1c01 geladen werden. Dieses Basic-Programm darf höchstens $6400 Byte lang sein.
+Auch hierzu noch ein Beispiel, welches GEOS verläßt und das Basic-Programm "Name" startet:
+	LoadW	r6,:10
+	jsr	FindFile	;r5 zeigt jetzt auf dirEntryBuf
+	LoadW	r7,$0801	;im GEOS 64
+	LoadW	r7,$1c01	;im GEOS 128
+	LoadW	r0,:20
+	jmp	ToBasic
+::10	b	"Datei",$00
+::20	b	"RUN",$00
+
+T-B.14.11 GetSerialNumber ($c196)
+
+Übergibt in r0 die aktuelle Seriennummer.
+
+T-B.14.12 ResetHandle ($c003)
+
+Diese Routine wird gleich nach dem Booten angesprungen und sorgt dafür, da die AutoExecs gestartet werden. Dazu verbiegt Sie den Sprung auf EnterDesKTop. Wurde das letzte AutoExec ausgeführt, so wird firstBoot auf $ff gesetzt und der EnterDeskTop-Sprung restauriert.
+Da die eigentliche Routine ab $5000 im Speicher liegt, ist sie nur kurz nach dem Booten im RAM vorhanden. Sie ist für den Programmierer also nicht zugänglich und deshalb nutzlos.
+
+T-B.14.13 AccessCache ($c2ef)
+
+Ist im GEOS 128 für die Verwaltung des Cache-Speichers bei allen 1541'er und 1571'er Laufwerkstreibern (also auch in D64-Files einer CDROM) zuständig. Wenn durch ReadBlock ein Directory-Block gelesen werden soll, so wird der Block durch AccessCache aus dem Computer-RAM geladen. Steht nun in den beiden Link-Bytes des aus dem Cache-Speicher geholten Directory-Blocks $$00/$00, so holt ReadBlock den Block vom Laufwerk und kopiert ihn in das Cache-RAM.
+Parameter: y = Modus ($ff: Cache löschen, $90: Block ins Cache-RAM schreiben, $91: Block aus dem Cache-RAM laden), r1H= Sektor des zu lesenden Directory-Blocks (0-18), r4= Adresse im Computer-RAM.
+Verändert wird: Akku, x, y.
+
+A-A.1 Quelltextformat
+
+Befindet sich in der letzten Zeile einer geoWrite-Seite ein Infotext, so muss diesem noch ein CR folgen. Ansonsten kann es zu undefinierbaren Fehlermeldungen oder Abstürzen beim Assemblieren kommen.
+
+o Adresse
+Durch diesen Pseudo-Opcode wird die Ladeadresse bestimmt.
+
+A-A.2 Bedienung des Assemblers
+
+Der MegaAssembler und der Quelltext müssen sich auf demselben Laufwerk befinden, sonst kommt es bei der Erzeugung von Fehlertexten zu Abstürzen.
+
+Ergänzung 24.09.2022/mk: Mit MegaAssmbler V4 kein Problem mehr.
+
+A-A.3 Fehlermeldungen
+
+Reicht der Speicher für die Symboltabelle nicht mehr aus, erscheint in den meisten Fällen eine "fatale" Fehlermeldung ('Symbolspeicherplatz reicht nicht aus'). In seltenen Fällen erzeugt der Assembler aber auch sinnlose Fehlertexte oder stürzt beim Assemblieren gar ab.
+
+Ergänzung 24.09.2022/mk: Bei der Anzeige einer Fehlerbox wird Teilweise der Fehlerspeicher  überschrieben, was zu sinnlosen Fehlertexten geführt hat. In V4 behoben.
+
+A-B Die Maschinensprachebefehle
+
+bit
+Das Argument wird mit dem Akku nicht UND-verknüpft. Es wird nur das Z-Flag entsprechend gesetzt und die Bits 6 und 7 in das V- und das N-Flag übertragen.
+
+Branch-Befehle
+Mit den Branch-Befehlen (beq, bvc...) kann man in einem Programm bis zu 128 Byte zurück und 127 Byte vorwärts springen. Hierbei hat der MegaAssembler leider einen Programmierfehler. Wenn im Sourcecode ein Sprung um 128 Byte nach vorn verlangt wird, gibt der Assembler keine Fehlermeldung aus, sondern setzt einfach diese 128 ($80) nach den Branch-Befehl. Wird das Programm nun ausgeführt, so springt der Prozessor die 128 Byte nicht, wie gewünscht, nach vorne, sondern logischerweise zurück. Sollte es also bei eigenen Programmen zu unerklärlichen Abstürzen kommen, so sollte man einfach mal den jmp-Befehl probieren.
+
+Ergänzung 23.07.2022/mk: Fehler in Version V4.7 behoben.
+
+A-D.2 Symboltabelle ("MegaSym")
+
+:GetDiskBlkBuf   = $903c
+:GetOPDPtr       = $9036
+:PrintFCodes     = $7918
+:PutDiskBlkBuf   = $903f
+
+A-D.3 Ergänzung zur "MegaSym" für den C128 ("Sym128.erg")
+
+:AccessCache     = $c2ef
+:ColorCard       = $c2f8
+:ColorRectangle  = $c2fb
+:SetColorMode    = $c2f5
+
+A-E.3 Das Directory
+
+Byte 22 ($16) - GEOS-Filetyp
+ 11  $0b  GateWay-/geoSHELL-Laufwerkstreiber / TopDesk-Unterdir
+ 16  $10  Native-Unterdirectory
+ 17  $11  GateWay-Dokument
+ 21  $15  geoSHELL-Befehl
+ 16  $16  geoFAX-Druckertreiber.
+
+A-E.4 Der InfoBlock
+
+Byte 69 ($45)          GEOS-Filetyp (siehe Kapitel A-E.3)
+Byte 89-93 ($59-$5d)   5 Bytes für die Version (Vx.xx)
+Byte 94 ($5e)          Abschlußbyte für die Version ($00)
+Byte 95 ($5f)          4-Drives-Flag; wird in GateWay, CLI,
+                       DoubleDesk & StartFile benutzt, um
+                       festzustellen, ob eine Applikation mit 4
+                       Laufwerken arbeiten kann ($ff) oder
+                       nicht ($00)
+                       Farb-Flag; wird im DoubleDesk benutzt, um
+                       festzustellen, ob ein 80-Zeichen-
+                       Hilfsprogramm die Farben selber setzt
+                       ($ff) oder nicht ($00)
+Byte 97-116 ($61-$74)  Der Autor-Text muss mit einem NULL-Byte
+                       abgeschlossen sein
+Byte 129-133 ($81-$85) 5 Bytes für die Version (Vx.xx) der
+                       zugehörigen Applikation.
+Byte 134 ($86)         Abschlussbyte für die Version ($00).
+Byte 135-159 ($97-$9f) Dokumentenbezogene Daten.
+Byte 160-255 ($a0-$ff) Info-Text
+
+Ergänzung 24.09.2022/mk: Byte 94=$5e ist noch Teil der Versionsnummer, einige Anwendungen zeigen "Vx.abc" an. Die Verwendung von Byte 95=$5f als 4-Drives-/Farb-Flag wird nur von den genannten Anwendungen genutzt.
+
+A-F.2.3 Das Textformat Write Image V2.1
+
+Das 24. Byte (also Byte 23, das 1. der 3 ungenutzten Bytes) nach dem ESC_RULER ($11) beinhaltet den Farbcode für den Ausdruck mit PrintText:
+$00 - Farbe bleibt unverändert (Standard)
+$80 - Schwarz
+$81 - Magenta
+$82 - Zyan
+$83 - Violett
+$84 - Gelb
+$85 - Rot
+$86 - Grün
+
+A-F.2.4 Der VLIR-Header von geoPublish-Textfiles
+
+In Datensatz 63 stehen die Längen und Breiten für Seite 1-61:
+Byte 2-62 ($02-$3e)    Low -Bytes der Seitenlängen in Bytes
+Byte 63-123 ($3f-$7b)  High-Bytes der Seitenlängen in Bytes
+Byte 124-184 ($7c-$b8) Low -Bytes der Seitenbreiten in Bytes
+Byte 185-245 ($b9-$f5) High-Bytes der Seitenbreiten in Bytes
+
+A-F.4 Das Textformat von Text-Scraps
+
+Die ersten 2 Bytes geben als Word die Länge der folgenden Daten in Bytes an.
+
+N. Nachwort
+
+Die Informationen wurden bei der Programmierung mit dem MegaAssembler herausgefunden. Wir hoffen, dass diese Ergänzungen vielen Programmierern eine nützliche Hilfe sein werden, und dass durch sie noch mehr und noch bessere Programme für das GEOS-System entstehen werden. Deshalb kann diese GeoWrite-Datei bzw. deren Ausdruck beliebig oft kopiert und weitergegeben werden.
+
+Falls Sie noch Fragen oder weitere Informationen haben können Sie sich gerne wenden an:
+
+Ronny & Roy Bachmann
+Stand: 29.07.1998
+
+Ergänzt/mk: 24.09.2022

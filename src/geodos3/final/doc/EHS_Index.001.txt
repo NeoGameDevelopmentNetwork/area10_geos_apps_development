@@ -1,0 +1,59 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+	`3d1`40100
+	`331`40101
+	`3e1`40102
+	`361`40103
+	`341`40104
+	`3d1`40105
+	`331`40106
+	`3e1`40107
+	`361`40108
+	`341`40109
+____________________________________
+
+	Please select a "button" to get more help:
+____________________________________
+
+	`1`351`40200Informtions about
+	`1`351`40201this help system
+
+	`1`321`40200Informations about
+	`1`321`40201GeoDOS64 V3 `2(incomplete)`
+____________________________________
+
+`2*** End of page ***`
+
+§§§
+"EHS_HelpSystem",02
+"EHS_HelpSystem",02
+"EHS_Index.001",02
+"EHS_Index.001",02
+
+§§§
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2Note`
+
+This file does not include any more help pages. This file is just he main index file and includes links to other help pages.
+
+Back to main index with ^`1Index`
+
+`2*** End of page ***`
+
+§§§
+"EHS_Index.001",01
+
+§§§
+
+§§§

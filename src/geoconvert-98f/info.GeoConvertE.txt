@@ -1,0 +1,137 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+
+GeoConvert 98f
+
+Created in 1997,1998,1999 by:
+Markus Kanet
+
+
+This programm is the result of the problem, sending files quick and easy
+as internet-eMail. For this problem a lot of converting-routines were
+added to the programm.
+
+This Program should be very easy to handle and quick to use, so i have
+decided to use standard-GEOS-menus for selecting options and files.
+
+New since version 98c:
+With CONVERT V2/V3 and earlier GeoConvert-versions it was not possible to
+convert very big geos-vlir-files into SEQ-format. This was the reason for
+the new .G98-format. This format allows you to convert files up to 16Mb.
+ATTENTION! You have to use GeoConvert98c to convert a .G98-file back to GEOS!
+
+
+The menu of GeoConvert:
+=====================================
+
+Menu: GEOS
+- Exit	:	Exit back to DeskTop
+
+Menu: Parameter
+-Select: GEOS		:	Set options for file-selection. Only
+				selected filestypes were displayed in
+				the file-select-menu when convert
+				your files. Click on DesTop to exit.
+-Select: CBM		:	Set CBM-filetype for file-convertion.
+-Source drive x		:	Drive including files to be converted
+-Diskette		:	Log in new disk
+-CVT:All files		:	Convert all files on disk.
+				This options only works with
+				'GEOS => CBM' and 'CBM => GEOS' and
+				converts all files on the source-
+				drive which correspond to the
+				selected filetypes/CVT-files.
+-UUE:LineFeed		:	LineFeed-mode for UUE-textfile
+				(Standard or eMail is 'CR+LF')
+-UUE:Programms or	:	In the "Programms"-mode selected
+      Documents			files were converted to UUE. If you
+				want to add some informations-
+				textfiles to the UUE-file you have to
+				select "Documents".
+-SEQ:Max.Größe		:	If you want to split a file into more
+				smaller files, you have to set here
+				the new maximum filesize.
+
+Informations about .CVT-files:
+GeoConvert98 automatically renames the converted files with an
+MSDOS-compatible filename. This names were created in the "8+3"-format.
+If the file allready exist on the target-disk, the names would be
+corrected with an extension like 00, 01 and so on... When decode the
+files back to GEOS, the original filename would be reconverted.
+If you convert files to UUE, the UUE-file would become a MSDOS-filename
+too. Please be sure, that the files you add to the UUE-archive also
+named in MSDOS-format! If not, there could be problems when
+reconverting the files on a PC with DOS/Windows.
+
+
+The convert-modes:
+============================
+
+Menu: Modes
+-GEOS => CBM		:	Converts files to sequential files.
+				This files are full compatible to the
+				wellknown programm "Convert 2.x".
+-CBM => GEOS		:	Converts sequential-files back to
+				GEOS (see GEOS => CBM).
+-CBM => UUE		:	Converts a sequential file to UUE.
+				All files you select would be
+				converted to separate UUE-files.
+-Add file to UUE		:	Add one file to the last created
+				UUE-file (see CBM => UUE). When
+				decode this archive all files were
+				stored back to separate files.
+-UUE => CBM		:	Re-converts a UUE-file back to
+				sequential-files. The filetype for the
+				target-files could be select at the
+				menu "'Parameters".
+-Disk => D64		:	Converts a 1541-diskimage into a
+				.D64-file. This file could be send as
+				email after you have converted it
+				to the UUE-format. Be careful: Disks
+				using a copy protection can not
+				copied to the D64-format!
+-D64 => Disk		:	Re-converts a .D64-file back to a
+				1541-disk. This would be a 1:1 copy
+				of the disk you have created with
+				'DISK => D64'.
+-D64 => Datei		:	Extract selected files from the .D64-
+				archive. After selecting this item
+				you could find a list of files on the
+				screen. Select here the .D64-file.
+				Now GeoConvert searches for the
+				files stored in the .D64-archive and
+				prints a new list of files. Select the
+				file you want to extract and drive
+				you want to extract the files to.
+-SEQ Split files	:	geoConvert spiltts a file into many
+				smaller files. The files were named
+				like "NAMExxxx.FNR", where FNR is
+				a number between 001 and 999.
+-SEQ Connect files	:	Connects separate files back to one
+				file.
+
+In most of the viewed modes, a special menu appears on the screen.
+This looks like this:
+
+	<< Mainmenu	Back to menu.
+	>> More files	View next files in the
+			current directory.
+	<< First file	Back to the top of the
+			directory if no more
+			files were found.
+	File #1...
+	File #2...
+	File #3...
+
+All files were listed in this menu. Warning! Only files in the
+selected format were listed! For example no GEOS- files were listed
+in the mode "CBM => GEOS".
+
+I hope you find this program ok, so let me know your
+opinions to this converting tool...

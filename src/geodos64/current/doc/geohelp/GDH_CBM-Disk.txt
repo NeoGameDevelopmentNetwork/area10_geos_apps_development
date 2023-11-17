@@ -1,0 +1,1088 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+`2Das Menü: 'Mein Computer'`
+
+In diesem Kapitel finden Sie alle Informationen
+über die Commodore-Funktionen von GeoDOS.
+
+_____________________________________
+
+`2*** Ende ***
+
+§§§
+
+§§§
+
+§§§
+
+`2Das MenÜ: 'Mein Computer'`
+`2Inhaltsverzeichnis, Abschnitt 1: Disketten-Funktionen`
+
+	Inhalt	Seite
+_____________________________________
+
+	`1Hauptübersicht`
+
+	`1Datei-Funktionen`
+
+	`1Disketten-Funktionen`	3
+	^`1Disketten formatieren`	4
+	^`1Diskette aufräumen`	5
+		^`1Register: Verzeichnis`	6
+		^`1Register: Optionen`	7
+	^`1Disketten-/Partitionsname ändern`	8
+	^`1Inhaltsverzeichnis anzeigen`	9
+		^`1Max. Dateienanzahl im Speicher`	10
+		^`1Erklärung der Verzeichnis-Icons`	11
+	^`1Inhaltsverzeichnis drucken`	12
+		^`1Register: Verzeichnis`	13
+		^`1Register: Optionen`	14
+		^`1Register: Drucker`	15
+	^`1Partitionen wechseln`	16
+	^`1Native-Verzeichnis anlegen`	17
+	^`1Native-Verzeichnis löschen`	18
+	^`1Native-Verzeichnis wechseln`	19
+	^`1Diskette kopieren`	20
+
+_____________________________________
+
+`2*** Ende ***`
+
+§§§
+"GDH_Index",02
+"GDH_CBM-Datei",02
+"GDH_CBM-Disk",03
+"GDH_CBM-Disk",04
+"GDH_CBM-Disk",05
+"GDH_CBM-Disk",06
+"GDH_CBM-Disk",07
+"GDH_CBM-Disk",08
+"GDH_CBM-Disk",09
+"GDH_CBM-Disk",10
+"GDH_CBM-Disk",11
+"GDH_CBM-Disk",12
+"GDH_CBM-Disk",13
+"GDH_CBM-Disk",14
+"GDH_CBM-Disk",15
+"GDH_CBM-Disk",16
+"GDH_CBM-Disk",17
+"GDH_CBM-Disk",18
+"GDH_CBM-Disk",19
+"GDH_CBM-Disk",20
+
+§§§
+
+§§§
+
+`2Disketten-Funktionen`
+
+Das Menü ist in die folgenden Kapitel aufgeteilt:
+
+	^`1Disketten formatieren`
+	^`1Diskette aufräumen`
+	^`1Disketten-/Partitionsname ändern`
+	^`1Inhaltsverzeichnis anzeigen`
+	^`1Inhaltsverzeichnis drucken`
+	^`1Partitionen wechseln`
+	^`1Native-Verzeichnis anlegen`
+	^`1Native-Verzeichnis löschen`
+	^`1Native-Verzeichnis wechseln`
+	^`1Diskette kopieren`
+
+Verwandte Themen:
+^`1Datei-Funktionen`
+
+`2*** ENDE ***
+
+§§§
+"GDH_CBM-Disk",04
+"GDH_CBM-Disk",05
+"GDH_CBM-Disk",08
+"GDH_CBM-Disk",09
+"GDH_CBM-Disk",12
+"GDH_CBM-Disk",16
+"GDH_CBM-Disk",17
+"GDH_CBM-Disk",18
+"GDH_CBM-Disk",19
+"GDH_CBM-Disk",20
+"GDH_CBM-Datei",03
+
+§§§
+
+§§§
+
+`30D`40100	`2Diskette formatieren`
+`30D`40101
+
+Hier haben Sie die  Möglichkeit Disketten  zu for -
+matieren oder den Inhalt von RAM-Laufwerken zu
+löschen. Die  folgenden Möglichkeiten  stehen für
+die verschiedenen Laufwerke zur Auswahl:
+
+  Modus:	41	71	81	RAM	FD2	FD4	HD	RL
+_____________________________________
+
+- Inhalt löschen	#	#	#	-	-	-	-	-
+- Quick-Format	#	-	-	-	-	-	-	-
+- Standard 170Kb	#	-	-	-	-	-	-	-
+- Standard 340Kb	-	#	-	-	-	-	-	-
+- Standard 790Kb	-	-	#	-	-	-	-	-
+- Format RAM-Disk	-	-	-	#	-	-	-	-
+- Format Partition	-	-	-	-	#	#	#	#
+- Typ 1581, 790Kb	-	-	-	-	#	#	-	-
+- DD, 1x 790Kb	-	-	-	-	#	#	-	-
+- HD, 2x 790Kb	-	-	-	-	#	#	-	-
+- ED, 4x 790Kb	-	-	-	-	-	#	-	-
+- DD, CMD 800Kb	-	-	-	-	#	#	-	-
+- HD, CMD 1600Kb	-	-	-	-	#	#	-	-
+- ED, CMD 3200Kb	-	-	-	-	-	#	-	-
+_____________________________________
+
+Für das 64Net gibt es nur eine Möglichkeit:
+
+	# 64Net-Partition löschen
+
+Wenn mehrere Möglichkeiten zur Verfügung stehen,
+dann erscheint eine Auswahlbox mit allen Format-
+Optionen. Wählen  Sie eine Option durch anklicken
+des Eintrages in der Tabelle mit der Maus.
+
+Die Option "Quick-Format" steht nur bei 1541- Lauf-
+werken zur  Verfügung. Diese  Routine  formatiert
+eine Diskette in weniger als 15 Sekunden. Falls Ihr
+Laufwerk mit Jiffy - DOS von CMD ausgerüstet ist,
+benötigen Sie diese Format - Option nicht. Wählen
+Sie dann "Standard 170Kb".
+
+Die Option  "CMD xxxKb" sollten Sie nur  dann an-
+wählen , wenn das  gewünschte Laufwerk  unter
+GEOS auch den Native-Mode unterstützt. In der Re-
+gel ist dazu der "gateWay" erforderlich.
+Ansonsten werden  die Disketten  zwar formatiert,
+aber falls GEOS den Native-Mode nicht unterstützt,
+erscheint bei der Eingabe des Diskettennamen nur
+eine Fehlermeldung.
+
+Wählen Sie also eine der obigen Format-Optionen.
+GeoDOS fordert Sie nun dazu auf, eine Diskette in
+das Ziel-  Laufwerk einzulegen. Bestätigen Sie die
+Aufforderung mit "OK". Das "Abbruch" - Icon führt
+Sie zurück ins GeoDOS - Menü. Das Programm for-
+matiert  nun die  Diskette mit dem ausgewählten
+Format. Danach können Sie noch einen Namen für
+die Disketten eingeben. Bei den FD - Optionen mit
+ein, zwei oder vier 1581-Partitionen können Sie für
+jede Partition einen neuen Namen wählen.
+
+Verwandte Themen:
+^`1Diskettenname ändern`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_CBM-Disk",08
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Diskette aufräumen`
+`30D`40101
+
+Mit dieser Funktion  können Sie den Inhalt von Dis-
+ketten und CMD-Partitionen auf Fehler testen. Diese
+Funktion sollten Sie  auch dann anwenden , wenn
+beim kopieren von Dateien Fehler aufgetreten sind.
+Dadurch  wird das Diskettenverzeichnis  wiederher-
+gestellt und bereits belegter  Speicherplatz wieder
+freigegeben.		
+
+Am oberen Bildrand finden Sie zwei Menü-Icons:
+
+`30D`40200	Damit wird die Funktion "Verzeichnis
+`30D`40201	aufräumen" beendet und das Haupt-
+`30D`40202	menü wird aktiviert.
+
+`30D`40300	Damit wird das aufräumen des Dis-
+`30D`40301	kettenverzeichnisses gestartet.
+`30D`40302
+
+Es öffnet sich ein Info-Fenster mit den folgenden
+Angaben:	#	Disketten-/Partitionsname
+	#	Verzeichnisname
+	#	Dateiname
+	#	Status
+
+Im Feld für 'Verzeichnisname' wird nur dann eine
+Angabe ausgegeben, wenn es sich um ein Native-
+Mode- Laufwerk handelt.  GeoDOS überprüft dann
+immer  zuerst das  Hauptverzeichnis und  danach
+alle Unterverzeichnisse.
+
+Im Feld für 'Dateiname' wird der Name der Datei
+angezeigt , die von GeoDOS gerade geprüft wird.
+
+Im Feld für 'Status' wird zu Beginn 'OK' angezeigt.
+Das ändert sich dann , sobald ein Fehler entdeckt
+wird. Folgende Meldungen werden hier angezeigt:
+
+	#	BAM defekt!
+		Die Blockbelegungstabelle  auf Diskette ist
+		zerstört. Dieser Fehler entsteht, wenn zwei
+		Dateien  den gleichen Bereich  auf Diskette
+		belegen. Eine Datei ist dann zerstört.
+		Abhilfe : Kopieren  Sie die  beiden Dateien
+		auf eine  zweite Diskette  und  überpfüfen
+		Sie welche  der beiden Dateien  fehlerhaft
+		ist. Löschen Sie dann auf der defekten Dis-
+		kette die fehlerhafte Datei  und starten Sie
+		die Funktion erneut.
+		
+	#	Diskettenfehler!
+		GeoDOS zeigt die Datei an, bei der ein Dis-
+		kettenfehler auftrat.  Nach einem Mausklick
+		auf 'OK' wird der Diskettenfehler angezeigt.
+
+Außerdem stellt  GeoDOS  noch zwei Register  zur
+Verfügung, mit denen der Anwender den Vorgang
+steuern kann:
+
+	^`1Register: Verzeichnis`
+	^`1Register: Optionen`
+
+Das Hilfesystem ist über die <F1> - Taste erreichbar.
+
+Verwandte Themen:
+^`1Übersicht der Fehlermeldungen`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_CBM-Disk",06
+"GDH_CBM-Disk",07
+"GDH_Grundlagen",04
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+§§§
+
+`30D`40100	`2Diskette aufräumen`
+`30D`40101	`2Register: Verzeichnis`
+
+__`316 Verzeichnis `__________________________
+
+#	Laufwerk:
+	In diesem Feld wird  das aktuelle Laufwerk an-
+	gezeigt, dessen Verzeichnis aufgeräumt werden
+	soll.  Sie können die Einstellung ändern, indem
+	Sie auf den  Rollpfeil am rechten Rand klicken.
+
+#	Diskette / Partition
+	In diesem Feld wird der Diskettenname ausge-
+	geben. Handelt es sich dabei um ein CMD-Lauf-
+	werk, dann wird in diesem Feld der Name der
+	Partition  angezeigt. Um eine neue  Diskette in
+	das laufwerk  einzulegen , klicken Sie mit der
+	Maus auf den Rollpfeil am rechten Rand.  Um
+	die Partition zu wechseln , klicken Sie mit der
+	Maus auf das Feld mit dem Partitionsnamen.
+
+Verwandte Themen:
+^`1Diskette aufräumen`
+^`1Register: Optionen`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_CBM-Disk",05
+"GDH_CBM-Disk",07
+"GDH_CBM-Disk",15
+
+§§§
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Diskette aufräumen`
+`30D`40101	`2Register: Optionen`
+
+__`316 Optionen `___________________________
+
+#	CMD-Partitionen
+	Wenn  Sie auf  einem CMD - Laufwerk  mehrere
+	Partitionen aufräumen  möcten, dann aktivieren
+	Sie diese Option.
+	Nachdem  das aufräumen  der aktiven Partition
+	beendet ist, erscheint die Partitionsauswahlbox.
+	Wählen Sie hier  eine neue Partition  und es er-
+	scheint wieder das "Diskette aufräumen"-Menü.
+
+#	Datei-Optionen
+	-	Defekte Dateien löschen.
+		Wenn GeoDOS  beim  aufräumen  der Diskette
+		auf eine defekte  Datei trifft, können Sie mit
+		dieser Option festlegen was weiter geschieht.
+		Ist  die Funktion deaktiviert, dann  wird beim
+		auftreten  eines Diskettenfehlers der Vorgang
+		unterbrochen und der Fehler angezeigt.
+		Ist die Funktion aktiviert, dann wird die be-
+		treffende Datei automatisch gelöscht und der
+		Vorgang wird erneut gestartet.
+
+	-	Dateilänge korrigieren.
+		Die Zahl der belegten  Blöcke im Verzeichnis
+		muß  nicht mit der  tatsächlichen Anzahl auf
+		Diskette übereinstimmen.  Ist die Option  akti-
+		viert, dann werden  diese Angaben korrigiert.
+
+	-	Geöffnete Dateien schließen.
+		Alle Dateien, die nicht ordungsgemäß abge-
+			geschlossen wurden und im Verzeichnis mit
+			einem ' * ' (BASIC - Modus) gekennzeichnet
+			sind werden vom Programm gelöscht. Wenn
+		Sie diese  Option aktivieren , wird die Datei
+		geschlossen und normal weitergeprüft.
+		Siehe auch ^`1Datei-Attribute`
+
+Verwandte Themen:
+^`1Diskette aufräumen`
+^`1Register: Verzeichnis`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_CBM-Datei",11
+"GDH_CBM-Disk",05
+"GDH_CBM-Disk",06
+
+§§§
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Disketten-/Partitionsnamen ändern`
+`30D`40101
+
+Hier können Sie den Namen der  Diskette ändern.
+Handelt es sich hierbei um ein CMD-Laufwerk, so
+werden Sie vorher  augfefordert , eine  Partition
+auszuwählen. Der Name  der Partition wird dann
+dem neuen Diskettennamen angepaßt.
+
+Es erscheint  ein Eingabefenster mit zwei  unter -
+einanderliegenden  Textfeldern.  Im oberen  Feld
+können Sie den neuen Diskettennamen eingeben,
+im unteren Feld wird der Original- Diskettenname
+angezeigt.
+
+Die Icons im Eingabefenster haben die folgende
+Bedeutung:
+
+`30D`40300	`30D`40200	Vorgang abbrechen.
+`30D`40301
+
+`30D`40400		Die Eingabe  beenden und  den neuen
+`30D`40401		Diskettennamen  übernehmen.  Ist  das
+		aktuelle Laufwerk ein CMD-Gerät, dann
+		wird auch der Partitionsname geändert.
+
+`30D`40500		Nach einem Mausklick auf  dieses Icon
+`30D`40501		Wird der Original- Diskettenname zurück
+		in das Eingabefeld kopiert.
+
+`30D`40600		Dieses Icon löscht das Eingabefeld.
+`30D`40601
+
+Bei CMD - Laufwerken erscheint nach  der Eingabe
+des Diskettennamens  wieder  die Auswahlbox mit
+den  verfügbaren Partitionen. Über das  'Abbruch'-
+Icon kommen Sie zurück ins Hauptmenü.
+
+Verwandte Themen:
+^`1Probleme bei Texteingaben`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Grundlagen",19
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Inhaltsverzeichnis anzeigen`
+`30D`40101
+
+Der Bildschirm teilt sich in vier Bereiche:
+
+Am oberen Bildrand befindet sich das Icon - Menü,
+nähere Informationen siehe ^`1Erklärung der Icons`
+
+Darunter befindet sich die Status- Leiste. Diese teilt
+sich in zwei Bereiche:
+
+	`40400
+	`40401
+
+Hier werden die vorhandenen Laufwerke am Bild-
+schirm angezeigt , von links nach rechts die Lauf-
+werke A: bis D:. Jedes Laufwerk wird dabei durch
+ein bestimmtes Icon dargestellt.
+
+	`40200	Laufwerke , die mit Disketten  ar-
+		beiten (1541 , FD2000 usw...) wer-
+		den durch dieses Icon dargestellt.
+
+	`40300	Mit diesem Symbol werden Lauf-
+		werke angezeigt , die  ohne Dis-
+		ketten arbeiten (RAMLink, HD...)
+
+Das aktuelle Laufwerk wird durch ein ' ! '-Zeichen
+neben dem Laufwerkssymbol angezeigt.
+Sie  können  jederzeit auf ein  anderes  Laufwerk
+wechseln , indem Sie das entsprechende Icon mit
+der Maus anklicken.
+
+Im rechten Bereich  der Statuszeile wird  entweder
+der Name der aktuellen  Diskette angezeigt , oder,
+sollte ein Unterverzeichnis geöffnet sein, der Name
+dieses Verzeichnisses.
+
+Daneben  befindet sich noch das Icon für den An -
+zeigemodus. GeoDOS zeigt die Verzeichnisinforma-
+tionen in drei Schritten an:
+
+Seite 1:	Dateiname	Größe	Datum	Uhrzeit
+
+Seite 2:	Dateiname	GEOS	-Dateityp
+
+Seite 3:	Dateiname	BASIC	-Dateityp	Dateistruktur
+
+Mit einem Mausklick auf das Symbol mit dem Pfeil
+nach links blättert  eine Seite zurück , das Symbol
+mit dem Pfeil nach rechts eine Seite weiter.
+
+Unter der Statuszeile befindet sich das Dateifenster.
+Wird auf dem Bildschirm ein Unterverzeichnis ange-
+zeigt (wird durch  <SubDir> gekennzeichnet) , dann
+können Sie dieses öffnen , indem Sie den Mauszei-
+ger auf die entsprechende Zeile bewegen und mit
+einem  Mausklick  bestätigen.  Wenn  Sie mit  dem
+Mauszeiger  auf eine  Applikation , ein  Dokument,
+eine  selbstausführende  Datei  oder ein Hilfsmittel
+klicken,  wird die  Datei geöffnet.  Handelt es sich
+bei der Datei um ein Dokument, dann muß sich die
+benötigte Applikation auf einem der  Laufwerke A:
+bis D: befinden.
+
+Unter dem Datei- Fenster wird zusätzlich die Größe
+des freien Diskettenspeichers und  die Zahl der im
+Speicher befindlichen Dateien angezeigt.
+
+Das Hilfesystem ist über die <F1> - Taste erreichbar.
+
+Verwandte Themen:
+^`1Max. Anzahl von Dateien im Speicher`
+^`1Erklärung der Verzeichnis-Icons`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_CBM-Disk",11
+"GDH_CBM-Disk",10
+"GDH_CBM-Disk",11
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Inhaltsverzeichnis anzeigen`
+`30D`40101	`2Max. Anzahl von Dateien im Speicher`
+
+Bei sehr großen  Verzeichnissen ist GeoDOS nicht in
+der Lage, alle Dateien auf einmal in den Speicher
+einzulesen. Daher  beginnt GeoDOS mit dem einle-
+sen der ersten 240 Dateien im Verzeichnis.  Enthält
+das Verzeichnis noch  weitere Dateien , so können
+diese über  die entsprechenden  Icons am  oberen
+Bildrand eingelesen werden.
+
+Verwandte Themen:
+^`1Inhaltsverzeichnis anzeigen`
+^`1Erklärung der Verzeichnis-Icons`
+
+`2*** ENDE ***
+
+§§§
+"GDH_CBM-Disk",09
+"GDH_CBM-Disk",11
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Inhaltsverzeichnis anzeigen`
+`30D`40101	`2Erklärung der Verzeichnis-Icons`
+
+Je nach Situation erscheinen am oberen Bildrand
+verschiedene Icons. Es folgt eine Liste aller mög-
+lichen Icons:
+
+`30D`40200	Dieses Icon beendet die Verzeichnis-
+`30D`40201	anzeige und Sie kehren zum GeoDOS
+`30D`40202	Hauptmenü zurück.
+
+`30D`40300	Anzeigen des Diskettenspeichers.
+`30D`40301	GeoDOS ermittelt den freien und be-
+`30D`40302	legten Speicher auf Diskette.
+
+`30D`40400	Rückkehr zur Datei-Übersicht.
+`30D`40401	Damit beenden Sie die Anzeige des
+`30D`40402	freien Diskettenspeichers.
+
+`30D`40500	Drucken des aktuellen Verzeichnisses.
+`30D`40501	Nach Druckende kehren Sie wieder in
+`30D`40502	dieses Menü zurück.
+
+`30D`40600	CMD-Partition wechseln.
+`30D`40601	Nur verfügbar , wenn es sich um ein
+`30D`40602	CMD-Laufwerk handelt (CMD RL,HD,FD)
+
+`30D`40700	Anzeige sortieren.
+`30D`40701	Es erscheint eine Auswahlbox mit den
+`30D`40702	Möglichkeiten Dateien zu sortieren. Die
+	Dateien  werden nur im Speicher  sor-
+	tiert, nicht auf Diskette! Die folgenden
+	Sortiermodi stehen zur Verfügung:
+	- Dateiname
+	- Dateigröße
+	- Datum & Uhrzeit
+	- Dateityp	z.B. SEQ,PRG,USR...
+	- GEOS-Dateityp	z.B. Anwendung,DA...
+
+`30D`40800	Weiterblättern.
+`30D`40801	Enthält das  Verzeichnis mehr  als 240
+`30D`40802	Dateien , dann können Sie mit diesem
+	Icon die nächsten Dateien einlesen.
+
+`30D`40900	Zum Verzeichnisanfang zurück.
+`30D`40901	Enthält das  Verzeichnis mehr  als 240
+`30D`40902	Dateien , dann können Sie mit diesem
+	Icon zum Verzeichnisanfang zurück.
+
+`30D`41000	Eine Verzeichnisebene zurück.
+`30D`41001	Wurde ein Unterverzeichnis geöffnet,
+`30D`41002	dann können  Sie durch dieses  Icon
+	immer eine Ebene zurückblättern.
+
+`30D`41100	Zurück zum Hauptverzeichnis.
+`30D`41101	Wurde ein Unterverzeichnis geöffnet,
+`30D`41102	dann kommen Sie durch dieses Icon
+	direkt zum Hauptverzeichnis zurück.
+
+Verwandte Themen:
+^`1Inhaltsverzeichnis anzeigen`
+^`1Max. Anzahl von Dateien im Speicher`
+
+`2*** ENDE ***
+
+§§§
+"GDH_CBM-Disk",09
+"GDH_CBM-Disk",10
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Inhaltsverzeichnis drucken`
+`30D`40101
+
+Hier können Sie den Inhalt eines Verzeichnisses auf
+den Drucker ausgeben. Der  Ausdruck erfolgt  über
+den eingestellten Druckertreiber , welcher von der
+GeoDOS-Startpartition nachgeladen wird.
+
+Am oberen Bildrand finden Sie zwei Menü-Icons:
+
+`30D`40200	Dieses Icon beendet den Verzeichnis-
+`30D`40201	ausdruck.
+`30D`40202
+
+`30D`40300	Damit starten Sie den Druckvorgang.
+`30D`40301	Es wird dann zuerst versucht den ak-
+`30D`40302	tuellen Druckertreiber zu  laden.  Ist
+	das nicht möglich , wird eine Fehler-
+	meldung angezeigt.
+
+Außerdem stellt GeoDOS noch drei Register zur Ver-
+fügung , mit denen  der Anwender  den  Ausdruck
+steuern kann:
+
+	^`1Register: Verzeichnis`
+	^`1Register: Optionen`
+	^`1Register: Drucker`
+
+Das Hilfesystem ist über die <F1> - Taste erreichbar.
+
+`2*** ENDE ***`
+
+§§§
+"GDH_CBM-Disk",13
+"GDH_CBM-Disk",14
+"GDH_CBM-Disk",15
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Inhaltsverzeichnis drucken`
+`30D`40101	`2Register: Verzeichnis`
+
+__`316 Verzeichnis `__________________________
+
+#	Laufwerk:
+	In diesem Feld wird das aktuelle Laufwerk an-
+	gezeigt , dessen  Verzeichnis gedruckt  werden
+	soll. Sie können die Einstellung ändern, indem
+	Sie auf den Rollpfeil am rechten Rand klicken.
+
+#	Diskette / Partition
+	In diesem Feld wird der Diskettenname ausge-
+	geben. Handelt es sich dabei um ein CMD-Lauf-
+	werk, dann wird in diesem Feld der Name der
+	Partition  angezeigt. Um eine neue  Diskette in
+	das laufwerk  einzulegen , klicken Sie mit der
+	Maus auf den Rollpfeil am rechten Rand.  Um
+	die Partition zu wechseln , klicken Sie mit der
+	Maus auf das Feld mit dem Partitionsnamen.
+
+#	Verzeichnis
+	Bei Native-Mode-Partitionen wird hier der Name
+	des aktuellen  Unterverzeichnisses ausgegeben.
+	Möchten Sie das  Verzeichnis  wechseln , dann
+	klicken Sie mit der Maus  auf den Rollpfeil am
+	rechten Rand des Anzeigefeldes.
+
+Verwandte Themen:
+^`1Inhaltsverzeichnis drucken`
+^`1Register: Optionen`
+^`1Register: Drucker`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_CBM-Disk",12
+"GDH_CBM-Disk",14
+"GDH_CBM-Disk",15
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Inhaltsverzeichnis drucken`
+`30D`40101	`2Register: Optionen`
+
+__`316 Optionen `___________________________
+
+#	Seitenlänge
+	Zeigt die Anzahl der Dateieinträge an, die auf
+	einer Seite dargestellt werden. Um die Anzahl
+	zu ändern , klicken Sie mit  der Maus auf das
+	Zahlenfeld und  geben einen neuen Wert von
+	15 bis 255 ein.
+
+#	Druckoptionen
+	-	Einzelblatt verwenden.
+		Standardmäßig ist GeoDOS auf  Drucker mit
+		Endloß - Papier bzw. automatischer Einzel-
+		blattzufuhr ausgelegt. Wenn Ihr Drucker auf
+		Einzelblatt-Papier ausgelegt ist, können Sie
+		das  ändern , indem  Sie mit der Maus auf
+		das entsprechende Optionsfeld klicken.
+
+	-	Ausführliches Verzeichnis drucken.
+		Der Standard-Ausdruck umfaßt die folgen-
+		den Dateiangaben:
+		-	Dateiname
+		-	BASIC-Dateityp	(SEQ,PRG,...)
+		-	Schreibschutz	(markiert durch ein ' * ')
+		-	Länge	(Angabe erfolgt in Blocks)
+		-	Datum
+		-	Uhrzeit
+		-	GEOS-Dateityp	(Anwendung, Hilfsmittel...)
+
+		Der ausfühliche Ausdruck gibt folgende Zu-
+		satzinformationen aus:
+		-	Autor
+		-	GEOS-Modus	(Nur für GEOS128)
+		-	GEOS-Klasse
+
+		Um die Art des Ausdrucks zu wählen, klicken
+		Sie mit der Maus auf das Optionsfeld.
+
+Verwandte Themen:
+^`1Inhaltsverzeichnis drucken`
+^`1Register: Verzeichnis`
+^`1Register: Drucker`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_CBM-Disk",12
+"GDH_CBM-Disk",13
+"GDH_CBM-Disk",15
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Inhaltsverzeichnis drucken`
+`30D`40101	`2Register: Drucker`
+
+__`316 Drucker `____________________________
+
+#	Druckertreiber
+	In diesem Feld wird der aktive Druckertreiber
+	angezeigt.  Wenn Sie einen anderen  Drucker-
+	treiber installieren möchten, dann klicken Sie
+	mit der Maus  auf den Rollpfeil  am rechten
+	Rand des Anzeigefeldes.
+
+Verwandte Themen:
+^`1Inhaltsverzeichnis drucken`
+^`1Register: Verzeichnis`
+^`1Register: Optionen`
+
+`2*** ENDE ***`
+
+§§§
+"GDH_CBM-Disk",12
+"GDH_CBM-Disk",13
+"GDH_CBM-Disk",14
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Partitionen wechseln`
+`30D`40101
+
+Es erscheint eine Auswahlbox mit allen Partitionen,
+die GEOS-Kompatibel sind. Beispiel : Ist das aktuelle
+Laufwerk vom Typ 1581 - Emulation (RAM81) , dann
+werden nur 1581-Partitionen angezeigt. Native-Mode
+Partitionen werden dann ignoriert.
+
+Unter dem Partitionsfenster wird das aktuelle Lauf-
+werk angezeigt. Wie Sie das Laufwerk wechseln
+können , erfahren Sie unter ^`1Die Dateiauswahlbox`
+
+Wählen Sie eine neue Partition, indem Sie den ent-
+sprechenden Eintrag mit der Maus anklicken.
+
+`2*** ENDE ***`
+
+§§§
+"GDH_Grundlagen",15
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Verzeichnis erstellen`
+`30D`40101
+
+Auf Native- Mode- Laufwerken können hier neue
+Unterverzeichnisse erstellt  werden. Ist kein Lauf-
+werk dieses Typs angeschlossen , dann erscheint
+eine Fehlermeldung.
+
+Die Diskette im Laufwerk wird initialisiert und auf
+Unterverzeichnisse  untersucht.  Existieren auf der
+Diskette bereits Unterverzeichnisse, so werden Sie
+aufgefordert, das Ziel-Verzeichnis zu wählen. Ist
+das Verzeichnis erreicht, indem ein neues erstellt
+werden soll, so beenden Sie die Eingabe mit 'OK'
+
+Es erscheint ein  Eingabefenster mit den  folgen-
+den Icons:
+
+`30D`40300	`30D`40200	Vorgang abbrechen.
+`30D`40301
+
+`30D`40400		Die Eingabe beenden und das neue
+`30D`40401		Verzeichnis erstellen. Kann das Ver-
+		zeichnis nicht erstellt werden, wird
+		eine Fehlermeldung ausgegeben.
+
+`30D`40500		Dieses Icon löscht das Eingabefeld.
+`30D`40501
+
+Verwandte Themen:
+^`1Probleme bei Texteingaben`
+^`1Unterverzeichnisse in Auswahlboxen`
+
+`2*** ENDE ***
+
+§§§
+"GDH_Grundlagen",19
+"GDH_Grundlagen",17
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Verzeichnis löschen`
+`30D`40101
+
+Auf Native- Mode- Laufwerken können hier Unter-
+verzeichnisse gelöscht werden. Ist  kein Laufwerk
+dieses  Typs angeschlossen , dann erscheint eine
+Fehlermeldung.
+
+Anschließend erscheint eine Auswahlbox, mit den
+auf dem Native- Laufwerk verfügbaren Unterver-
+zeichnissen. Sind keine Unterverzeichnisse auf der
+Diskette vorhanden , so erscheint eine Fehlermel-
+dung. Im anderen Fall müssen Sie das Verzeichnis
+öffnen, welches Sie löschen möchten. Bestätigen
+Sie dann das  Verzeichnis mit 'OK'.  Achten Sie da-
+rauf , das keine weiteren Verzeichnisse angezeigt
+werden: GeoDOS kann keine Verzeichnisse löschen,
+die weitere Unterverzeichnisse beinhalten.
+
+GeoDOS prüft, ob sich noch Dateien im Verzeichnis
+befinden. Wenn ja, erscheint die Abfrage:
+
+	'Vorhandene Dateien löschen ?'
+
+Bei einem Mausklick auf 'Ja' werden alle Dateien
+im Verzeichnis  automatisch gelöscht. Das 'Nein' -
+Icon  beendet den Vorgang und  Sie können  ein
+neues Verzeichnis wählen.
+
+Sind im Ziel - Verzeichnis noch weitere Unterver-
+zeichnisse vorhanden, dann erscheint eine Fehler-
+meldung:
+
+	'Bitte zuerst alle Unterverzeichnisse löschen !'
+
+GeoDOS kann nur Verzeichnisse löschen, die keine
+weiteren Unterverzeichnisse beinhalten.
+
+Verwandte Themen:
+^`1Unterverzeichnisse in Auswahlboxen`
+
+`2*** ENDE ***
+
+§§§
+"GDH_Grundlagen",17
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Verzeichnis wechseln`
+`30D`40101
+
+Auf Native-Mode-Laufwerken können hier Unterver-
+zeichnisse  gewechselt werden.  Ist kein Laufwerk
+vom Typ Native - Mode angeschlossen , dann wird
+eine Fehlermeldung ausgegeben.
+
+Es erscheint  eine Auswahlbox  mit allen  auf Dis-
+kette  verfügbaren Unterverzeichnissen. Öffnen Sie
+das Ziel-Verzeichnis durch anklicken mit der Maus.
+Ist das gewünschte Verzeichnis geöffnet, dann be-
+stätigen Sie es mit 'OK'.
+
+Verwandte Themen:
+^`1Unterverzeichnisse in Auswahlboxen`
+
+`2*** ENDE ***
+
+§§§
+"GDH_Grundlagen",17
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`30D`40100	`2Diskette kopieren`
+`30D`40101
+
+Hier können Sie eine ganze Diskette kopieren. Es
+gibt dabei zwei Regeln zu beachten:
+
+	#	Es kann nur zwischen kompatiblen Disketten-
+		formaten und Partitionen kopiert werden.
+	#	Bei Native-Partitionen muß das Ziel-Laufwerk
+		über die gleiche  Kapazität verfügen wie das
+		Quell-Laufwerk.
+
+Ist das Quell-Laufwerk ein CMD-Gerät, werden Sie
+aufgefordert eine  Partition auszuwählen.  Ist das
+Ziel-Laufwerk formatiert, werden Sie zur Auswahl
+der Ziel-Partition aufgefordert.
+
+Es erscheint das Kontroll - Menü. Am oberen Bild-
+rand erscheinen die folgenden Icons:
+
+`30D`40200	Damit beenden Sie das Kopiermenü.
+`30D`40201
+`30D`40202
+
+`30D`40300	Damit wird der Kopiervorgang gestartet.
+`30D`40301	Dies ist nur möglich, wenn sich im Ziel-
+`30D`40302	werk eine formatierte Diskette befindet.
+
+`30D`40400	Mit diesem Icon können Sie ein neues
+`30D`40401	Quell- oder Ziel-Laufwerk wählen.
+`30D`40402
+
+`30D`40500	Diskette im Quell-Laufwerk öffnen. Auf
+`30D`40501	CMD-Laufwerken auch Partition wählen.
+`30D`40502
+
+`30D`40600	Neue Diskette im Ziel-Laufwerk öffnen.
+`30D`40601	Auf CMD- Laufwerken auch eine andere
+`30D`40602	Partition wählen.
+
+`30D`40700	Ist die Diskette im Ziel- Laufwerk noch
+`30D`40701	nicht formatiert , dann können Sie mit
+`30D`40702	diesem Icon die Diskette formatieren.
+
+Darunter werden die Informationen für das Quell-
+und Ziel-Laufwerk angezeigt:
+
+	#	Laufwerk:
+		Im ersten Feld wird die GEOS-Laufwerksadresse
+		angezeigt, im zweiten Feld die Adresse mit der
+		das Laufwerk unter BASIC angesprochen wird.
+	#	Typ: C=1541, C=1571, C=1581 oder NATIVE.
+	#	Partitions-Nr. und Partitionsname:
+		Informationen über die aktuelle Partition.
+	#	Diskettenname:
+		Ist die Diskette im Laufwerk noch nicht forma-
+		tiert, dann wird folgende Meldung angezeigt:
+
+			' Keine Diskette ? '
+
+Um sicherzustellen , das die Daten auf der Qurell-
+Diskette nicht beschädigt sind, sollten Sie vor dem
+Kopiervorgang die Diskette im Quell- Laufwerk mit
+der Funktion ^`1Diskette aufräumen` überprüfen.
+
+Das Hilfesystem ist über die <F1> - Taste erreichbar.
+
+Verwandte Themen:
+^`1Diskette formatieren`
+
+`2*** ENDE ***
+
+§§§
+"GDH_CBM-Disk",05
+"GDH_CBM-Disk",04
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§

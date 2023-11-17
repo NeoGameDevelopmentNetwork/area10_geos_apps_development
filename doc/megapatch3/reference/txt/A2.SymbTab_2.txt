@@ -1,0 +1,217 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+; This documentation is licensed under a
+; Creative Commons Attribution-ShareAlike 4.0 International License.
+;
+; You should have received a copy of the license along with this
+; work.  If not, see <http://creativecommons.org/licenses/by-sa/4.0/>.
+;
+; This file is used for documentation of the code, not to compile the
+; source code into an executable application.
+;
+; If you found a bug in this document, if you have problems with the
+; license or if you are not mentioned as contributor then please inform
+; the author of this documentation to solve the problem.
+;
+
+Quelle: SymbTab_2
+
+;*** Definition der Laufwerkstypen.
+:Drv1541		= $01
+:Drv1571		= $02
+:Drv1581		= $03
+:DrvIECBNM		= $04
+:DrvSD2IEC		= $04
+:DrvNative		= $04
+:DrvPCDOS		= $05
+:Drv81DOS		= $05
+:DrvFDDOS		= $15
+:DrvShadow1541		= $41
+;DrvShadow1571		= $42				;Reserviert für künftige Erweiterungen.
+;DrvShadow1581		= $43				;Reserviert für künftige Erweiterungen.
+;DrvShadowNM		= $44				;Reserviert für künftige Erweiterungen.
+:DrvRAM1541		= $81
+:DrvRAM1571		= $82
+:DrvRAM1581		= $83
+:DrvRAMNM		= $84
+:DrvRAMNM_CREU		= $a4
+:DrvRAMNM_GRAM		= $b4
+:DrvRAMNM_SCPU		= $c4
+:DrvFD			= $10
+:DrvFD41		= $11
+:DrvFD71		= $12
+:DrvFD81		= $13
+:DrvFD2			= $13
+:DrvFD4			= $13
+:DrvFDNM		= $14
+:DrvHD			= $20
+:DrvHD41		= $21
+:DrvHD71		= $22
+:DrvHD81		= $23
+:DrvHDNM		= $24
+:DrvRAMLink		= $30
+:DrvRL41		= $31
+:DrvRL71		= $32
+:DrvRL81		= $33
+:DrvRLNM		= $34
+:DrvCMD			= %00110000
+
+;*** Laufwerksmodi für RealDrvMode.
+:SET_MODE_PARTITION	= %10000000
+:SET_MODE_SUBDIR	= %01000000
+:SET_MODE_FASTDISK	= %00100000
+:SET_MODE_SRAM		= %00010000
+:SET_MODE_CREU		= %00001000
+:SET_MODE_GRAM		= %00000100
+:SET_MODE_SD2IEC	= %00000010
+
+;*** Kennung für "DiskDriver Xtended"
+;    Nur für DDX-Treiber ab Nov.2019!
+:DiskDrvTypeExt		= $9074				;"DDX"+NULL
+
+;*** Daten innerhalb der Laufwerkstreiber.
+;    Nicht für externe Anwendung bestimmt!
+;--- Wird intern von 1541/71/81/SD2IEC zum setzen von RealDrvMode genutzt.
+:Flag_SD2IEC		= $9078
+;--- Wird von RAMNM_GRAM genutzt um die Bankgröße zu speichern.
+;    Adresse siehe s.RAMNM_GRAM.ext!!!
+:GeoRAMBSize		= $9079
+
+;*** Reserviert für künftige Erweiterungen.
+;    Nur für DDX-Treiber ab Nov.2019!
+:DDRV_EXT_DATA1		= $907a
+:DDRV_EXT_DATA2		= $907b
+
+;*** Erweiterte Einsprungadressen.
+;    Nur für DDX-Treiber ab Nov.2019!
+:InitForDskDvOp		= $907c				;Zeiger auf Treiber im RAM.
+:DoneWithDskDvOp	= $907f				;Register r0 bis r3L zurücksetzen.
+
+;*** Ende DDX-Funktionen.
+:EndOfDDX		= $9082
+
+;*** RAM-Modi.
+:RAM_64K		= $30
+:IO_IN			= $35
+:KRNL_IO_IN		= $36
+:KRNL_BAS_IO_IN		= $37
+
+;*** Labels für Disketteninformationen.
+;Dateityp definieren.
+:SEQ			= $01
+:PRG			= $02
+:USR			= $03
+:REL			= $04
+:CBM			= $05
+:NATIVE_DIR		= $06
+
+;*** Dateiformat definieren.
+:SEQUENTIAL		= $00
+:VLIR			= $01
+
+;*** Schreibschutz definieren.
+:ST_WR_PR		= %01000000
+:ST_NO_WR_PR		= %00000000
+
+;*** Einsprünge im Druckertreiber.
+:InitForPrint		= $7900
+:StartPrint		= $7903
+:PrintBuffer		= $7906
+:StopPrint		= $7909
+:GetDimensions		= $790c
+:PrintASCII		= $790f
+:StartASCII		= $7912
+:SetNLQ			= $7915
+
+;--- Ergänzung: 01.07.2018/M.Kanet
+;In der Version 2003 wurde im Spooler eine neue Sub-Routine ergänzt.
+;":PrintDATA" definiert den globalen Einsprungspunkt für diese Routine.
+:PrintDATA		= $7918
+
+;*** Fehlermeldungen.
+:NO_ERROR		= $00
+:NO_BLOCKS		= $01
+:INV_TRACK		= $02
+:INSUFF_SPACE		= $03
+:FULL_DIRECTORY		= $04
+:FILE_NOT_FOUND		= $05
+:BAD_BAM		= $06
+:UNOPENED_VLIR		= $07
+:INV_RECORD		= $08
+:OUT_OF_RECORDS		= $09
+:STRUCT_MISMAT		= $0a
+:BFR_OVERFLOW		= $0b
+:CANCEL_ERR		= $0c
+:DEV_NOT_FOUND		= $0d
+:INCOMPATIBLE		= $0e
+:HDR_NOT_THERE		= $20
+:NO_SYNC		= $21
+:DBLK_NOT_THERE		= $22
+:DAT_CHKSUM_ERR		= $23
+:WR_VER_ERR		= $25
+:WR_PR_ON		= $26
+:HDR_CHKSUM_ERR		= $27
+:DSK_ID_MISMAT		= $29
+:BYTE_DEC_ERR		= $2e
+:NO_PARTITION		= $30
+:PART_FORMAT_ERR	= $31
+:ILLEGAL_PARTITION	= $32
+:NO_PART_FD_ERR		= $33
+:ILLEGAL_DEVICE		= $40
+:NO_FREE_RAM		= $60
+:DOS_MISMATCH		= $73
+
+;*** GEOS-Dateityp definieren.
+:NOT_GEOS		= $00
+:BASIC			= $01
+:ASSEMBLY		= $02
+:DATA			= $03
+:SYSTEM			= $04
+:DESK_ACC		= $05
+:APPLICATION		= $06
+:APPL_DATA		= $07
+:FONT			= $08
+:PRINTER		= $09
+:INPUT_DEVICE		= $0a
+:DISK_DEVICE		= $0b
+:SYSTEM_BOOT		= $0c
+:TEMPORARY		= $0d
+:AUTO_EXEC		= $0e
+:INPUT_128		= $0f
+:GATEWAY_DIR		= $10
+:GATEWAY_DOC		= $11
+:GEOSHELL_COM		= $15
+:GEOFAX_PRINTER		= $16
+
+;*** Anwender-Register.
+:a0L			= $fb
+:a0H			= $fc
+:a0			= $00fb
+:a1L			= $fd
+:a1H			= $fe
+:a1			= $00fd
+:a2L			= $70
+:a2H			= $71
+:a2			= $0070
+:a3L			= $72
+:a3H			= $73
+:a3			= $0072
+:a4L			= $74
+:a4H			= $75
+:a4			= $0074
+:a5L			= $76
+:a5H			= $77
+:a5			= $0076
+:a6L			= $78
+:a6H			= $79
+:a6			= $0078
+:a7L			= $7a
+:a7H			= $7b
+:a7			= $007a
+:a8L			= $7c
+:a8H			= $7d
+:a8			= $007c
+:a9L			= $7e
+:a9H			= $7f
+:a9			= $007e

@@ -1,0 +1,138 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+
+GeoConvert 98f
+
+Entwickelt und Programmiert 1997/1998/1999 von:
+Markus Kanet
+
+
+Dieses Programm entstand aus dem Problem, Dateien schnell und einfach als
+eMail für das Internet aufzubereiten. Daher wurden viele verschiedene
+Konvertierungsroutinen zusammengefaßt.
+
+Das Programm sollte einfach zu bedienen und schnell zu bedienen sein,
+deshalb habe ich mich dazu entschieden, die Standard-GEOS-PullDown-Menus
+zu verwenden.
+
+Neu ab Version 98c:
+Bei sehr großen GEOS-Dateien im GEOS-VLIR-Format kann es passieren das
+GeoConvert und alle früheren CONVERT V2/V3-Programme die Datei nicht
+korrekt konvertieren können. Daher wurde das .G98-Format entwickelt.
+Damit ist es möglich Dateien mit einer Größe von max. 16Mb zu konvertieren.
+ACHTUNG! Zum entpacken wird unbedingt GeoConvert98c benötigt!
+
+
+Die Menüs von GeoConvert im Überblick:
+===========================================================
+
+Menü: GEOS
+- Verlassen		:	Programm nach DeskTop verlassen.
+
+Menü: Parameter
+-GEOS wählen		:	Anzeigeoptionen für Menü 'Dateien'.
+-CBM wählen		:	Dateityp Zieldatei (SEQ oder PRG).
+-Quell-Laufwerk x	:	Datenlaufwerk wählen.
+-Diskette		:	Neue Diskette einlesen.
+-CVT:Alle Dateien	:	Ganze Diskette (um)konvertieren.
+				Gilt nur für die Konvertierung von
+				GEOS => CBM und CBM => GEOS und
+				konvertiert alle Dateien auf dem
+				Quell-Laufwerk welche dem ausge-
+				wähltem Datei-Format entsprechen.
+-UUE:LineFeed		:	LineFeed-Modus für UUE-Textdatei
+				festlegen. Empfohlen wird 'CR+LF'
+-UUE:Prog./Text		:	In der Einstellung "Programme"
+				werden die gewählten Dateien in das
+				UUE-Format konvertiert. Soll ein
+				Begleittext mit in die UUE-Datei
+				übernommen werden, ist die
+				Einstellung "Text" zu wählen.
+-SEQ:Max.Größe		:	Beim aufteilen einer sequentiellen
+				Textdatei in kleinere Einzeldateien
+				gibt dieser Wert die max. Größe der
+				Einzeldateien an.
+
+Allgemeine Informationen zu .CVT-Dateien:
+Das Programm vergibt für die konvertierten Dateien neue, MSDOS-kompatible
+Dateinamen. Diese werden im '8+3'- Format erzeugt. Sollte auf der
+Zieldiskette eine Datei mit diesem Namen existieren , wird der Dateiname
+mit 00 bis 99 ergänzt. Beim entpacken der Dateien wird dieser Dateiname
+wieder durch den Originaldateinamen ersetzt.
+Dies gilt auch für UUE-kodierte Dateien (siehe auch nächste Seite).
+Hierbei ist zu beachten, das wenn die Datei auf dem PC dekodiert werden
+soll, auch der Name der Quelldatei '8+3'-tauglich ist! Es kann sonst zu
+Problemen beim entpacken der UUE-Dateien auf dem PC mit DOS-/Windows-
+Konvertierungsprogrammen kommen.
+
+
+Die Konvertierungsfunktionen:
+===========================================
+
+Menü: Modus
+-GEOS => CBM		:	Wandelt eine GEOS Datei in ein
+				sequentielles Dateiformat. Die Dateien
+				können später mit den älteren Pro-
+				grammen CONVERT 2.x wieder ent-
+				packt werden.
+-CBM => GEOS		:	Macht die Konvertierung wieder
+				rückgängig (siehe GEOS => CBM).
+-CBM => UUE		:	Datei nach UUE wandeln. Hierbei
+				wird immer eine neue Datei erzeugt.
+-Datei anhängen		:	Eine Datei an die zuletzt erzeugte
+				UUE-Datei anhängen. Beim entpacken
+				werden die einzelnen Dateien wieder
+				separat gespeichert.
+-UUE => CBM		:	Datei nach CBM wandeln. Den Typ
+				für die Zieldatei (SEQ/PRG) über
+				Menü 'Parameter'.
+-Disk => D64		:	Wandelt den Inhalt einer 1541-Disk
+				in eine .D64-Datei. Diese Datei kann
+				nach der Konvertierung mit UUE z.B.
+				als eMail verschickt werden.
+				Achtung! Disketten mit Kopierschutz
+				können nicht bearbeitet werden!
+-D64 => Disk		:	Erzeugt aus einer .D64-Datei eine
+				Kopie auf einer 1541-Disk. Die dabei
+				entstehende Diskette ist ein 1:1-
+				Abbild der unter Disk=>D64 konver-
+				tierten Diskette!
+-D64 => Datei		:	Auslesen einzelner Dateien aus einer
+				D64-Datei. Zuerst die D64-Datei
+				auswählen un die D64-Informationen
+				werden eingelesen.
+				Im Menü "Dateien" werden dann alle
+				im D64-Image gespeicherten Dateien
+				angezeigt. Auswahl per Mausklick.
+-SEQ aufteilen		:	Eine sequentielle Datei wird in
+				mehrere, kleinere Dateien aufgeteilt.
+				Die einzelnen Dateien bekommen
+				Namen im Format NAMExxxx.FNR
+				FNR ist eine Zahl von 1 bis 999.
+-SEQ verbinden		:	Verbindet einzelne Dateien wieder
+				zu einer Datei.
+
+In den meisten der oben aufgeführten Modi erscheint nach der Anwahl
+des Menüpunktes ein neues Pulldown-Menü folgender Art:
+
+	<< Hauptmenü	Zurück zum Menü
+	>> Weiter	Die nächsten Dateien
+			im Verzeichnis zeigen.
+	<< Anfang	Zum Verzeichnisanfang.
+	Datei #1...
+	Datei #2...
+	Datei #3...
+
+
+Hier werden jetzt alle Dateien im Verzeichnis angezeigt.
+Achtung! Nur gültige Dateien werden in die Liste aufgenommen
+(bei CBM nach GEOS z.B. keine GeoWrite-Texte)!
+
+Wenn Dir das Programm gefällt, dann schick mir bitte
+eine kurze Mail... Danke!

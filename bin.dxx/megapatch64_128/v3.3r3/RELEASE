@@ -1,0 +1,29 @@
+# Area6510
+
+# MegaPatch 64/128
+Released: 2019/01/08 08:00
+Version : V3.3r3
+
+### New features:
+* MegaPatch 64/128 (German) has the
+  possibility to change the keyboard
+  layout (QWERTZ/QWERTY).
+  See => GEOS.Editor/Menu.
+  This will switch Z- and Y-keys on
+  the keyboard. Will not work with
+  geoKeys and similar adapters.
+* MegaPatch64 only:
+  Added option "GeoCalc-Fix" to
+  GEOS.Editor which could fix printing
+  issues when using GeoCalc64.
+  This will restrict memory for a
+  printer driver from $7900 to $7F3E.
+  By default a printer driver is
+  allowed to use $7900 to $7F3F but
+  this may cause crashes when using
+  GeoCalc since that application is
+  using $7F3F for program code.
+
+### Changes:
+* Set correct disk names for RAM81
+  and RAMNative disk drives.

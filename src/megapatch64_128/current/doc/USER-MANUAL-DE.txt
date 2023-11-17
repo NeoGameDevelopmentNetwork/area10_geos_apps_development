@@ -1,0 +1,572 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+GEOS-MegaPatch 64/128
+
+Benutzerhandbuch
+Stand: 2019/Jan/27
+
+(w) 2019 Markus Kanet
+
+Inhalt:
+
+1.	Allgemeines .................................................................................	Seite	2
+2.	Die SETUP-Diskette ...................................................................	Seite	2
+3.	Systemvorraussetzungen ......................................................	Seite	3
+	3.1	Diskettenlaufwerke ...........................................................	Seite	3
+	3.2	Speichererweiterungen ...................................................	Seite	4
+	3.3	Empfohlene Konfiguration ............................................	Seite	4
+4.	GEOS-MegaPatch Dateien entpacken ..............................	Seite	5
+	4.1	Ziel-Laufwerk auswählen .............................................	Seite	5
+	4.2	Installationsmethode wählen .......................................	Seite	5
+	4.3	Systemlaufwerk überprüfen .........................................	Seite	6
+5.	GEOS-MegaPatch Installation starten ..............................	Seite	6
+	5.1	Installierte Laufwerke erkennen .................................	Seite	6
+	5.2	Speichererweiterung prüfen .........................................	Seite	6
+	5.3	Treiber für Eingabegeräte ..............................................	Seite	6
+	5.4	MegaPatch konfigurieren ..............................................	Seite	6
+	5.5	Diskette bootfähig machen .........................................	Seite	6
+6.	Die Boot-Diskette .....................................................................	Seite	7
+7.	Ist MegaPatch korrekt installiert ? .................................	Seite	8
+8.	Was ist neu in GEOS-MegaPatch ? ...............................	Seite	9
+	8.1	Grundlegende Verbesserungen ....................................	Seite	9
+		8.1.1	Farbe ............................................................................	Seite	9
+		8.1.2	Menüs .........................................................................	Seite	9
+		8.1.3	Texteingabe ..............................................................	Seite	9
+	8.2	Konfiguration .......................................................................	Seite	9
+		8.2.1	Laufwerke .................................................................	Seite	9
+		8.2.2	System .......................................................................	Seite	10
+		8.2.3	Speicher .....................................................................	Seite	10
+		8.2.4	Bildschirm ..................................................................	Seite	10
+		8.2.5	Menü ...........................................................................	Seite	10
+		8.2.6	Drucker .......................................................................	Seite	11
+	8.3	TaskManager ........................................................................	Seite	11
+		8.3.1	Anwendungen .........................................................	Seite	11
+		8.3.2	Neuer Task ...............................................................	Seite	11
+		8.3.3	Drucker .......................................................................	Seite	12
+		8.3.4	Bildschirm ..................................................................	Seite	12
+	8.4	Die Dateiauswahlbox ......................................................	Seite	12
+		8.4.1	Dateiliste .....................................................................	Seite	12
+		8.4.2	Eintrag suchen ........................................................	Seite	12
+		8.4.3	Datei-Information ..................................................	Seite	12
+		8.4.4	Liste sortieren .........................................................	Seite	12
+		8.4.5	Symbole / Icons .................................................	Seite	12
+	8.5	Register-Menü .....................................................................	Seite	13
+	8.6	Bildschirmschoner ..............................................................	Seite	13
+	8.7	Hintergrundbilder .................................................................	Seite	13
+	8.8	Drucker-Spooler .................................................................	Seite	13
+		8.8.1	Dokument ..................................................................	Seite	13
+		8.8.2	Drucker .......................................................................	Seite	13
+9.	Laufwerkstreiber .........................................................................	Seite	14
+
+1. Allgemeines
+Bevor Sie MegaPatch in Ihrem GEOS-System installieren, ist es wichtig, dass Sie sich zuerst mit dem Installationsvorgang vertraut machen. Die Hinweise in diesem Handbuch setzen Grundkenntnisse in der Bedienung und Arbeit mit GEOS voraus.
+
+Systemanforderungen:
+* C64 oder C128 (PAL oder NTSC)
+* Diskettenlaufwerk 1541 oder kompatible Systeme
+* ein anderes Laufwerk für die Installation (echtes Laufwerk oder ein GEOS-RAM-Laufwerk)
+* Speichererweiterung mit mindestens 192Kb
+* GEOS 64/128 V2.0 (deutsch oder englisch) oder ein vorhandenes GEOS-MegaPatch V3.0
+* eine DeskTop-Anwendung wie DESKTOP 2.0, TOPDESK (ab MegaPatch V3.0) oder DualTop64/128.
+
+Hinweis: Wenn Sie ein 1541 Diskettenlaufwerk für die Setup-Dateien verwenden, benötigen Sie ein anderes Laufwerk für die Installation. Dies kann ein weiteres 1541-Laufwerk oder ein GEOS-RAM-Laufwerk sein.
+Ein 1541-Laufwerk hat nicht genug Platz um darauf eine "vollständige Installation" durchzuführen. Sie müssen inn dem Fall die "benutzerdefinierte Installation" verwenden und nur die erforderlichen Dateien für die Installation auswählen. Ein 1571-Laufwerk oder besser mit mindestens 250Kb freiem Speicherplatz wird empfohlen.
+Mit einem 1581-Laufwerk können Sie das Laufwerk für die Setup-Dateien und die Installation verwenden.
+
+Unterstütze Hardware:
+C64/C64C (PAL/NTSC), C128/C128D, 1541/II, 1571, 1581, CMD FD2000, CMD F4000, CMD HD (inkl. Parallelkabel), CMD RAMLink, CMD SuperCPU 64/128, SD2IEC (mit aktueller Firmware), C=1351, CMD SmartMouse, Joystick, C=REU, CMD REU XL, GeoRAM, BBGRAM, CMD RAMCard, 64Net (seit dem Jahr 2000/2003 ungetestet).
+
+2. Die SETUP-Diskette
+Es stehen zwei Arten von Setup-Disketten zur Verfügung:
+
+D81-Format: Kann auf eine 3,5"-1581-Diskette geschrieben werden und beinhaltet das Setup für C64/C128 in deutscher oder englischer Sprache.
+
+D64-Format: Kann auf eine 5,25"-1541/71-Diskette geschrieben werden und beinhaltet das Setup für C64 oder C128 in deutsch oder englisch. Bei Verwendung des D64-Formats benötigen Sie beide Disketten (Seite A und Seite B).
+
+* QUICKSTART
+Eine kurze Beschreibung der Installation von MegaPatch auf Ihrem System (deutsch und englisch).
+
+* README
+Hinweise zur Installation und eine Übersicht über die Änderungen seit GEOS-MegaPatch V3 von 1999. Verfügbar in Deutsch(DE) oder Englisch(EN).
+
+* SetupMP3_64/128
+Die Hauptinstallationsdatei. Öffnen Sie diese Datei von Ihrem GEOS-Desktop aus und installieren Sie MegaPatch auf Ihrem System.
+Abhängig von den von Ihnen verwendeten Disketten wird damit entweder die deutsche oder englische Version von MegaPatch installiert.
+
+* SetupMP3_1/2/3/4/5
+Diese Dateien beinhalten die gepackten MegaPatch-Systemdateien und werden während der Installation auf Ihrer Boot-Diskette entpackt.
+
+* Extras
+Auf der Setup-Diskette finden Sie möglicherweise einige zusätzliche GeoPaint Bilder die beim Start von MegaPatch als Hintergrundbilder verwendet werden können.
+
+3. Systemvoraussetzungen
+
+3.1 Diskettenlaufwerke
+
+- C64/C128 mit nur einem 1541-Laufwerk:
+Sie benötigen ein 1541-Laufwerk mit den Setup-Dateien und mindestens ein zweites Laufwerk für die Installation. Dies kann ein weiteres 1541-Laufwerk oder ein GEOS-RAM-Laufwerk sein.
+Bei Verwendung eines GEOS-RAM-Laufwerks benötigen Sie eine RAM-Erweiterung mit mindestens 512Kb. Für die Boot-Diskette kann ein RAM1541 verwendet werden. Der Inhalt der Boot-Diskette kann später auf eine echte Diskette kopiert werden.
+Eine RAM1571 kann für die Setup-Dateien verwendet werden, aber nicht für die Installation, da eine 512Kb RAM-Erweiterung nicht genügend Speicherplatz hat, um eine RAM1571 und den erforderlichen MegaPatch-Systemspeicher zu unterstützen. Die RAM1571 wird während des Setups in ein kleineres NativeMode Laufwerk umgewandelt und alle Dateien auf diesem Laufwerk gehen verloren.
+Wenn Sie nur ein RAM1571 haben, dann kopieren Sie die Setup-Dateien auf Ihren GEOS-RAM-Laufwerk und verwenden Sie das 1541-Diskettenlaufwerk für die Installation.
+
+- C64/C128 mit einem 1571-Laufwerk:
+Sie können alle Setup-Dateien auf eine 1571-Diskette kopieren. Dies sollte die Einrichtung erleichtern, da Sie keine Disketten wechseln müssen.
+Sie benötigen aber auch hier für die Installation ein anderes Laufwerk wie auch bei der Verwendung eines 1541-Laufwerks, siehe Beschreibung oben.
+
+- C64/C128 mit einem 1581-Laufwerk (oder kompatible Geräte):
+Eine 1581-Diskette hat genügend Platz, um alle Setup-Dateien zu speichern. Die Diskette kann auch für die Installation verwendet werden.
+
+- C64/C128 mit mehr als einem Laufwerk:
+Während GEOS V2.0 nur zwei aktive Diskettenlaufwerke unterstützt, können Sie MegaPatch auf jedem Laufwerk A: bis D: installieren (falls konfiguriert).
+
+Wenn die Installation erfolgreich war wird die Installation abgeschlossen und Sie kehren zum DESKTOP zurück. Dazu benötigen Sie eine Kopie Ihrer Desktop-Anwendung die nach der Installation von MegaPatch auf einem Diskettenlaufwerk verfügbar sein muss.
+
+Die Desktop-Anwendung muss dem folgenden Namensschema folgen:
+
+C64:	"DESK TOP"
+C128:	"128 DESKTOP"
+
+Wenn MegaPatch installiert wurde und das System die Desktop-Anwendung auf keinem Laufwerk finden kann, dann erhalten Sie eine Warnmeldung:
+
+"BITTE LEGEN SIE EINE DISKETTE MIT DESKTOP EIN".
+
+Bei GEOS 64/128 kann die Meldung unterschiedlich sein.
+
+Hinweis: Sie können jede GEOS-Anwendung als Desktop verwenden, solange sie den oben beschriebenen Dateinamen entspricht.
+
+3.2 Speichererweiterungen
+MegaPatch benötigt mindestens 192Kb freien Speicher in der Speichererweiterung.
+
+- C=REU 1700 (128K)
+NICHT kompatibel mit MegaPatch.
+
+- C=REU 1764 (256K)
+Kompatibel mit MegaPatch. Sie können aber kein GEOS-RAM-Laufwerk installieren.
+
+- C=REU 1750 (512K)
+Kompatibel mit MegaPatch. Sie können ein GEOS-RAM-Laufwerk im NativeMode mit 320Kb Speicherplatz konfigurieren.
+
+- GeoRAM (512K)
+Wie bei eine C=1750. Jeder Klon wie BBGRAM oder NeoRAM funktioniert auch.
+
+- GeoRAM (1MB oder mehr)
+Kompatibel mit MegaPatch. Mehr als ein GEOS-RAM-Laufwerk ist möglich und die erweiterten Funktionen von MegaPatch wie Druckerspuler oder TaskManager können genutzt werden.
+
+- CMD RAMLink DACC-Partition
+Je nach Größe der DACC-Partition funktioniert diese wie ein C=REU oder GeoRAM. Siehe Beschreibung oben. Wie Sie eine DACC-Partition mit den RAMLink-Tools erstellen, erfahren Sie im CMD RAMLink-Handbuch.
+
+- CMD SuperCPU mit RAMCard
+MegaPatch kann den gesamten verfügbaren Speicher auf Ihrer RAMCard nutzen. Siehe Beschreibung für C=REU oder GeoRAM oben.
+Hinweis: RAMCard verfügt über eine interne Speicherverwaltung, die Speicher für andere Anwendungen reservieren kann. MegaPatch wird diese Speicherverwaltung vollständig unterstützen. Wenn Sie den gesamten reservierten Speicher freigeben möchten, verwenden Sie einen Hardware-Reset.
+
+- Ultimate64 und ähnliche neue Hardware
+Neue Hardware für den C64/C128 kann emulierte Speichererweiterungen unterstützen, die mit einer C=REU oder einem GeoRAM kompatibel sind. Neuere Hardware kann bis zu 16Mb als Speichererweiterung zur Verfügung sellen.
+MegaPatch unterstützt jedoch nur bis zu 4Mb für die interne Speicherverwaltung. Wenn mehr Speicher zur Verfügung steht, können Sie mit speziellen Treibern ein weiteres GEOS-RAM-Laufwerk erstellen, das den verbleibenden Speicher nutzen kann.
+
+In diesem Handbuch wird der Begriff "REU" (RAM Expansion Unit / Speichererweiterung) für alle unterstützten Geräte, die oben aufgeführt sind, verwendet.
+"GeoRAM" steht für einn GeoRAM und alle kompatiblen Klone wie BBGRAM oder NeoRAM und neue Hardware die ein solches Gerät emulieren können.
+
+3.3 Empfohlenes System
+Für eine einfache Einrichtung sollten zwei GEOS-1581-Laufwerke konfiguriert werden: Laufwerk A: mit den Setup-Dateien und Ihrer aktuellen Desktop-Anwendung. Laufwerk B: für die Installation und die Desktop-Anwendung, die dem oben beschriebenen Namensschema folgt.
+Dies können echte Diskettenlaufwerke, GEOS-RAM-Laufwerke, Partitionen auf CMD-kompatiblen Geräten oder Disk-Images auf neuerer Hardware wie SD2IEC sein.
+
+4. GEOS-MegaPatch Dateien entpacken
+Öffnen Sie das Laufwerk mit der Datei "SetupMP3_64/128" und starten/öffnen Sie die Datei.
+Das Setup überprüft zunächst die Datendateien auf die Übereinstimmung mit den internen Prüfsummen. Wenn eine oder mehrere Dateien beschädigt sind, erhalten Sie eine Fehlermeldung über eine falsche Prüfsumme. Stellen Sie in diesem Fall sicher, dass die ursprünglichen D81/D64-DiskImages in Ordnung sind.
+Diese Überprüfung kann einige Zeit in Anspruch nehmen, insbesondere wenn Sie für die Einrichtung ein echtes 1541-Laufwerk verwenden.
+Wenn die Prüfung bestanden ist, erscheint eine kleine Willkommensmeldung und Sie können die Installation fortsetzen.
+
+4.1 Ziel-Laufwerk auswählen
+Sie können nun das Laufwerk auswählen, das für die Installation verwendet werden soll. Wenn das Laufwerk verfügbar ist und eine Diskette gefunden wurde, sehen Sie den Laufwerksnamen, den Namen der Diskette und den verbleibenden freien Speicherplatz für jedes Laufwerk.
+Wenn Sie die Disketten wechseln müssen, verwenden Sie die Schaltfläche "DISK", um die Laufwerksinformationen neu zu laden.
+Wählen Sie das Laufwerk aus, auf dem MegaPatch installiert werden soll.
+
+Hinweis: Wenn Sie von MegaPatch V3 auf eine aktuellere Version aktualisieren wollen darf das Ziel-Laufwerk kein "SuperRAM-Native"-Laufwerk sein.
+
+4.2 Installationsmethode auswählen
+Wählen Sie entweder die Option "Vollständige Installation" oder die Option "Benutzerdefinierte Installation".
+Eine komplette Installation erfordert ca. 250Kb freien Speicherplatz. Wenn nicht genügend freier Speicherplatz zur Verfügung steht, müssen Sie die "benutzerdefinierte Installation" verwenden.
+Wenn es auf dem Ziel-Laufwerk bereits einige der MegaPatch-Systemdateien gibt, werden Sie gefragt ob Sie die vorhandenen Dateien löschen oder die vorhandenen Dateien überschreiben möchten.
+Sie können das Setup mit der "!"-Taste verlassen wenn Sie auch ein Symbol auf dem Bildschirm auswählen können.
+
+4.2.1 Vollständige Installation
+Nachdem Sie diese Installationsmethode gewählt haben, wird das Setup automatisch den Installationsprozess durchführen und alle Dateien auf Ihre Boot-Diskette kopieren.
+Wenn Sie ein 1541-Laufwerk für die Setup-Dateien verwenden, werden Sie aufgefordert, bei Bedarf Disk1 oder Disk2 einzulegen.
+
+4.2.2 Benutzerdefinierte Installation
+Bei der Verwendung dieser Setup-Methode werden Sie gefragt, welche Dateien Sie Ihrer Boot-Diskette hinzufügen möchten. Es gibt sechs Kategorien von Setup-Dateien:
+
+* Startdateien
+Dies sind die erforderlichen Systemdateien und müssen auf die Diskette kopiert werden.
+* ReBoot-System
+Optional, kann verwendet werden, um MegaPatch von einer REU schnell neu zu starten.
+* DiskDriver
+Wenn Sie diese Option auswählen, werden Sie gefragt, ob Sie alle Laufwerkstreiber oder nur ausgewählte Treiber installieren möchten.
+Sie benötigen mindestens den Laufwerkstreiber für Ihre Boot-Diskette. Auch die Treiber für GEOS-RAM-Laufwerke werden empfohlen.
+* Hintergrundbilder
+Optional, kann als Startbildschirm oder als Hintergrundbild für Desktop-Anwendungen wie TopDesk verwendet werden.
+* Bildschirmschoner
+Optional, kann verwendet werden, um einige Animationen anzuzeigen, wenn sich der Computer im Ruhezustand befindet.
+
+Wählen Sie die Kategorien aus und kopieren Sie die Setup-Dateien auf Ihre Boot-Diskette. Der verbleibende Speicherplatz auf der Boot-Diskette wird oben auf dem Bildschirm angezeigt.
+
+4.3 Systemlaufwerk prüfen
+Nachdem alle erforderlichen Dateien auf Ihre Boot-Diskette kopiert wurden, werden Sie gefragt, ob Sie die Systemdiskette überprüfen möchten.
+Dadurch wird sichergestellt, dass alle für die Installation erforderlichen Dateien vorhanden sind.
+
+Danach können Sie die Installation fortsetzen oder Sie verlassen das Setup und führen die Installation später mit der MegaPatch-Startanwendung "GEOS.MP3" manuell durch.
+
+5. GEOS-MegaPatch installieren
+Die Setup-Datei entpackt nur die Systemdateien. Um das Installationsprogramm für GEOS-MegaPatch zu starten, gibt es eine zusätzliche Datei: Den MegaPatch-Launcher namens "GEOS.MP3".
+Die Datei wird automatisch gestartet, wenn Sie die Systemdiskette überprüft haben und sich entschieden haben, mit der Installation fortzufahren.
+Wenn Sie sich entschieden haben, das Setup zu verlassen, oder wenn Sie MegaPatch später von einem bestehenden GEOS V2.x-System aus starten möchten, können Sie mit "GEOS.MP3" MegaPatch starten.
+
+5.1 Installierte Laufwerke erkennen
+MegaPatch wird versuchen die konfigurierten GEOS-Laufwerke automatisch zu erkennen um die aktuelle Konfiguration nach dem Start von MegaPatch zu übernehmen. Wenn Sie jedoch Treiber von Drittanbietern installiert haben, müssen Sie das Laufwerk möglicherweise später neu konfigurieren.
+
+5.2 Speichererweiterung prüfen
+Da möglicherweise nicht genügend freier Speicherplatz vorhanden ist, um GEOS-RAM-Laufwerke und GEOS-MegaPatch zu installieren, überprüft der Launcher zunächst Ihre Konfiguration.
+Auf Systemen mit einem 512Kb REU und einem konfigurierten GEOS RAM1571-Laufwerk werden Sie gefragt, ob Sie das RAM1571-Laufwerk in ein RAMNative-Laufwerk konvertieren möchten. Beachten Sie, dass dadurch alle Daten auf dem RAM1571-Laufwerk gelöscht werden!
+
+5.3 Treiber für Eingabegeräte
+Der Launcher wird nun versuchen, den am besten passenden Eingabetreiber automatisch zu erkennen. Wenn der automatisch erkannte Eingabetreiber falsch ist, wählen Sie einfach "NEIN". MegaPatch erstellt dann eine Kopie des installierten Eingabetreibers, um sicherzustellen, dass Ihre Maus nach dem Start von MegaPatch funktioniert.
+Der gespeicherte Eingabetreiber ersetzt den automatisch erkannten Eingabetreiber auf der Boot-Diskette.
+
+5.4 MegaPatch konfigurieren
+MegaPatch ist jetzt installiert, muss aber noch die GEOS-Laufwerke A: bis D: konfigurieren. Dies ist die Aufgabe des GEOS.Editors. MegaPatch startet nun den Editor und versucht, die zuvor erkannten Laufwerke automatisch zu konfigurieren.
+In einigen Fällen kann es zu Fehlern im GEOS.Editor kommen und Sie werden aufgefordert, die Konfiguration mit dem GEOS.Editor manuell zu korrigieren. Lesen Sie dazu das Kapitel "8.2.1 Laufwerke konfigurieren".
+
+5.5 Diskette bootfähig machen
+Das Letzte, was der Launcher jetzt tun muss: die Boot-Diskette bootfähig machen. Daher wird "GEOS.MP3" jetzt die Anwendung "GEOS.MakeBoot" starten.
+Sie benötigen "GEOS.MakeBoot" später, wenn Sie eine andere Boot-Diskette für andere Laufwerke erstellen wollen. Siehe Kapitel "6. Die Boot-Diskette".
+
+Wenn alles in Ordnung war, erhalten Sie die Meldung, dass Sie nun mit dieser Boot-Diskette GEOS-MegaPatch von BASIC mit den folgenden Befehlen starten können:
+
+C64:	LOAD"GEOS64",x,1
+C128:	LOAD"GEOS128",x und
+	RUN
+
+Hinweis: Ersetzen Sie <x> durch das Gerät Ihres Laufwerks.
+
+MegaPatch sollte nun zu Ihrer Desktop-Anwendung zurückkehren.
+
+6. Die Boot-Diskette
+Nachdem Sie GEOS-MegaPatch auf Ihrer Boot-Diskette installiert haben, finden Sie die folgenden Dateien auf der Boot-Diskette wenn Sie die "Vollständige Installation" gewählt haben:
+
+- GEOS (erforderlich)
+Dies ist das Startprogramm für GEOS-MegaPatch. Siehe Kapitel "5.5 Diskette bootfähig machen" für die Befehle, welche zum starten von "GEOS" benötigt werden.
+
+- GEOS.RESET (optional)
+MegaPatch merkt sich die beim Start von GEOS automatisch erkannte REU. Wenn Sie mehrere REUs haben, können Sie über diese Startdatei eine andere REU auswählen: Nach dem Start erscheint eine Liste mit den erkannten REUs und der Angabe der Speichergröße. Bei einer RAMLink mit DACC-Partitionen kann man zusätzlich die DACC-Partition auswählen.
+Die Befehle zum starten der Datei sind die gleichen wie bei "GEOS" selbst.
+
+- GEOS.BOOT (erforderlich)
+Diese Datei lädt alle benötigten Teile von MegaPatch und installiert automatisch Patches zur Unterstützung der installierten Hardware (z.B. RAM-Treiber zur Unterstützung der ausgewählten REU).
+
+- GEOS.0 (nur C128) (erforderlich)
+Dies beinhaltet einige Teile des MegaPatch Kernals für BANK#0(C128).
+
+- GEOS.1 (erforderlich)
+Diese Datei enthält den MegaPatch Kernal (C64) oder den Inhalt von BANK#1(C128) und den Treiber für Ihre Boot-Diskette.
+
+- GEOS.2 (erforderlich)
+Dazu gehören der Code für das ReBoot-System und die zusätzlichen Funktionen, die in den Erweiterungsspeicher geladen werden.
+
+- GEOS.3 (erforderlich)
+Diese Dateien enthalten den Code für TaskManager, den Starter für den Bildschirmschoner und den Lader für das ausgewählte MegaPatch-Hintergrundbild.
+
+- GEOS.4 (erforderlich)
+Diese Datei enthält den Druckerspooler und das erweiterte Registermenü.
+
+- GEOS.MP3 (optional)
+Der Launchere von MegaPatch. Wenn Sie derzeit GEOS V2 verwenden, öffnen Sie einfach den Launcher und MegaPatch wird geladen. Die Schritte sind die gleichen wie in Abschnitt 5 beschrieben.
+
+- GEOS.MakeBoot (optional)
+Dies kann verwendet werden, um andere Laufwerke bootfähig zu machen. Kopieren Sie einfach alle benötigten Dateien auf die neue Diskette und führen Sie "GEOS.MakeBoot" aus. Dies ist auch notwendig, wenn Sie die Boot-Diskette mit dem gleichen Laufwerkstyp, aber mit einer anderen Laufwerksadresse verwenden wollen.
+
+- GEOS.TaskMse (optional)
+Öffnen Sie diese Datei, um den TaskManager mit der linken und rechten Maustaste zu starten. Standardmäßig kann der TaskManager über die Tasten C= und CTRL gestartet werden. Wenn dies der Standard sein soll müssen Sie die Anwendung in eine Autostart-Datei umwandeln (z.B. über mit der Anwendung "GeoDOS" und Datei-Eigenschaften).
+
+- GEOS.disk (erforderlich)
+Diese Datei enthält alle Laufwerkstreiber. Es gibt keine Möglichkeit, Treiber aus dieser Datei zu entfernen oder übersprungene Treiber während des Setups wieder hinzuzufügen, außer mit StartMP3 und der Option "Benutzerdefinierte Installation". Wählen Sie "DiskDriver installieren" und erstellen Sie Ihre neue Datei "GEOS.Disk". Danach können Sie das Setup verlassen.
+
+- Reboot (optional)
+Dies führt zu einem schnellen Neustart in GEOS-MegaPatch. Dies funktioniert nur, wenn die Systemteile des MegaPatch-Kernals im Erweiterungsspeicher noch vorhanden sind.
+Sie müssen auch mindestens einmal mit GEOS booten, da RBOOT wissen muss, mit welcher REU MegaPatch gestartet wurde.
+Hinweis: Wenn der GEOS MegaPatch Kernal beschädigt wurde, z.B. nach einem Systemabsturz, dann sollte das System über `LOAD"GEOSxy",x,1` neu gestartet werden.
+Dies ist vor allem dann zu beachten, wenn der Systemabsturz beim Aufruf der Dateiauswahlbox, des Bildschirmschoners oder dem TaskManager aufgetreten ist.
+
+- RBOOT.BOOT (optional)
+Diese Datei lädt alle benötigten Teile von MegaPatch aus dem Erweiterungsspeicher.
+
+- SuperMouse64 (optional)
+Eingabetreiber für C=1351 oder CMD SmartMouse und kompatible Geräte.
+
+- SuperStick.1 (optional)
+Eingabetreiber für Joystick in Port#1.
+
+- SuperStick.2 (optional)
+Eingabetreiber für Joystick in Port#2.
+
+- NewMouse (optional)
+Dies ist ein modifizierter Mauszeiger.
+
+- GEOSMP.PIC (optional)
+Einige Hintergrundbilder.
+
+Hinweis: Auch wenn die Eingabetreiber optional sind, benötigen Sie mindestens einen Eingabetreiber oder der im MegaPatch Kernal enthaltenen Treiber wird verwendet (standardmäßig sollte dies der SuperMouse Treiber sein).
+
+7. Ist MegaPatch korrekt installiert?
+Um zu testen, ob MegaPatch gestartet wurde und auf Ihrem System aktiv ist, können Sie den Mauszeiger über ein Menü bewegen. Da der Standard ist, den ausgewählten Menüpunkt automatisch zu invertieren, sollten Sie leicht entscheiden können, ob Sie MegaPatch installiert haben.
+Eine weitere Möglichkeit, um zu sehen, ob Ihr System MegaPatch verwendet, ist die Tastenkombination C= + CTRL, die den TaskManager startet.
+Sie können auch versuchen, eine Dateiauswahlbox oder eine Dialogbox (z.B. die Infobox Ihrer Desktop-Anwendung) zu öffnen, diese sollten nun in Farbe dargestellt werden.
+
+8. Was ist neu in MegaPatch?
+MegaPatch hat einige neue Features, die nachfolgend beschrieben werden.
+
+8.1 Grundlegende Verbesserungen
+
+8.1.1 Farbe!
+Dialogboxen werden nun farbig dargestellt. Dies sollte auch bei bestehenden Anwendungen funktionieren. Schaltflächen werden ebenfalls farbig dargestellt. In einigen seltenen Fällen muss MegaPatch die Schaltflächen verschieben, da die Farbe nur auf CARDs mit einer Größe von 8x8 Pixel eingestellt werden kann.
+Sie können die Farbe im GEOS.Editor ausschalten.
+
+8.1.2 Menüs
+Wenn Sie mit der Maus über ein Pulldown-Menü fahren, wird der ausgewählte Menüpunkt automatisch invertiert.
+Wenn Sie ein Menü mit der linken Maustaste öffnen, erscheint das Dropdown-Menü. Der Zeiger wird automatisch auf den ersten Menüpunkt gesetzt, der ebenfalls invertiert wird.
+Wenn Sie den Mauszeiger nach unten bewegen, endet er am Ende des Menüs und verlässt nicht mehr aus versehen das Menü.
+Wenn Sie das Menü verlassen möchten, bewegen Sie einfach die Maus nach links oder rechts aus dem Menü.
+
+8.1.3 Eingabetext
+Mit MegaPatch können Sie nun einen Text innerhalb eines Texteingabefeldes "bearbeiten", ohne alle Zeichen löschen zu müssen.
+Verwenden Sie die Cursortasten links/rechts, um den Cursor zu bewegen.
+Verwenden Sie "HOME", um an den linken Rand des Eingabefeldes zu gelangen.
+Verwenden Sie "CLEAR", um den Text im Eingabefeld zu löschen.
+Verwenden Sie SHIFT+DELETE (INSERT), um ein Leerzeichen in den Text einzufügen. Beachten Sie, dass das letzte Zeichen aus dem Feld gelöscht wird, wenn der Text zu groß wird.
+Die Cursor-Geschwindigkeit kann mit dem GEOS.Editor eingestellt werden.
+
+8.2 Konfiguration
+MegaPatch wird mit dem leistungsstarken "GEOS.Editor" ausgeliefert, der viele Werkzeuge wie "CONFIGURE" oder "InstallDriveD" ersetzen kann. "GEOS.Editor" ist das zentrale Konfigurationsprogramm für GEOS-MegaPatch.
+Es ist auch ein gutes Beispiel für den neuen Menüstil mit "Register"-Karten. Diese Menüs können auch  in eigenen Anwendungen verwendet werden. Wie das funktioniert können Programmierer im "MegaPatch Programmierer Handbuch" nachlesen.
+Sie können die aktuelle Konfiguration auf Ihrer Boot-Diskette speichern, indem Sie die Schaltfläche "SPEICHERN" oben im Bildschirm verwenden.
+
+8.2.1 Register "LAUFWERKE"
+Auf dieser Seite können Sie Ihre Laufwerke A: bis D: konfigurieren. Sie benötigen entweder die Datei GEOS.Disk oder Sie müssen alle Treiber in die REU laden haben um Laufwerke tauschen zu können.
+Jedes GEOS-Laufwerk hat eine Infobox und zwei kleine Pfeile auf der rechten Seite: Der obere Pfeil ermöglicht die Auswahl eines anderen Laufwerkstyps, der untere Pfeil die Auswahl einer anderen Partition auf CMD-Laufwerken oder eines neuen DiskImages auf SD2IEC-kompatiblen Geräten.
+Wenn Sie "Laufwerkstreiber in RAM" aktivieren, ist der Startvorgang möglicherweise langsamer, aber Sie können dann die Laufwerke wechseln ohne das die Datei "GEOS.Disk" benötigt wird. Ein Beispiel dafür könnte sein den GEOS.Editor auf Ihre Arbeitsdiskette zu kopieren und dann die Boot-Diskette aus Ihrem Laufwerk zu entfernen. Es ist jetzt weiterhin möglich Laufwerkezu wechseln. Diese Option erforderte 64Kb freien Speicherplatz.
+Die Optionen "HD-Kabel" sind für Benutzer einer CMD-HD und einer CMD-RAMLink welche über ein paralleles Kabel verbunden sind. Dies kann den Zugriff auf Ihre Festplatte beschleunigen.
+Beim Laufwerkswechsel müssen Sie die Adresse des physikalischen Laufwerks nicht anpassen. Der GEOS.Editor kann alle installierten Laufwerke erkennen und möglicherweise nicht verwendete Laufwerke finden, die für den ausgewählten Laufwerkstreiber verwendet werden können. Es gibt jedoch eine Ausnahme: Siehe Kapitel "9. Laufwerkstreiber" für weitere Informationen.
+Wenn der ausgewählte Treiber ein Laufwerk mit einer anderen Laufwerksadresse benötigt und die aktuelle Adresse von einem anderen Gerät verwendet wird, schaltet MegaPatch die Laufwerke automatisch um.
+
+8.2.2 Register "SYSTEM"
+Hier können Sie Ihre CMD SuperCPU einrichten. Wenn keine SuperCPU verfügbar ist, sind alle Optionen gesperrt.
+Wenn Sie beim Start einer Anwendung Grafikfehler auf dem Bildschirm sehen können Sie die "SuperCPU-Optimierungen" deaktivieren.
+Wenn Sie eine Commodore C=REU mit integriertem DMA-Chip als GEOS-DACC verwenden können Sie die "MoveData"-Option aktivieren. Dies kann die Speicherübertragung beschleunigen.
+MegaPatch kann versuchen Echtzeit-Uhrengeräte automatisch zu erkennen. Wenn die automatische Erkennung nicht funktioniert, wählen Sie das RTC-Gerät manuell oder schalten Sie die Erkennung mit "-" aus. Verwenden Sie das kleine Symbol auf der linken Seite, um Ihre GEOS-Uhr zu aktualisieren.
+Im Bereich "GEOS-ID" sehen Sie die aktuelle GEOS-ID. Die GEOS-ID wird bei der Installation verschiedener Anwendungen wie geoWrite oder geoPaint verwendet. Eine installierte Anwendung, die einen ID-Check beinhaltet, funktioniert nur mit der gleichen GEOS-ID mit der sie installiert wurde.
+Sie können die GEOS-ID ändern, indem Sie auf die ID selbst klicken. Wenn Sie die neue GEOS-ID auf Ihrer Boot-Diskette speichern möchten, wählen Sie die Schaltfläche links neben der GEOS-ID.
+
+8.2.3 Register "SPEICHER"
+Hier sehen Sie eine Speicherübersicht Ihrer REU: Es wird ein kleines farbiges Symbol für jeweils 64Kb-RAM Ihrer REU angezeigt.
+Die erste (oben links) und die letzten beiden (unten rechts) sind immer für das GEOS-MegaPatch-System reserviert.
+Wenn Sie eine Anwendung haben, die die Speicherverwaltung von MegaPatch nicht unterstützt, können Sie 64Kb Speicher über die Eingabebox "SPEICHER" reservieren: Tragen Sie hier eine zweistellige Zahl ein, z.B. 32, und bestätigen Sie die Zahl mit der RETURN-Taste. In diesem Beispiel wird das den 32sten 64Kb-Speicherblock reservieren. Dies ist der erste Speicherblock in der fünften Reihe (5x 8 = 32). Der erste 64Kb-Speicherblock hat die Nummer #0.
+Um den Speicherblock wieder freizugeben tragen Sie die gleiche Nummer erneut ein. Sie können Ihrer Anwendung dann mitteilen welcher 64Kb-Speicherblock für sie reserviert wurde.
+Im Abschnitt TaskManager können Sie die maximale Anzahl der Anwendungen auswählen, die gestartet werden können. Wenn Sie diesen Wert auf "1" setzen, können Sie die Anwendungen nicht wechseln, aber Sie können die Screenshot-Anwendung starten. Setzen Sie diesen Wert auf "0", um den TaskManager vollständig auszuschalten.
+Hinweis: Auf einem C64 benötigt jede Anwendung 64Kb Speicher, beim C128 3x64Kb.
+Sie können auch den verfügbaren Speicherplatz für den Drucker-Spooler auswählen. Setzen Sie diesen Wert auf "0", um den Druckerspuler auszuschalten.
+Hinweis: Wenn Sie GEOS-RAM-Laufwerke konfigurieren haben die Einstellungen für TaskManager und Drucker-Spooler eine niedrige Priorität und werden möglicherweise automatisch deaktiviert, wenn der Speicher für ein RAM-Laufwerk verwendet wurde.
+
+8.2.4 Register "BILDSCHIRM"
+Hier können Sie den Bildschirmschoner konfigurieren. Der Bildschirmschoner ist eine kleine Anwendung, die einige Grafiken auf den Bildschirm zeichnet, wenn der Computer für einige Zeit im Leerlauf war.
+Sie können den ausgewählten Bildschirmschoner testen, indem Sie auf den Namen des Bildschirmschoners selbst klicken. Der Bildschirmschoner muss aktiviert sein, damit dies funktioniert. Wählen Sie den Pfeil rechts neben dem Namen um einen neuen Bildschirmschoner auszuwählen.
+Wählen Sie das Hintergrundbild aus, indem Sie auf den Bildnamen selbst klicken. Wenn Sie das Hintergrundbild deaktivieren werden Anwednungen, die Hintergrundbilder unterstützen, stattdessen ein Standardmuster anzeigen.
+Hinweis: Aufgrund eines Fehlers in TopDesk zeigt diese Desktop-Anwendung stattdessen einen leeren Hintergrund ohne Muster an. Wenn Sie das alte GEOS-Hintergrund-Muster wünschen, müssen Sie mit geoPaint ein eigenes Hintergrundbild erstellen.
+
+8.2.5 Register "MENÜ"
+Im Abschnitt "CURSOR" können Sie die Geschwindigkeit des blinkenden Cursors in einem Eingabefeld oder bei Verwendung von geoWrite einstellen.
+Sie können die Farbe für Dialogfelder auch deaktivieren. Beachten Sie, dass dies nur für Dialogboxen funktioniert, die standardmäßig keine Farbe unterstützen. Die Dateiauswahlbox wird immer farbig dargestellt.
+Auf dieser Seite können Sie auch den Eingabetreiber wechseln. Wählen Sie den kleinen Pfeil rechts, um ein neues Gerät auszuwählen.
+Für deutsche Benutzer gibt es hier eine zusätzliche Option namens "QWERTZ"-Tastatur. Dadurch werden "Y" und "Z" auf der Tastatur entsprechend dem deutschen Tastaturlayout umgeschaltet. Beachten Sie, dass dies mit geoKeys nicht funktioniert.
+
+8.2.6 Register "DRUCKER"
+Hier können Sie den Standarddruckertreiber auswählen, indem Sie auf den kleinen Pfeil rechts neben dem Druckernamen klicken.
+Standardmäßig wird der Drucker in den Speicher des C64 und C128 geladen. Auf einem C64 können Sie diese Funktion deaktivieren, um den Druckertreiber immer vom Laufwerk zu laden. Dies kann nützlich sein, wenn Sie unterschiedliche Druckertreiber für verschiedene Anwendungen haben. Benennen Sie alle Treiber in "PRINTER" um, und wenn eine Anwendung einen Druckertreiber anfordert, wird immer der erste gefundene Druckertreiber mit diesem Namen geladen.
+GEOS64-Anwender finden hier eine weitere Option: "GeoCalc-Fix". Dies funktioniert nur, wenn der Druckertreiber in den Speicher geladen wird. Beschreibung:
+GeoCalc verwendet Speicher welcher für einen Druckertreiber reserviert ist. Wenn Sie einen sehr großen Druckertreiber haben (z.B. "PAINT Pages/Overlay" von der Original GEOS-Diskette), kann GeoCalc abstürzen, wenn Sie ein Blatt drucken möchten. Der "GeoCalc-Fix" kann versuchen, dieses Problem mit einem Workaround zu beheben. In einigen Fällen müssen Sie evtl. diese Funktion deaktivieren, wenn andere Anwendungen beim Drucken abstürzen.
+Im Abschnitt "DRUCKERSPOOLER" können Sie den Druckerspooler ein- und ausschalten und die Autostart-Option deaktivieren.
+Standardmäßig startet der Spooler, wenn der Computer im Leerlauf ist. Wenn Sie die Option "TaskManager" aktivieren, müssen Sie den TaskManager aufrufen und den Spooler aus dem Menü "DRUCKER" starten.
+
+8.3 TaskManager
+Mit dem TaskManager können Sie mehrere Anwendungen starten und zwischen den Anwendungen wechseln.
+Stellen Sie sicher, dass Sie den TaskManager aktiviert haben (siehe Abschnitt 8.2.2), Sie benötigen mindestens 1x64Kb, um den TaskManager zu starten und mindestens 2x64Kb, um mehr als eine Anwendung zu starten. Dies ist bei MegaPatch128 anders.
+Sie können den TaskManager mit C= + CTRL oder mit den Maustasten öffnen, wenn Sie "GEOS.TaskMse" installiert haben.
+
+Hinweis: Das Wechseln von Partitionen oder Disketten, während andere Anwendungen geladen sind, kann zu Datenverlust führen!
+
+Hinweis: Der TaskManager lädt mehrere Anwendungen in den Speicher, aber nur die aktive Anwendung wird ausgeführt. Jede andere geladene Anwendung wird angehalten.
+
+Der TaskManager kann dazu verwendet werden um mit mehreren Dokumenten gleichzeitig zu arbeiten, z.B. um Text zwischen verschiedenen geoWrite Dokumenten zu kopieren.
+Sie können auch gepPaint und geoWrite öffnen, um einen Bildausschnitt zu erstellen und das Bild in geoWrite einzufügen.
+
+Obwohl diese Funktion getestet wurde, kann es Anwendungen geben, die nicht vollständig mit dem TaskManager kompatibel sind. Aktualisieren Sie immer Ihre Dokumente, bevor Sie die Anwendung wechseln!
+
+8.3.1 Register "Anwendungen"
+Auf dieser Seite sehen Sie eine Liste der aktiven Anwendungen. Um zu einer anderen Anwendung zu wechseln, markieren Sie den Eintrag aus der Liste und wählen Sie "ÖFFNEN". MegaPatch lädt die Anwendung und Sie sehen die ausgewählte Anwendung wieder aktiv auf dem Bildschirm.
+Wählen Sie "SCHLIESSEN", um das Schließen einer Aufgabe zu erzwingen, wobei zu beachten ist, dass dies zu Datenverlust und beschädigten Disketten führen kann.
+
+8.3.2 Register "Neuer Task"
+Hier können Sie eine neue Anwendung starten, wenn Sie genügend freien Speicherplatz haben. Wenn alle Takes auf der Seite "ANWENDUNGEN" verwendet werden, können Sie keine neue Anwendung starten.
+Sie können auch ein Dokument öffnen und MegaPatch lädt die gewünschte Anwendung automatisch.
+Beachten Sie, dass einige Anwendungen nicht mit Dokumenten funktionieren, die von Laufwerk C: oder D: geöffnet wurden.
+Wenn die aktuelle Anwendung DeskAccessories nicht unterstützt, können Sie hier eine solche Anwendung auswählen. Wenn Sie das DeskAccessories verlassen, kehren Sie automatisch zur vorherigen Anwendung zurück.
+
+8.3.3 Register "Drucker"
+Hier können Sie einen neuen Druckertreiber auswählen, auch wenn Sie eine bereits laufende Anwendung haben.
+Sie können den Druckerspooler auch hier starten, wenn Sie die entsprechende Option wie in Kapitel "8.2.6 Drucker" im GEOS.Editor eingestellt haben.
+
+8.3.4 Register "BILDSCHIRM"
+Hier können Sie einen "Screenshot" erstellen, der als GeoPaint-Bild gespeichert wird.
+Sie können den Dateinamen ändern, indem Sie auf das Eingabefeld für den Dateinamen klicken.
+Im Abschnitt "ZIEL-LAUFWERK" können Sie das Laufwerk auswählen, auf dem der Screenshot gespeichert werden soll. Wählen Sie A. bis D:, um das Laufwerk zu wechseln.
+Wählen Sie "OK", um den Screenshot zu speichern.
+
+8.4 Die neue Dateiauswahlbox
+Das neue Feld "Datei auswählen" ist in allen Anwendungen verfügbar, die bisher die von GEOS verwendete Standard-Dateiauswahlbox verwendet haben. Die neue Box nimmt den größten Teil des Bildschirms ein, zeigt aber auch einige zusätzliche Informationen (in einigen Fällen).
+
+8.4.1 Die Dateiliste
+Die neue Dateiauswahlbox zeigt nun bis zu 255 Dateien an. Sie können mit der RETURN-Taste, den Cursortasten nach oben/unten, der Bildlaufleiste rechts oder den beiden Auf/Ab-Tasten im unteren rechten Bereich der Dateiauswahlbox durch die Dateien navigieren.
+Sie können eine Datei mit der C= + RETURN-Taste oder durch einen Doppelklick auf den Dateinamen öffnen.
+
+8.4.2 Einen Eintrag suchen
+Wenn Sie ein paar Zeichen in das Suchtextfeld eingeben und RETURN drücken, springt MegaPatch zur nächsten passenden Datei in der Liste. Beachten Sie, dass diese Funktion Groß-/Kleinschreibung unterscheidet!
+Wenn es eine "perfekte" Übereinstimmung mit einem Dateinamen gibt, öffnet MegaPatch die Datei automatisch. Wenn mehr als eine Übereinstimmung gefunden wird, können Sie mit der RETURN-Taste zur nächsten Datei wechseln.
+
+8.4.3 Datei-Informationen
+Dies funktioniert nur wenn Sie mit der Anwendung eine Datei aus der Liste auswählen können. Es werden Dateiname, Datum und Uhrzeit angezeigt. Die Dateigröße wird ebenfalls angezeigt. Wenn eine Datei schreibgeschützt ist, können Sie hier den Dateischutz deaktivieren.
+Um die Anzeigegeschwindigkeit zu verbessern, kann diese Option deaktiviert werden.
+
+8.4.4 Dateiliste sortieren
+Diese Option sortiert die Dateien in alphabetischer Reihenfolge. Da dadurch die Liste der Originaldaten überschrieben wird, kann dies nicht rückgängig gemacht werden.
+
+8.4.5 Symbole/Icons
+Es gibt zwei Symbolbereiche: den oberen Bereich für benutzerdefinierte Symbole und den unteren Bereich, der hauptsächlich für "OK" und "ABBRUCH" verwendet wird.
+
+Hinweis: Bei älteren Anwendungen wird eine Art "Logik" verwendet, um die Symbole zu "platzieren". Wundern Sie sich nicht, wenn einige Symbole an verschiedenen Positionen für verschiedene Anwendungen erscheinen. Beachten Sie auch, dass einige Anwendungen wie geoWrite oder geoPaint gepatcht werden müssen, um das Öffnen von Dokumenten von Laufwerken A: bis D: zu unterstützen. Suchen Sie nach "4-Disk-Drive"-Patches oder schauen Sie sich den "MegaPatch Programmierer Handbuch" an, wie Sie die neuen Features in eigenen Anwendungen nutzen können.
+
+8.5 Register-Menu
+Das ist neu in GEOS: Bisher konnten nur Pull-Down-Menüs und Icon-Menüs in eigenen Anwendungen verwendet werden. Das neue Registermenü verfügt über einige neue Funktionen zum sortieren vieler Optionen und wechselt zwischen verschiedenen Seiten, den sogenannten "Registern".
+Das neue Menü bietet Eingabefelder zur Eingabe von Text, Kontrollkästchen zum Umschalten von Optionen, Schaltflächen zum Aktivieren von Funktionen, benutzerdefinierte Aktionsroutinen und natürlich die Register zum Umschalten zwischen verschiedenen Seiten.
+Schauen Sie sichden neuen GEOS.Editor an um zu sehen was damit möglich ist. Programmierer können sich das "MegaPatch Programmierer Handbuch" ansehen.
+
+8.6 Bildschirmschoner
+Der Bildschirmschoner ist eine kleine Anwendung, die einige Grafiken auf den Bildschirm zeichnet, wenn der Computer für einige Zeit im Leerlauf war. Sie können den Bildschirmschoner mit dem GEOS.Editor konfigurieren.
+MegaPatch enthält ein paar Standard-Bildschirmschoner, nicht alle sind für MegaPatch128 verfügbar:
+- Starfield wird einen Sternenhimmel auf Ihren Bildschirm zeichnen.
+- PuzzleIt vermischt den Bildschirm-Inhalt.
+Nur für den C64:
+- PacMan wird Ihren Bildschirm auffressen!
+- 64erMove zeigt ein animiertes 64-Logo mit etwas Sound an.
+- Rasterbars zeigen einige farbige Rasterlinien auf dem Bildschirm an.
+Wenn ein Bildschirmschoner ausgeführt wird können Sie durch drücken einer Maustaste oder mit einem beliebigen Tastendruck zu Ihrer Anwendung zurückkehren.
+
+8.7 Hintergrundbilder
+MegaPatch bietet Anwendungen Unterstützung bei der Verwendung eines Standardhintergrundbildes. Eine Anwendung, die ein Hintergrundbild unterstützt, ist TopDesk.
+Siehe "MegaPatch Programmierer Handbuch" für die Verwendung des Hintergrundbildes in Ihren Anwendungen.
+
+8.8 Drucker-Spooler
+Der Druckerspooler verwendet einen internen Puffer, um gedruckte Daten aus Ihrer Anwendung zu speichern. Der Druckvorgang wird gestartet, wenn das System im Leerlauf ist oder wenn Sie den Druckvorgang manuell über den TaskManager starten.
+Dies kann den Druckauftrag beschleunigen oder Sie können zuerst alle Druckaufträge ausführen und dann MegaPatch alle Druckaufträge auf einmal ausführen lassen.
+Wenn die Druckaufträge gedruckt werden sollen, erscheint ein neues Menü auf dem Bildschirm: Das "Spooler-Menü".
+
+8.8.1 Register "DOKUMENT"
+Oben auf dieser Seite sehen Sie den aktuellen Druckauftrag. Mit dem kleinen Pfeil rechts neben dem Jobnamen können Sie zu einem anderen Job wechseln.
+In der oberen rechten Ecke sehen Sie den aktuellen Speicherverbrauch.
+Im Abschnitt "EINSTELLUNGEN" können Sie den aktuellen Druckauftrag ändern: Alle Seiten oder nur ausgewählte Seiten drucken. Wählen Sie "DRUCKEN", um den aktuellen Auftrag zu starten.
+
+8.8.2 Register "DRUCKER"
+Hier können Sie den für alle Druckaufträge verwendeten Druckertreiber umschalten.
+
+9. Laufwerkstreiber
+Der GEOS.Editor unterstützt viele verschiedene Laufwerkstypen. Hier finden Sie eine kurze Beschreibung aller Laufwerke:
+
+- 1541
+Kann mit einer 1541, 1571 oder einen SD2IEC verwendet werden (siehe auch SD2IEC-Native Treiber).
+Einseitig, 5,25"-Disketten oder D64 Disk-Images mit 176Kb.
+
+- 1541 (Cache)
+Wie 1541, benötigt aber 192Kb Erweiterungsspeicher, um das Lesen von Daten über einen internen Cache zu beschleunigen.
+
+- 1571
+Kann mit einer 1571 oder SD2IEC verwendet werden (siehe auch SD2IEC-Native Treiber).
+Ein- oder zweiseitig, 5,25"-Disketten oder D64/D71 Disk-Images mit 176Kb oder 340Kb.
+
+- 1581
+Kann mit einer 1581 oder SD2IEC verwendet werden (siehe auch SD2IEC-Native Treiber).
+Beidseitig, 3,5"-DD-Disketten oder D81 Disk-Images mit 790Kb.
+
+- 1581/DOS
+Kann mit einem 1581 verwendet werden.
+Doppelseitig, DOS formatiert, 3,5"-DD-Disketten mit 800Kb.
+
+- RAM 1541
+Dadurch wird ein RAM-Laufwerk im aktuellen GEOS-DACC-Speicher erstellt, das mit einem 1541-Laufwerk kompatibel ist.
+Benötigt 3x64Kb = 192Kb Speicher.
+
+- RAM 1571
+Dadurch wird ein RAM-Laufwerk im aktuellen GEOS-DACC-Speicher erstellt, das mit einem 1571-Laufwerk kompatibel ist.
+Benötigt 6x64Kb = 384Kb Speicher.
+
+- RAM 1581
+Dadurch wird ein RAM-Laufwerk im aktuellen GEOS-DACC-Speicher erstellt, das mit einem 1581 Laufwerk kompatibel ist.
+Benötigt 13x64Kb = 832Kb Speicher.
+
+- RAM Native
+Dadurch wird ein RAM-Laufwerk innerhalb des aktuellen GEOS-DACC-Speichers erstellt, das mit einem CMD Native-Laufwerken/Partitionen kompatibel ist.
+Sie werden aufgefordert, die Größe des RAM-Native-Laufwerks einzustellen. Verwenden Sie die Pfeile HOCH/RUNTER, um die Laufwerksgröße unter Verwendung von mehr/weniger 64Kb Speicherblöcken anzupassen. Die Laufwerksgröße muss mindestens 128Kb betragen.
+Der benötigte Speicherplatz hängt von der gewählten Laufwerksgröße ab.
+
+- SuperRAM Native
+Wie RAM-Native, aber das Laufwerk verwendet den verbleibenden Speicher auf Ihrer SuperCPU/RAMCard, der vom GEOS-DACC nicht verwendet wird.
+Der benötigte Speicherplatz hängt von der gewählten Laufwerksgröße ab: Das Maximum ist 12Mb, wenn RAMCard Ihr DACC ist, ansonsten 16Mb.
+
+- C=REU Native
+Wie SuperCPU Native, aber für die Commodore C=REU.
+Sollte auch mit Ultimate64 und VICE 3.2++ funktionieren.
+
+- GeoRAM Native
+Wie SuperCPU Native, aber für das GeoRAM/BBGRAM/NeoRAM.
+Sollte auch mit Ultimate64 und VICE 3.2++ funktionieren. Möglicherweise benötigen Sie einen Patch, um mehr als 4 MB zu verwenden zu können wenn Sie VICE verwenden.
+
+- CMD RL 1541
+Dieser Treiber unterstützt 1541-ähnliche Partitionen auf der RAMLink.
+Sie können zwischen den Partitionen mit Hilfe von GEOS.Editor oder Anwendungen von Drittanbietern wechseln. GEOS.Editor speichert die ausgewählte Partition, wenn Sie Ihre Konfiguration speichern.
+Die Laufwerksgröße beträgt 176Kb.
+
+- CMD RL 1571
+Wie CMD RL 1541, aber für 1571-ähnliche Partitionen.
+Die Laufwerksgröße beträgt ca. 340Kb.
+
+- CMD RL 1581
+Wie CMD RL 1541, aber für 1581-ähnliche Partitionen.
+Die Laufwerksgröße beträgt ca. 790Kb.
+
+- CMD RL Native
+Wie CMD RL 1541, aber für NativeMode-ähnliche Partitionen.
+Die Größe des Laufwerks hängt von der gewählten Partitionsgröße beim Erstellen der RAMLink-Partitionen ab.
+
+- CMD FD 1541/1571/1581/Native
+Wie CMD RAMLink, aber für DD/HD/ED-Disketten. FD2000 oder FD4000 werden unterstützt.
+
+- CMD HD 1541/1571/1581/Native
+Wie CMD RAMLink, aber für Ihre CMD-Festplatte. Wenn Sie eine RAMLink haben, können Sie das Parallelkabel verwenden, um die Übertragung zu beschleunigen. Der Treiber entscheidet, welcher Modus entsprechend den Optionen im GEOS.Editor verwendet werden soll und ob ein Kabel installiert ist oder nicht.
+
+- SD2IEC Native
+Dieser Treiber benötigt ein SD2IEC-Gerät mit der GEOS-Laufwerksadresse A:=8, B:=9, C:=10 oder D:=11.
+Das SD2IEC kann als 1541, 1571 oder 1581 Laufwerk mit der dateibasierten "M-R"-Emulation verwendet werden (XR-Befehl, siehe Handbuch Ihres SD2IEC für Details). In diesen Modi findet der GEOS.Editor Ihr SD2IEC automatisch.
+Wenn Sie den neuen DNP-Support im GEOS.Editor mit dem Treiber "SD2IEC-Native" verwenden, müssen Sie Ihr SD2IEC mit der passenden GEOS-Laufwerksadresse konfigurieren. Andernfalls wird GEOS.Editor Ihr Laufwerk nicht finden. Bei Verwendung dieses Treibers ist die dateibasierte "M-R"-Emulation nicht erforderlich (kann aber aktiviert bleiben).
+Sie können zwischen den vier Laufwerkstypen auf Ihrem SD2IEC wechseln: Wählen Sie einfach 1541, 1571, 1581 oder SD2IEC-Native Treiber für Ihren SD2IEC und GEOS.Editor wird Sie ein neues Disk-Image für den neuen Laufwerkstyp auswählen lassen.

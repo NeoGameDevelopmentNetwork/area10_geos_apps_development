@@ -1,0 +1,84 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+`2Was ist neu in GDOS64?`
+
+Stand: 14-OKT-2022
+
+	`301Inhalt:`
+	>> Erweiterung Register-Menü
+	>> Einheitlichere Schaltflächen
+	>> Fehlerkorrekturen
+
+`361* Erweiterung Register-Menüs`
+
+In Register-Menüs besteht die Möglichkeit über Icons eine Art von "Schaltflächen" zu integrieren.
+Diese Schaltflächen funktionieren ähnlich wie die Icons in GEOS-Menüs über die DoIcons-Routine, d.h. nach anklicken mit der Maus wird eine definierte Funktion ausgelöst.
+In GDOS64 (und auch in GEOS/MegaPatch) haben diese Schaltflächen in Register-Menüs bisher aber keine sichtbare Rückmeldung gegeben.
+
+Mit diesem Update wurde das Register-Menü um eine Funktion erweitert, damit ein Schaltflächen eine sichtbare Rückmeldung geben können.
+Die Erweiterung ist Rückwärts-kompatibel zu GEOS/ MegaPatch, d.h. Programme funktionieren auch weiterhin unter beiden GEOS-Erweiterungen. Unter GEOS/MegaPatch wird die sichtbare Rückmeldung aber nicht unterstützt.
+
+Da nicht in jedem Fall eine sichtbare Rückmeldung gewünscht ist, gibt es zwei Methoden um die Rückmeldung zu erzeugen:
+
+`341Manueller Modus`
+Der manuelle Modus ist für GEOS-Programmierer gedacht. Damit kann in der Icon-Tabelle für die Schaltfläche ein zusätzliches Bit in einem bisher ungenutzten Datenbyte gesetzt werden:
+
+:RIcon_Button	w	IconGrafik
+	b	%10000000	;Bit%7=1
+	b	$00	;Dummy-Byte
+	b	1	;Breite Cards
+	b	8	;Höhe Pixel
+	b	NO_OPT_UPDATE	;Kein Update
+
+Die Bytes 3+4 der Icon-Tabelle waren bisher nur Dummy-Bytes, analog zur Icon-Tabelle in einer Dialogbox.
+
+Die Bit%7 und B%6 werden jetzt zur sichtbaren Rückmeldung bei Schaltflächen in Register-Menüs verwendet. Sind beide Bit=%0 (Standard), dann wird keine sichtbare Rückmeldung ausgegeben, wenn eine Schaltfläche angeklickt wird.
+
+Setzt man Bit%7 auf den Wert %1, dann prüft das Register-Menü das GEOS-Register ":iconSelFlag":
+
+Ist Bit%7 in ":iconSelFlag" gesetzt (":ST_FLASH"), dann blinkt die Schaltfläche nach dem anklicken einmal auf. Bit%6 (":ST_INVERT") wird ignoriert.
+
+Wird Bit%6 auf den Wert %1 gesetzt, dann wird eine sichtbare Rückmeldung verhindert. Dies hat nur Auswirkungen auf den System-Modus.
+
+`341System-Modus`
+Da der manuelle Modus nur für Programmierer und neu erstellte Programme genutzt werden kann, wurde in GD.CONFIG eine Option für Anwender ergänzt, die eine sichtbare Rückmeldung für alle Schaltflächen in Register-Menüs erlaubt.
+
+	>> GD.CONFIG > GEOS > Menü
+
+Die Option "Icon-Status in Register-Menüs" kann aktiviert werden, um in allen Programmen, die Register-Menüs verwenden, die sichtbare Rück- meldung zu aktivieren.
+
+HINWEIS: Für GDOS64 und GeoDesk ist das nicht erforderlich, da alle Register-Menüs an die  neue Erweiterung angepasst wurden.
+
+Damit geben alle Schaltflächen in Register-Menüs eine sichtbare Rückmeldung. Ausnahme sind nur die Schaltflächen, wo der Programmierer über das setzen von Bit%6 in der Icon-Tabelle die Rückmeldung unterbunden hat.
+
+Ein Beispiel dafür sind die "Eselsohren" zum blättern in Register-Menüs (z.B. Datei-Eigenschaften in GeoDesk):
+Hier müsste die sichtbare Rückmeldung in einer Dreiecksform erfolgen. Da dies automatisch nicht geht, ist die Rückmeldung hier deaktiviert.
+Wenn die Schaltfläche aufblinken würde, dann wäre nicht klar ob man vor- oder zurückgeblättert hat. Die sichtbare Rückmeldung bietet daher hier keinen Vorteil.
+
+`361* Einheitlichere Schaltflächen`
+
+In GD.CONFIG und GeoDesk werden nun einheitliche Schaltflächen verwendet, z.B. für "Buttons", Auswahllisten oder Wechsel-Schaltflächen.
+
+`361* Fehlerkorrekturen`
+
+Fehler beim kopieren von Dateien von einem Laufwerk Typ 1581 (oder kompatibel) auf eine 1541 behoben. Hier wurde nach dem Kopiervorgang evtl. ein leeres Dateifenster angezeigt.
+
+Verwandte Themen:
+^`1Hauptseite`
+^`1Was ist neu in GDOS64?`
+
+`2*** Seitenende ***`
+
+§§§
+"de.Index.001",01
+"de.Index.001",02
+
+§§§
+
+§§§

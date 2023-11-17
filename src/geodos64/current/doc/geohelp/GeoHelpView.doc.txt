@@ -1,0 +1,872 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+`2Anleitung zu 'GeoHelpView'`
+
+In  diesem Kapitel  finden Sie  alle Informationen
+über das Programm 'GeoHelpView' . Dieser Text ist
+im GHV - Format erstellt  worden und  kann direkt
+mit GeoHelpView betrachtet und gedruckt werden.
+
+_____________________________________
+
+`2*** Ende ***
+
+§§§
+
+§§§
+
+§§§
+
+`2Anleitung zu GeoHelpView`
+`2Inhaltsverzeichnis`
+
+	Inhalt	Seite
+_____________________________________
+
+	`1Grundlagen`	3
+
+	`1Installation von 'LoadGeoHelp'`	4
+	`1Speicherbank für SwapDatei`	5
+	`1Installation von 'GeoHelpView'`	6
+	^ `1Texte auf Extra-Laufwerk speichern`	7
+
+	`1Programmbeschreibung`	8
+
+	`1Die Script-Sprache`	9
+	`1Seitenaufbau eines Textdokumentes`	10
+	^ `1Erzeugen von Querverweisen`	11
+	^ `1Grafiken darstellen`	12
+	^ `1Überschiften erzeugen`	13
+	^ `1Texte farbig darstellen`	14
+
+`2*** Ende ***
+
+§§§
+"GeoHelpView.doc",03
+"GeoHelpView.doc",04
+"GeoHelpView.doc",05
+"GeoHelpView.doc",06
+"GeoHelpView.doc",07
+"GeoHelpView.doc",08
+"GeoHelpView.doc",09
+"GeoHelpView.doc",10
+"GeoHelpView.doc",11
+"GeoHelpView.doc",12
+"GeoHelpView.doc",13
+"GeoHelpView.doc",14
+
+§§§
+
+§§§
+
+`2Grundlagen`
+
+GeoHelpView ist eine Art Betrachtungsprogramm für
+spezielle GeoWrite- Texte. GeoHelpView soll es den
+Programmautoren  leichter machen , übersichtliche
+und leicht  verständliche Anleitungen zu schreiben.
+Da GeoHelpView auch aus einer gerade aktiven An-
+wendung  heraus gestartet werden kann , ist es so
+auch möglich , für bereits vorhandene  Programme
+Texte zu  schreiben und diese  als 'Hilfesystem' zu
+verwenden.
+
+GeoHelpView basiert auf einer Script-Sprache , die
+einige  Befehle zum  Seitenaufbau zur  Verfügung
+stellt. Durch diese Befehle ist es möglich, Grafiken
+in  den Text einzubinden , Texte in  verschiedenen
+Farben darzustellen oder Querverweise zu anderen
+Textseiten zu verwirklichen.
+
+Die  Texte müssen dabei  nicht alle in  einer Datei
+gespeichert werden. Vielmehr ist es möglich, auch
+auf  Textseiten  aus anderen  Dateien zuzugreifen.
+Damit ist die Größe der Texte praktisch unbegrenzt.
+
+Verwandte Themen:
+^ `1Installation von 'LoadGeoHelp'`
+^ `1Installation von 'GeoHelpView'`
+
+`2*** ENDE ***`
+
+§§§
+"GeoHelpView.doc",04
+"GeoHelpView.doc",06
+
+§§§
+
+§§§
+
+`2Installation von 'LoadGeoHelp'`
+
+`361Achtung! Dieses Programm wurde für den C64 ent-
+`361wickelt.  Unter GEOS128  funktioniert das Hilfsmittel
+`361nur im 40 Zeichen-Modus korrekt.
+
+Um GeoHelpView direkt  aus anderen Programmen
+heraus  starten zu können , muß die Startdatei zu-
+erst installiert werden. Lassen Sie sich  zuerst  den
+Infotext  der Datei anzeigen.  Dazu zwei Beispiele:
+
+	#	Unter GeoDOS:
+	- Menü: "Mein Computer"
+	- Funktion: "Dateiinfo anzeigen"
+	- Wählen Sie die Datei LoadGeoHelp.
+	- Im GEOS-Menü die Infotext-Seite anwählen.
+
+	#	Unter TopDesk:
+	- Wählen Sie die Datei LoadGeoHelp.
+	- Menü: "Datei"
+	- Funktion: "Info"
+
+Es gibt zwei  Möglichkeiten um  das Programm zu
+konfigurieren. Welche  Möglichkeit Sie verwenden,
+hängt vom verwendeten Computersystem ab:
+
+_____________________________________
+
+1.	Systeme ohne RAM-Erweiterung.
+
+Schreiben Sie an die erste Stelle im Infotext ein *.
+Damit wird dem Programm mitgeteilt, das es seine
+Daten auf Diskette auslagern muß. Stellen Sie dazu
+sicher, daß mind. 100 freie Blocks auf Diskette ver-
+fügbar sind! Sollte Ihr System nicht über genügend
+Kapazität verfügen, können Sie 'LoadGeoHelp' nicht
+aus einer laufenden Anwendung heraus starten.
+
+_____________________________________
+
+2.		Systeme mit RAM-Erweiterung.
+
+Am Beginn des Infotextes  wird  eine  zweistellige
+Dezimalzahl im Bereich von 01  -  99 erwartet. Die
+Werte, die für Ihr System möglich sind , finden Sie
+im Kapitel ^`1Speicherbelegung`.
+
+Beginnen Sie  mit dem  höchstmöglichen Wert aus
+der Tabelle und  beenden Sie die Eingabe. Starten
+Sie nun 'LoadGeoHelp'. Sollte GEOS  abstürzen , so
+verträgt sich dieser Wert im Infotext nicht mit dem
+GEOS- System. Ersetzen Sie diesen Wert im Infotext
+der Datei nach und nach durch kleinere Werte und
+versuchen Sie es  erneut.  Sollte keiner  der Werte
+zu einem Erfolg führen, dann können Sie das Pro-
+gramm nur mit Hilfe einer SwapDatei auf Diskette
+betreiben.
+Gründe dafür können andere Programme sein, die
+ebenfalls  Speicherbankzugriffe  durchführen  und
+dann kein Speicher mehr in der REU zur Verfügung
+steht. Beispiele hierfür sind z.B.: RAM - Process, der
+GeoWizzard oder  auch TopDesk ( mit der  Funktion
+'RamDeskTop').
+
+_____________________________________
+
+Verwandte Themen:
+^ `1Installation von 'GeoHelpView'`
+
+`2*** Ende ***
+
+§§§
+"GeoHelpView.doc",05
+"GeoHelpView.doc",06
+
+§§§
+
+§§§
+
+`2Speicherbelegung für SwapDatei`
+
+Hier finden Sie eine Übersicht über die Speicher -
+bänke , die Sie für das  Programm 'LoadGeoHelp'
+verwenden können.
+
+`341Tabelle 1`
+_____________________________________
+
+		Größe		Bereich
+		_____________________________
+
+		256	KByte	01 - 03
+
+		512	KByte	01 - 07
+
+		1024	KByte	01 - 15
+
+		2048	KByte	01 - 31
+
+Wenn Sie mit einer C=REU oder einer BBG-RAM bzw.
+GeoRAM arbeiten und ein RAM- Laufwerk installiert
+haben, müssen Sie den Wert für 'LoadGeoHelp' aus
+der folgdenden Tabelle entnehmen:
+
+`341Tabelle. 2`
+_____________________________________
+
+		Größe		Bereich
+		_____________________________
+
+		256	KByte
+		+ RAM1541-Laufwerk	* 1
+
+		512	KByte
+		+ RAM1541-Laufwerk	05	-	07
+		+ RAM1571-Laufwerk			07
+
+		1024	KByte
+		+ RAM1541-Laufwerk	05	-	15
+		+ RAM1571-Laufwerk	07	-	15
+		+ RAM1581-Laufwerk	14	-	15
+
+		2048	KByte
+		+ RAM1541-Laufwerk	05	-	31
+		+ RAM1571-Laufwerk	07	-	31
+		+ RAM1581-Laufwerk	14	-	31
+
+_____________________________________
+	* 1
+Bei dieser Konfiguration können Sie LoadGeoHelp
+nur mit einer SwapDatei betreiben.
+_____________________________________
+	
+
+Verwandte Themen:
+^ `1Installation von 'LoadGeoHelp'`
+
+`2*** ENDE ***`
+
+§§§
+"GeoHelpView.doc",04
+
+§§§
+
+§§§
+
+`2Installation von 'GeoHelpView'`
+
+Wenn 'GeoHelpView' nicht konfiguriert wird, dann
+zeigt das Programm standardmäßig den Inhalt der
+Datei 'GeoHelpView.001' an.
+
+Wenn Sie einen  anderen Text  anzeigen möchten,
+dann müssen Sie den Namen der Datei im Infotext
+der Datei 'GeoHelpView' eintragen. Um die Vorgabe
+zu ändern, gehen Sie bitte wie folgt vor:
+
+	#	Unter GeoDOS:
+	- Menü: "Mein Computer"
+	- Funktion: "Dateiinfo anzeigen"
+	- Wählen Sie die Datei LoadGeoHelp.
+	- Im GEOS-Menü die Infotext-Seite anwählen.
+
+	#	Unter TopDesk:
+	- Wählen Sie die Datei LoadGeoHelp.
+	- Menü: "Datei"
+	- Funktion: "Info"
+
+Die ersten beiden Zeichen im Infoblock müssen die
+Kennung => beinhalten. Daran erkennt GeoHelpView
+das es  einen  anderen Text  anzeigen soll. Darauf
+folgt  die  Seite innerhalb  der Zieldatei.  Diese ist
+immer  zweistellig (!)  anzugeben.  Der Name  der  Textdatei muß dann durch ein Komma getrennt an
+die Seitennummer angehängt werden. Beispiele:
+
+	=>01,GeoHelpView.doc
+	Startet die Datei GeoHelpView.doc. Dieses
+	macht das Programm automatisch, wenn
+	kein Text im Infoblock enthalten ist. Hier
+	wird dann die Seite 01 geöffnet.
+
+	=>05,GeoWriteHelp.001
+	Startet die Textdatei GeoWriteHelp.001 und
+	öffnet die Seite 05.
+
+Verwandte Themen:
+^ `1Installation von 'LoadGeoHelp'`
+^ `1Hilfetexte auf externem Laufwerk`
+
+`2*** ENDE ***`
+
+§§§
+"GeoHelpView.doc",04
+"GeoHelpView.doc",07
+
+§§§
+
+§§§
+
+`2Installation von 'GeoHelpView'`
+`2Hilfetexte auf externem Laufwerk speichern`
+
+Die komplette GeoDOS-Onlinehilfe umfaßt mehr als
+400 Kbyte. Sollte  Ihnen auf  dem  Laufwerk nicht
+genügend  Speicher  zur Verfügung  stehen , dann
+können Sie "GeoHelpView"  und  die Hilfetexte ge-
+trennt voneinander speichern.  Ändern Sie dazu die
+Dokumentenangabe im Infoblock wie folgt:
+
+	`3e1Für Laufwerke wie z.B. C=1541, C=1581, RAM71...`
+	`361=>(x)01,GeoHelpView.doc`
+
+Nach der Dokumentenkennung '=>' folgt die Angabe
+des Datenlaufwerks  in Klammern! Für  'x'  können
+Sie folgende Werte einsetzen:
+
+	A	Für GEOS-Laufwerk A:
+	B	Für GEOS-Laufwerk B:
+	C	Für GEOS-Laufwerk C:
+	D	Für GEOS-Laufwerk D:
+
+Achten Sie unbedingt auf korrekte Schreibweise!
+
+	`3e1Für Laufwerke wie CMD RAMLink, HD, FD`
+	`361=>(x:zzz)01,GeoHelpView.doc`
+
+Für  'x'  können Sie die gleichen Werte wie bereits
+weiter oben  beschrieben  einsetzen.  Für die CMD-
+Laufwerke gibt es zusätzlich folgende Werte:
+
+	F	Für CMD FD-Geräte
+	H	Für CMD HD-Geräte
+	R	Für CMD RAMLink
+
+Vorteil bei der Typen - Angabe: GeoHelpView sucht
+selbstständig  nach dem entsprechenden  Laufwerk
+und der dazugehörigen  Geräteadresse. Selbst nach
+einem Laufwerkstausch findet  das Programm noch
+die Hilfetexte.
+Nach dem Laufwerkstyp/ Adresse folgt der Doppel-
+punkt zur Angabe  der Partition.  Diese  Nummer ist
+immer(!) dreistellig anzugeben und wenn nötig am
+Beginn mit '0'-Zeichen aufzufüllen.
+
+	`2Falsch`	: =>(R:15)01,Textname...
+	`3a1Richtig`	: =>(R:015)01,Textname...
+
+Stellen Sie sicher das  Laufwerk und Partition auch
+verfügbar  sind.  Ansonsten  kann GeoHelpView  in
+ganz seltenen Fällen auch abstürzen.
+
+	`2Wichtiger Hinweis zur RAMLink von CMD`
+	`2Da 'GeoHelpView' keinen Hardwaretest beim`
+	`2Programmstart ausführt , können  Probleme`
+	`2in Verbindung mit der RAMLink auftreten.`
+
+	`2Stellen Sie  sicher das  die RAMLink  auf die`
+	`2entsprechende Geräteadresse  eingestellt ist`
+	`2mit der die RAMLink  auch unter GEOS ange-`
+	`2sprochen wird (Adr. 8 bis 11).`
+
+	`2Eine RAMLink mit der Geräteadresse '16' wird`
+	`2von GeoHelpView nicht erkannt!
+
+Verwandte Themen:
+^ `1Installation von 'LoadGeoHelp'`
+^ `1Installation von 'GeoHelpView'`
+
+`2*** ENDE ***`
+
+§§§
+"GeoHelpView.doc",04
+"GeoHelpView.doc",06
+
+§§§
+
+§§§
+
+`2Das Hilfesystem`
+
+Das Hilfesystem wird über verschiedene Funktionen
+gesteuert. Die Funktionen im einzelnen:
+
+Um sich innerhalb der aktuellen Seite zu bewegen,
+benützen Sie bitte den Rollpfeile am rechten Bild-
+rand. Die Pfeile verschieben den Ausschnitt jeweils
+um eine Zeile,ein Mausklick auf den freien Bereich
+des Rollbalkens bewegt den Bildausschnitt um eine
+Seite nach oben oder unten.
+
+Die Grundfunktionen werden über das Icon - Menü
+am oberen Bildrand gesteuert. Die einzelnen Menü-
+Icons haben dabei folgende Bedeutung:
+
+`30d`40100	Damit verlassen Sie das Hilfesystem.
+`30d`40101
+`30d`40102
+
+`30d`40200	Führt Sie zur Titelseite zurück.
+`30d`40201
+`30d`40202
+
+`30d`40300	Führt Sie zum Inhaltsverzeichnis
+`30d`40301	dieser Hilfedatei.
+`30d`40302
+
+`30d`40400	Mit diesem Menü-Icon blättern Sie in der
+`30d`40401	Hilfedatei eine Seite vorwärts. Der Name
+`30d`40402	der Hilfedatei wird am unteren Bildrand
+	angezeigt.
+
+`30d`40500	Mit diesem Icon können Sie eine Seite in
+`30d`40501	der aktuellen Hilfedatei zurückblättern.
+`30d`40502
+
+`30d`40600	Führt Sie zur letzten Seite zurück, die
+`30d`40601	mit GeoHelpView aufgerufen wurde.
+`30d`40602	(max. 10 Seiten werden gespeichert)
+
+`30d`40700	Hiermit können Sie eine Seite der Hilfe-
+`30d`40701	datei auf dem Drucker ausgeben.
+`30d`40702
+
+`30d`40800	Hiermit können Sie die aktuelle Hilfe-
+`30d`40801	datei auf den Drucker ausgeben.
+`30d`40802
+
+	`2*** ACHTUNG ***`
+	`2Für alle Druckoptionen wird  ein Drucker-`
+	`2treiber auf der Diskette benötigt, von der`
+	`2das Hilfesystem gestartet wurde.`
+	`2Verwenden  Sie  hierzu  Ihren Standard-`
+	`2Druckertreiber den Sie auch zum drucken`
+	`2von GeoPaint-Grafiken verwenden`
+
+Innerhalb der Hilfedatei existieren Querverweise zu
+verwandten  Themen. Querverweise  werden dabei
+in grüner Schrift  dargestellt. Auch hier müssen Sie
+den Mauszeiger auf das gewünschte Wort bewegen
+und mit einem Mausklick bestätigen.
+
+Verwandte Themen:
+^ `1Installation von 'LoadGeoHelp'`
+^ `1Installation von 'GeoHelpView'`
+
+`2*** ENDE ***`
+
+§§§
+"GeoHelpView.doc",04
+"GeoHelpView.doc",06
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2Die Script-Sprache`
+
+Eine Datei der mit GeoHelpView angezeigt werden
+soll, muß nach einem bestimmten Schema aufge-
+baut sein:
+
+#	Der Text muß mit GeoWrite V2.0 erstellt werden.
+
+#	Der Text muß mit dem speziellen Zeichensatz
+'GeoHelp.Edit.Fnt' erstellt werden.
+
+#	Damit eine Seite voll ausgenutzt werden kann,
+muß der Druckertreiber  'GeoHelp.Edit.Prn' aktiviert
+werden. Dieses  muß vor dem Start  von GeoWrite
+geschehen, sonst übernimmt  das Programm nicht
+die neue Seitenlänge.
+
+#	Die Ausgabe des Textes über ' GeoHelpView ' ist
+auf eine bestimmte Breite begrenzt. Um dieses be-
+reits bei der Texteingabe zu berücksichtigen,setzen
+Sie den linken Rand auf 1.3 und den rechten Rand
+auf 5.0. Das  Programm selbst berücksichtigt später
+keine Randeinstellungen!
+
+#	Schreiben Sie den Text immer "linksbündig". Die
+Formatierungsmöglichkeiten  von GeoWrite werden
+von GeoHelpView nicht unterstützt.
+
+#	Am Ende jeder Zeile muß  der Text mit 'RETURN'
+beendet  werden.  Fließtext kann  vom Programm
+nicht korrekt dargestellt werden. Schreiben Sie den
+Text  zuerst ohne  Steuerzeichen.  Wenn  die Zeile
+durch das einfügen der Steuerzeichen länger wird,
+kann der Text auch länger als  eine Zeile werden.
+
+#	Sie können  den Text mit Tabulatoren versehen.
+Um z.B. den linken  Rand einzurücken , setzen Sie
+einen Tabulator und beginnen Sie dann jede Text-
+Zeile mit einer Tastenkombination CBM+ I, das ent-
+spricht dem setzen eines Tabulators.
+
+#	Alle 61 Seiten des GeoWrite-Dokumentes können
+für den Text verwendet werden.
+
+#	Die Seiten 1 und 2 jeder Textdatei  haben dabei
+eine besondere Bedeutung. Diese können  über die
+Icons des Programms direkt aufgerufen werden.
+
+`30d`40100	Dieses Icon öffnet die erste Textdatei
+`30d`40101	die mit GeoHelpView angezeigt wurde
+`30d`40102	und zeigt die erste Seite dieser Datei
+	auf dem Bildschirm an.
+
+`30d`40200	Dieses Icon öffnet die Indexseite der
+`30d`40201	aktuellen Textdatei. Dies ist immer die
+`30d`40202	Seite 2. Auf dieser Seite sollte eine
+	Übersicht über alle Seiten enthalten
+	sein bzw. Verweise auf andere Dateien.
+
+Verwandte Themen:
+^ `1Seitenaufbau`
+
+`2*** ENDE ***`
+
+§§§
+"GeoHelpView.doc",10
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2Seitenaufbau eines Textdokumentes`
+
+Eine Textseite ist immer nach einem bestimmten
+Schema aufgebaut:
+
+_____________________________________
+
+_________________	Seitenanfang.
+
+	Text für	Beliebiger Text. Es sollte
+	GeoHelpView	darauf geachtet werden,
+		das die Seite nicht zu
+		groß wird. Kontrollieren
+		Sie dieses über GeoWrite,
+		'Datei' : 'Übersicht'. Dann
+		kann die Seite noch auf
+		den Drucker ausgegeben
+		werden.
+
+ § § §		Ende-Kennung für
+		Textbereich.
+
+	Sprungziele für
+	Querverweise
+
+ § § §		Ende-Kennung für
+		Querverweise.
+
+	Icons für diese
+	Textseite
+
+ § § §		Seitenende-Kennung.
+
+_________________	Seitenende.
+
+_____________________________________
+
+Die Ende-Kennung erreichen Sie über 3x 'SHIFT+ 3'.
+Zwischen diesen Zeichen dürfen keine Leerzeichen
+stehen , sonst erkennt das Programm die Kennung
+nicht und stellt den Text nicht korrekt dar.
+
+Um nun die Querverweise und Icons ansprechen zu
+können, benötigt GeoHelpView Steuerzeichen:
+
+	^ `1Erzeugen von Querverweisen`
+	^ `1Grafiken darstellen`
+	^ `1Überschiften erzeugen`
+	^ `1Texte farbig darstellen`
+
+`2*** ENDE ***`
+
+§§§
+"GeoHelpView.doc",11
+"GeoHelpView.doc",12
+"GeoHelpView.doc",13
+"GeoHelpView.doc",14
+
+§§§
+
+§§§
+
+`2Steuercode: Querverweis`
+
+Bereiche für Querverweise werden mit einer Folge
+von zwei Zeichen eingeleitet : 'SHIFT + MINUS' und
+im Anschluß daran eine '1'. Danach folgt der Text,
+der als  Querverweis markiert werden soll . Damit
+das Programm erkennt, wo der Bereich für diesen
+Querverweis endet, muß der Text mit einem wei -
+teren 'SHIFT + MINUS' abgeschlossen werden.
+
+	Beispiel:
+	^ '1 Inhaltsverzeichnis '
+
+Das Programm stellt den Text dann wie folgt auf
+dem Bildschirm dar:
+
+	^ `1Inhaltsverzeichnis`
+
+Nach der Ende- Kennung für den Textbereich folgt
+dann die Sprungtabelle. Für jeden Querverweis im
+Text  muß hier ein  Eintrag  erstellt werden. Dabei
+ist auf die Reihenfolge  im Text zu achten , damit
+die Sprungziele auch den richtigen Verweisen zu-
+geordet werden können.
+
+Es folgt der Aufbau einer solchen Tabelle:
+_____________________________________
+
+ § § §		Ende-Kennung für
+		Textbereich.
+
+"NAME",SEITE	Sprungziel 1. Verweis.
+"NAME",SEITE	Sprungziel 2. Verweis.
+"NAME",SEITE	Sprungziel 3. Verweis.
+"NAME",SEITE	Sprungziel 4. Verweis.
+usw...
+
+ § § §		Ende-Kennung für
+		Querverweise.
+_____________________________________
+
+Der Dateiname  muß zwischen  zwei  " - Zeichen
+stehen, sonst wird dieser vom Programm nicht er-
+kannt. Danach folgt , durch  ein Komma getrennt,
+die Seiten- Nr. Diese ist dezimal und immer  zwei-
+stellig anzugeben ( '01' statt '1' oder '09' statt '9').
+
+	Beispiel:
+	"GeoHelp",01
+
+Am besten betrachten Sie sich einige Hilfetexte um
+den Aufabu einer  solchen Seite schneller  zu ver-
+stehen.
+
+`2*** ENDE ***'
+
+§§§
+
+§§§
+
+§§§
+
+`2Steuercode: Grafikeinbindung.`
+
+Grafiken werden nicht direkt in den Text eingebun-
+den. Alle Grafiken, die auf dieser Seite dargestellt
+werden sollen, werden im Anschluß an die Ende -
+Kennung für Querverweise eingefügt.
+Grafiken werden  auch nicht als ganzes auf  dem
+Bildschirm dargestellt, sondern immer nur ein Aus-
+schnitt von 8 Pixel. Das  entspricht einer Textzeile.
+
+	Beispiel:
+	'4xxyy	Weiterer Text....
+
+Der Steuercode wird eingeleitet durch die Zeichen-
+folge 'SHIFT + MINUS' und einer '4' als Kennung für
+die Grafikausgabe. Es folgen zwei Zahlen , die je -
+weils zweistellig und dezimal anzugeben sind.
+Die erste Zahl ist die Nummer der Grafik innerhalb
+der Grafiktabelle. Die erste Grafik hat dabei die Nr.
+' 01 '. Die zweite Zahl gibt den Ausschnitt an , der
+dargestellt werden soll.
+
+Als Beispiel soll nun die folgende Grafik auf dem
+Bildschirm dargestellt werden:
+
+	`40100
+	`40101
+	`40102
+
+Dazu sind drei Steuerbefehle nötig, die jede für
+sich in einer Zeile im Text stehen müssen:
+
+	'40100	ergibt	`40100
+
+	'40101	ergibt	`40101
+
+	'40102	ergibt	`40102
+
+Wenn die Zeilen direkt untereinander stehen, wird
+die Grafik ohne zwischenräume dargestellt. Dieses
+Verfahren wurde gewählt , um das  Scrolling der
+Textseite möglichst schnell zu machen.
+Nach einem Steuercode für Grafikausgabe können
+Sie natürlich weiteren Text schreiben. Dieser wird
+dann im Anschluß an die Grafik ausgegeben.
+
+Nun folgt noch der Aufbau der Grafiktabelle:
+_____________________________________
+
+ § § §		Ende-Kennung für
+		Querverweise.
+
+`40100	Die erste Grafik.
+`40101
+`40102
+
+`40200	Die zweite Grafik.
+`40201
+`40202
+
+ § § §		Seitenende-Kennung.
+
+_____________________________________
+
+Sie können  die Photoscraps direkt  hintereinander
+in das Dokument über "Edit" : "Einkleben" : "Bild"
+eingebinden.
+Achtung ! Sie können im gesamten Dokument nur
+63 Grafiken verwenden ! Mehr kann GeoWrite nicht
+verwalten.  Abgeschlossen wird der  Grafikbereich
+durch die Kennung § § § (ohne Leerzeichen!).
+
+Es ist auch möglich, Grafiken als Querverweis zu
+verwenden. Beispiel:
+
+	`1`40100	im Text:	'1'40100
+	`1`40101		'1'40101
+	`1`40102		'1'40102
+
+Es muß dann nur für  jede Zeile ( im Beispiel sind
+es drei Zeilen) ein Eintrag in der Sprungzieltabelle
+erstellt werden.
+
+`2*** Ende ***`
+
+§§§
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+                <MISSING_IMAGE_DATA>
+
+§§§
+
+`2Steuercode: Überschriften.`
+
+Um Überschiften vom übrigen Text abzuheben, gibt
+es die folgende Möglichkeit:
+
+	Beispiel:
+	'2 Das ist eine Überschift`
+
+Das Programm stellt den Text dann wie folgt auf
+dem Bildschirm dar:
+
+	`2Das ist eine Überschrift`
+
+Der Steuercode wird eingeleitet durch die Zeichen-
+folge 'SHIFT + MINUS' und einer '2' als Kennung für
+eine Überschrift. Wird die Überschirft nicht durch ein
+weiteres ' -Zeichen abgeschlossen, so wird der ge-
+sammte Text bis zum Ende der aktuellen Zeile als
+Überschrift markiert.
+
+`2*** ENDE ***
+
+§§§
+
+§§§
+
+§§§
+
+`2Steuercode: Farbe setzen.`
+
+Um Textpassagen oder Grafiken farbig zu unterle-
+gen, exisitiert ein weiterer Steuercode:
+
+	Beispiel:
+	Das ist sehr '361 WICHTIG! '
+
+Das Programm stellt den Text dann wie folgt auf
+dem Bildschirm dar:
+
+	Das ist sehr `361 WICHTIG! `
+
+Der Steuercode wird eingeleitet durch die Zeichen-
+folge 'SHIFT + MINUS' und einer '3' als Kennung für
+einen Farbwechsel. Die Zahl nach dem Steuercode
+ist zweistellig  hexadezimal anzugeben.  Die erste
+Ziffer gibt dabei die Farbe des Textes , die zweite
+die Farbe des Hintergrundes an. Es folgt eine Über-
+sicht der möglichen Farbwerte:
+
+_____________________________________
+
+	0	Schwarz	8	Orange
+	1	Weiß	9	Braun
+	2	Rot	A	Hellrot
+	3	Cyan	B	Dunkelgrau
+	4	Purpur	C	Mittelgrau
+	5	Grün	D	Hellgrün
+	6	Blau	E	Hellblau
+	7	Gelb	F	Hellgrau
+
+_____________________________________
+
+Die  gewünschte Farbe zetzt  sich zusammen  aus
+einem Farbwert von 0 - F für den Text und einem
+Farbwert für den Hintergrund. Ein paar Beispiele:
+
+	'301Text	ergibt	`301Text
+	Die '0' nach der Steuercode-Kennung '3 steht
+	für schwarze Schrift und die darauffolgende
+	'1' signalisiert dem Programm einen  weißen
+	Text-Hintergrund.
+
+	'312Text	ergibt	`312Text
+	'3D6Text	ergibt	`3D6Text
+
+Vermeiden  Sie nach Möglichkeit den Farbwert '5'
+zu verwenden. Dieser ist für die Querverweise re-
+serviert und kann dann zu Problemen führen.
+
+Mit diesem Steuercode  ist es möglich , Grafiken
+mit Farbe zu unterlegen. Beispiel:
+
+	'30D'40100
+	'30D'40101
+	'30D'40102
+
+Diese drei Zeilen im Text erzeugen die folgende
+Grafik auf dem Bildschirm:
+
+	`30D`40100
+	`30D`40101
+	`30D`40102
+
+`2*** ENDE ***
+
+§§§
+
+§§§
+
+                <MISSING_IMAGE_DATA>
+
+§§§

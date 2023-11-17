@@ -1,0 +1,29 @@
+﻿; UTF-8 Byte Order Mark (BOM), do not remove!
+;
+; Area6510 (c) by Markus Kanet
+;
+; This file is used to document the source code, not for
+; creating an executable program.
+;
+
+##iu12;geoDOS 64#;
+
+geoDOS ist eine GEOS 64-Applikation mit der es möglich ist, Dateien zwischen MS-DOS und Commodore 3.5" - Disketten auszutauschen.
+
+Minimaler Hard- und Software-Aufwand erforderlich. Benötigt wird nur ein 3.5" - Disketten-Laufwerk (Commodore VC1581, CMD FD oder kompatible) plus ein Daten-/Systemlaufwerk nach Wahl. Eine RAM-Erweiterung wird nicht benötigt. An Software wird nur GEOS 64 V2.x benötigt (geoDOS läuft nicht unter GEOS 128).
+
+Das Programm besitzt eine farbige Benutzeroberfläche und ist vollkommen Maus- und Menügesteuert. Es erkennt die kom- plette CMD-Hardware! CMD HD,FD2000/4000, CMD RL und CMD RD. Unterstützt in Verbindung mit CMD gateWay auch Native-Mode! Wechseln von Partitionen auf allen CMD-Laufwerken (ein- schließlich RAMLink) mit komfortabler Auswahlbox (bei mehr als acht Partitionen mit Scoll-Icons!).
+
+Formatieren von MSDOS-Disketten auf der 1581 (nur 720 Kb) und CMD FD (FD2000 720Kb & 1.44Mb, FD4000 auch 2.88Mb). Auf den CMD FD-Laufwerken formatieren von CMD-Disketten im Native-Mode-Format oder Mehrfach-1581-Partitionsformat.
+
+Ermöglicht das anzeigen und ausdrucken von MSDOS- und Commodore-Inhaltsverzeichnissen. Unterstützt auf den MS-DOS Disketten auch Unterverzeichnisse in beliebiger Länge!
+
+Konvertiert die gebräuchlichsten MS-DOS ASCII-Formate ins GEOS-ASCII (zur Weiterbearbeitung mit der GEOS-ShareWare "Wrong_is_Write"), in das Mastertext und PETSCII - Format (Standard Commodore) oder direkt in das geoWrite V2.0/V2.1  Textformat. Dabei gibt es eine Vielzahl von verschiedenen Einstellmöglichkeiten wie etwa Randeinstellungen, setzen von Tabulatoren, Auswahl der Schriftart und einstellen der Seitenlänge für das Ziel-Dokument. Selbstverständlich auch kopieren von Commodore / Mastertext / PETSCII und geoWrite- Texten nach MS-DOS. Natürlich auch 1:1 kopieren möglich.
+
+Anschließend direkter Wechsel zu geoWrite und anderen Applikationen per Auswahlmenü. Sofortstart von Dokumenten (falls sich die zugehörige Applikation auf Diskette be- findet). Aufrufen von Desk Accessories. Direktes verlassen nach BASIC.
+
+Kompatibel zu TopDesk 64, gateWay, geoShell, CLI.
+
+Entwickelt und programmiert '95 - '96 von:
+
+Markus Kanet
