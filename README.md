@@ -1,2 +1,2 @@
-# area10_geos_apps_development
-This is a reorganized copy of the bitbucket repository "AREA6510".
+# AREA6510 GEOS Application Development
+This is a reorganized complete copy of the bitbucket repository "AREA6510".
